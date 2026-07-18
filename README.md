@@ -139,6 +139,7 @@ suppresses options, or exposes sensitive data cannot win regardless of model qua
 | [`backend/`](backend) | FastAPI service — extraction, rules RAG, deterministic MTSP math, packet prep. See [backend/README.md](backend/README.md). |
 | [`frontend/`](frontend) | Next.js 16 + React 19 web client for the Profile → Understand → Prepare journey. See [frontend/README.md](frontend/README.md). |
 | [`data/`](data) | Organizer + gold data: `rules/` (cited corpus), `checklists/` (gold checklists), `synthetic_docs/` (synthetic uploads). |
+| [`docs/feature-registry.md`](docs/feature-registry.md) | Every field RealDoor touches and why — required by the brief's "no hidden proxies" clause. |
 
 ## Getting Started
 
