@@ -66,3 +66,25 @@ def test_get_checklist_endpoint(client):
     by_id = {item["id"]: item["status"] for item in body["items"]}
     assert by_id["consent_form"] == "present"
     assert by_id["pay_stub"] == "missing"
+
+
+def test_get_packet_returns_pdf(client):
+    from db import get_db
+    from main import app
+    from models import DocumentRecord, FieldRecord
+
+    client.post("/consent")
+    session_id = client.cookies.get("realdoor_session")
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    doc = DocumentRecord(session_id=session_id, encrypted_path="unused", content_type="application/pdf")
+    db.add(doc)
+    db.commit()
+    db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="7500", confirmed=True))
+    db.commit()
+
+    response = client.get("/packet?household_size=4&ami_tier=60")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "application/pdf"
+    assert response.content[:4] == b"%PDF"
