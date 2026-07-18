@@ -10,12 +10,17 @@ def client(monkeypatch):
 
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
+    from sqlalchemy.pool import StaticPool
 
     from db import Base, get_db
     import models  # noqa: F401  ensures all tables are registered on Base.metadata
     from main import app
 
-    engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False})
+    engine = create_engine(
+        "sqlite:///:memory:",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
     testing_session_local = sessionmaker(bind=engine)
     Base.metadata.create_all(bind=engine)
 
