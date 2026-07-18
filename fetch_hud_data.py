@@ -1,140 +1,88 @@
 #!/usr/bin/env python3
 """
-fetch_hud_data.py — Pull real HUD housing data for RealDoor's rule corpus.
+fetch_hud_data.py — Pull HUD MTSP income-limit data into RealDoor's rule corpus.
 
-Fetches, for one metro area:
-  - MTSP (Multifamily Tax Subsidy Project) Income Limits — REQUIRED source per the brief
-  - Section 8 Income Limits (optional context)
-  - Fair Market Rents (optional context)
+No API token needed. Downloads HUD's official static FY2026 MTSP Income Limits
+Excel file (published directly on huduser.gov, no login required) and pulls out
+just the rows matching your metro area.
 
-Saves everything as JSON into data/rules/, ready to feed your RAG/rules corpus.
-
-SETUP (one-time):
-  1. Register for a free HUD USER API account + token:
-     https://www.huduser.gov/hudapi/public/register
-  2. Log in, click "Create New Token": https://www.huduser.gov/hudapi/public/login
-  3. Put the token in your environment:
-     export HUD_API_TOKEN="your_token_here"
-  4. pip install requests
+SETUP:
+  pip install requests pandas openpyxl
 
 USAGE:
-  python fetch_hud_data.py --metro "Boston-Cambridge" --year 2026
-  python fetch_hud_data.py --metro "Boston-Cambridge" --year 2026 --include-fmr
+  # First run — see how this year's file is actually laid out:
+  python fetch_hud_data.py --list-columns
 
-If your metro name matches more than one HUD area, the script prints all
-matches and asks you to re-run with a more specific --metro string or the
-exact --cbsa-code.
+  # Then pull rows for your metro:
+  python fetch_hud_data.py --area "Boston-Cambridge"
+  python fetch_hud_data.py --area "Boston-Cambridge" --year 2025   # older year if needed
 """
 
 import argparse
-import json
-import os
-import re
 import sys
 from pathlib import Path
 
 try:
     import requests
+    import pandas as pd
 except ImportError:
-    sys.exit("Missing dependency. Run: pip install requests")
+    sys.exit("Missing dependencies. Run: pip install requests pandas openpyxl")
 
-BASE = "https://www.huduser.gov/hudapi/public"
 DATA_DIR = Path(__file__).parent / "data" / "rules"
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; RealDoorBot/1.0)"}
 
 
-def get_token() -> str:
-    token = os.environ.get("HUD_API_TOKEN")
-    if not token:
-        sys.exit(
-            "HUD_API_TOKEN is not set.\n"
-            "Register for a free token at https://www.huduser.gov/hudapi/public/register\n"
-            "then run: export HUD_API_TOKEN=\"your_token_here\""
-        )
-    return token
+def source_url(year: int) -> str:
+    """HUD publishes one static national file per fiscal year at a predictable path."""
+    yy = str(year)[-2:]
+    return f"https://www.huduser.gov/portal/datasets/mtsp/mtsp{yy}/MTSP-Data-FY{yy}.xlsx"
 
 
-def api_get(path: str, token: str, params: dict | None = None) -> dict:
-    r = requests.get(f"{BASE}/{path}", headers={"Authorization": f"Bearer {token}"}, params=params)
-    if r.status_code == 401:
-        sys.exit("HUD API rejected the token (401). Check HUD_API_TOKEN is current and valid.")
-    r.raise_for_status()
-    return r.json()
-
-
-def find_metro(token: str, query: str) -> list[dict]:
-    """Search HUD's metro area list for a name match."""
-    result = api_get("fmr/listMetroAreas", token)
-    areas = result.get("data", result) if isinstance(result, dict) else result
-    query_l = query.lower()
-    return [a for a in areas if query_l in a["area_name"].lower()]
-
-
-def slugify(name: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
-
-
-def save_json(obj: dict, filename: str) -> Path:
+def download(year: int) -> Path:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    path = DATA_DIR / filename
-    path.write_text(json.dumps(obj, indent=2))
-    return path
+    dest = DATA_DIR / f"mtsp_national_fy{year}.xlsx"
+    if dest.exists():
+        print(f"Already have: {dest}")
+        return dest
+    url = source_url(year)
+    print(f"Downloading {url} ...")
+    r = requests.get(url, headers=HEADERS, timeout=60)
+    r.raise_for_status()
+    dest.write_bytes(r.content)
+    print(f"Saved: {dest}")
+    return dest
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch HUD MTSP/IL/FMR data for RealDoor.")
-    parser.add_argument("--metro", help="Metro area name to search for, e.g. 'Boston-Cambridge'")
-    parser.add_argument("--cbsa-code", help="Exact HUD cbsa_code if you already know it, e.g. METRO14460M14460")
-    parser.add_argument("--year", type=int, default=2026, help="Data year (default: 2026)")
-    parser.add_argument("--include-il", action="store_true", help="Also fetch Section 8 Income Limits (optional context)")
-    parser.add_argument("--include-fmr", action="store_true", help="Also fetch Fair Market Rents (optional context)")
-    args = parser.parse_args()
+    p = argparse.ArgumentParser(description="Pull HUD MTSP income limits for one metro area.")
+    p.add_argument("--area", help="Substring to search for, e.g. 'Boston-Cambridge'")
+    p.add_argument("--year", type=int, default=2026)
+    p.add_argument("--list-columns", action="store_true", help="Print columns + sample rows, then exit")
+    args = p.parse_args()
 
-    if not args.metro and not args.cbsa_code:
-        sys.exit("Provide --metro \"name\" or --cbsa-code METRO#####M#####")
+    df = pd.read_excel(download(args.year), engine="openpyxl")
 
-    token = get_token()
+    if args.list_columns:
+        print("Columns:", list(df.columns))
+        print(df.head())
+        return
 
-    if args.cbsa_code:
-        cbsa_code = args.cbsa_code
-        area_name = args.cbsa_code
-    else:
-        matches = find_metro(token, args.metro)
-        if not matches:
-            sys.exit(f"No HUD metro area matched '{args.metro}'. Try a shorter/different substring.")
-        if len(matches) > 1:
-            print(f"Multiple matches for '{args.metro}':")
-            for m in matches:
-                print(f"  {m['cbsa_code']}  —  {m['area_name']}")
-            sys.exit("Re-run with --cbsa-code <one of the codes above> to pick a specific one.")
-        cbsa_code = matches[0]["cbsa_code"]
-        area_name = matches[0]["area_name"]
-        print(f"Matched: {area_name}  ({cbsa_code})")
+    if not args.area:
+        sys.exit("Provide --area \"name\" (or run --list-columns first to see how areas are labeled).")
 
-    slug = slugify(area_name)
+    # Search every text column — HUD's exact area-name column varies by year,
+    # so this doesn't assume one specific column name.
+    text_cols = df.select_dtypes(include="object").columns
+    mask = df[text_cols].apply(lambda c: c.astype(str).str.contains(args.area, case=False, na=False)).any(axis=1)
+    matches = df[mask]
 
-    # Required: MTSP Income Limits
-    print(f"Fetching MTSP income limits for {area_name}, year {args.year}...")
-    mtsp = api_get(f"mtspil/data/{cbsa_code}", token, params={"year": args.year})
-    path = save_json(mtsp, f"mtsp_income_limits_{slug}_{args.year}.json")
-    print(f"Saved: {path}")
+    if matches.empty:
+        sys.exit(f"No rows matched '{args.area}'. Run --list-columns to check how areas are named.")
 
-    # Optional: Section 8 Income Limits
-    if args.include_il:
-        print(f"Fetching Section 8 income limits for {area_name}, year {args.year}...")
-        il = api_get(f"il/data/{cbsa_code}", token, params={"year": args.year})
-        path = save_json(il, f"section8_income_limits_{slug}_{args.year}.json")
-        print(f"Saved: {path}")
-
-    # Optional: Fair Market Rents
-    if args.include_fmr:
-        print(f"Fetching Fair Market Rents for {area_name}, year {args.year}...")
-        fmr = api_get(f"fmr/data/{cbsa_code}", token, params={"year": args.year})
-        path = save_json(fmr, f"fair_market_rents_{slug}_{args.year}.json")
-        print(f"Saved: {path}")
-
-    print("\nDone. Note: HUD's LIHTC property database has no simple API endpoint —")
-    print("download it manually as CSV from https://www.huduser.gov/portal/datasets/lihtc.html")
-    print("(pick your state, export CSV, drop the file into data/rules/ or data/properties/).")
+    slug = args.area.lower().replace(" ", "_").replace(",", "")
+    out_path = DATA_DIR / f"mtsp_{slug}_{args.year}.json"
+    matches.to_json(out_path, orient="records", indent=2)
+    print(f"Matched {len(matches)} row(s). Saved: {out_path}")
 
 
 if __name__ == "__main__":
