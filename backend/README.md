@@ -22,7 +22,8 @@ top-level [`../data/`](../data) directory.
 - **chromadb** — vector store for the cited rules corpus.
 - **openai** — LLM calls for extraction and Q&A.
 - **pypdf** — parse uploaded synthetic documents.
-- **SQLAlchemy** + SQLite — persistence (profiles, consent/action logs).
+- **pandas** + **openpyxl** — parse HUD's static MTSP income-limit Excel file (used by `../fetch_hud_data.py`).
+- **SQLAlchemy** + **psycopg2-binary** — persistence on Postgres (profiles, consent/action logs). Deployed on Render alongside the backend.
 
 ## Setup
 
@@ -44,9 +45,11 @@ pip install -r requirements.txt
 Create a `.env` file in this directory:
 
 ```env
-OPENAI_API_KEY=sk-...           # your OpenAI key
-DATABASE_URL=sqlite:///./realdoor.db
+OPENAI_API_KEY=sk-...                                   # your OpenAI key
+DATABASE_URL=postgresql://user:password@localhost:5432/realdoor
 ```
+
+For local development without a Postgres server running, point `DATABASE_URL` at a local instance (e.g. `docker run -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres`). Production uses a Render-managed Postgres instance.
 
 `.env` holds secrets — keep it out of version control.
 
