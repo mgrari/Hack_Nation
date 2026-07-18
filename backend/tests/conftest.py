@@ -34,5 +34,7 @@ def client(monkeypatch):
     from fastapi.testclient import TestClient
 
     app.dependency_overrides[get_db] = override_get_db
-    yield TestClient(app)
+    test_client = TestClient(app)
+    test_client.session_local = testing_session_local
+    yield test_client
     app.dependency_overrides.clear()

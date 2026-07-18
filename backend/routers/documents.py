@@ -1,3 +1,4 @@
+import io
 import os
 import uuid
 
@@ -44,18 +45,22 @@ async def upload_document(
     db.add(document)
 
     if file.content_type == "application/pdf":
-        tmp_path = f"/tmp/{doc_id}.pdf"
-        with open(tmp_path, "wb") as f:
-            f.write(raw_bytes)
-        text = extract_text_from_pdf(tmp_path)
-        os.remove(tmp_path)
+        try:
+            text = extract_text_from_pdf(io.BytesIO(raw_bytes))
+        except Exception:
+            db.rollback()
+            raise HTTPException(status_code=422, detail="Could not read this document")
     else:
         # Vision path for scanned images: extraction.py's OpenAI call is text-only for now;
         # image support is a documented v1.1 follow-up (design spec section "Cut for v1").
         text = ""
 
     client = OpenAI(api_key=settings.openai_api_key)
-    result = call_extraction_model(client, text)
+    try:
+        result = call_extraction_model(client, text)
+    except Exception:
+        db.rollback()
+        raise HTTPException(status_code=502, detail="Extraction service unavailable")
 
     fields_out = []
     for extracted in result.fields:

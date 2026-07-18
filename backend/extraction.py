@@ -1,4 +1,5 @@
 import json
+from typing import BinaryIO
 
 from pypdf import PdfReader
 
@@ -21,8 +22,8 @@ EXTRACTION_SYSTEM_PROMPT = (
 )
 
 
-def extract_text_from_pdf(path: str) -> str:
-    reader = PdfReader(path)
+def extract_text_from_pdf(file: BinaryIO) -> str:
+    reader = PdfReader(file)
     return "\n".join(page.extract_text() or "" for page in reader.pages)
 
 
