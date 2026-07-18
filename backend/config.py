@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     openai_api_key: str
     fernet_key: str
     consent_version: str = "2026-07-18"
+    frontend_origin: str = "http://localhost:3000"
 
     model_config = SettingsConfigDict(env_file=".env")
 

@@ -71,3 +71,13 @@ After adding a package, re-pin:
 ```bash
 pip freeze > requirements.txt
 ```
+
+## Deploy
+
+Backend + Postgres deploy to Render via `render.yaml` (repo root): push to `main`, connect
+the repo in the Render dashboard, set `OPENAI_API_KEY`, `FERNET_KEY`, and `FRONTEND_ORIGIN`
+(the deployed Vercel URL) as secret env vars (`DATABASE_URL` is wired automatically from the
+linked `realdoor-db` instance).
+
+Frontend deploys to Vercel: import the repo, set the root directory to `frontend/`, and set
+`NEXT_PUBLIC_API_URL` to the Render backend's public URL.

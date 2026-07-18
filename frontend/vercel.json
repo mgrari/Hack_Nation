@@ -1,0 +1,7 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@realdoor-backend-url"
+  }
+}
