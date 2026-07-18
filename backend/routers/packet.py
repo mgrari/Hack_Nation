@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
 from calculator import calculate_income_vs_threshold
@@ -41,7 +41,19 @@ def get_packet(
         .all()
     )
     confirmed_fields = {f.field_name: f.confirmed_value for f in fields}
-    annual_income = float(confirmed_fields.get("gross_pay", 0)) * 12
+    if "gross_pay" not in confirmed_fields:
+        raise HTTPException(
+            status_code=400,
+            detail="No confirmed gross_pay field found. Confirm a field first.",
+        )
+
+    try:
+        annual_income = float(confirmed_fields["gross_pay"]) * 12
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=f"gross_pay field has a non-numeric confirmed_value: {exc}",
+        )
     calculation = calculate_income_vs_threshold(annual_income, household_size, ami_tier)
 
     consent = db.query(ConsentRecord).filter_by(session_id=session_id).first()
