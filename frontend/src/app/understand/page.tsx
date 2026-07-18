@@ -6,11 +6,21 @@ import { Card } from "@/components/ui/card";
 import { ask, calculate, type Calculation } from "@/lib/api";
 
 export default function UnderstandPage() {
-  const [householdSize, setHouseholdSize] = useState(4);
+  const [householdSize, setHouseholdSizeState] = useState(() => {
+    if (typeof window === "undefined") return 4;
+    const stored = window.sessionStorage.getItem("householdSize");
+    return stored ? Number(stored) : 4;
+  });
   const [calculation, setCalculation] = useState<Calculation | null>(null);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [askError, setAskError] = useState<string | null>(null);
+
+  function setHouseholdSize(value: number) {
+    setHouseholdSizeState(value);
+    window.sessionStorage.setItem("householdSize", String(value));
+  }
 
   async function handleCalculate() {
     setError(null);
@@ -23,8 +33,13 @@ export default function UnderstandPage() {
   }
 
   async function handleAsk() {
-    const result = await ask(question);
-    setAnswer(result.answer);
+    setAskError(null);
+    try {
+      const result = await ask(question);
+      setAnswer(result.answer);
+    } catch (err) {
+      setAskError((err as Error).message);
+    }
   }
 
   return (
@@ -69,6 +84,7 @@ export default function UnderstandPage() {
           className="w-full rounded border px-2 py-1"
         />
         <Button onClick={handleAsk}>Ask</Button>
+        {askError && <p role="alert" className="text-red-700">{askError}</p>}
         {answer && <p className="text-sm">{answer}</p>}
       </Card>
 

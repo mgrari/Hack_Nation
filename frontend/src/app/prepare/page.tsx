@@ -7,7 +7,11 @@ import { deleteSession, getChecklist, getPacketUrl, type ChecklistItem } from "@
 
 export default function PreparePage() {
   const [items, setItems] = useState<ChecklistItem[]>([]);
-  const [householdSize] = useState(4);
+  const [householdSize] = useState(() => {
+    if (typeof window === "undefined") return 4;
+    const stored = window.sessionStorage.getItem("householdSize");
+    return stored ? Number(stored) : 4;
+  });
 
   useEffect(() => {
     getChecklist().then((result) => setItems(result.items));

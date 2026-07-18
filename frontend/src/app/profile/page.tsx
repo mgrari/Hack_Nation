@@ -12,8 +12,13 @@ export default function ProfilePage() {
   const [error, setError] = useState<string | null>(null);
 
   async function handleConsent() {
-    await giveConsent();
-    setConsented(true);
+    setError(null);
+    try {
+      await giveConsent();
+      setConsented(true);
+    } catch (err) {
+      setError((err as Error).message);
+    }
   }
 
   async function handleUpload(event: React.ChangeEvent<HTMLInputElement>) {
@@ -31,10 +36,15 @@ export default function ProfilePage() {
 
   async function handleConfirm(fieldName: string, value: string) {
     if (!documentId) return;
-    await confirmField(documentId, fieldName, value);
-    setFields((prev) =>
-      prev.map((f) => (f.field_name === fieldName ? { ...f, value } : f)),
-    );
+    setError(null);
+    try {
+      await confirmField(documentId, fieldName, value);
+      setFields((prev) =>
+        prev.map((f) => (f.field_name === fieldName ? { ...f, value } : f)),
+      );
+    } catch (err) {
+      setError((err as Error).message);
+    }
   }
 
   return (
@@ -52,6 +62,7 @@ export default function ProfilePage() {
             .
           </p>
           <Button onClick={handleConsent}>I understand, continue</Button>
+          {error && <p role="alert" className="text-red-700">{error}</p>}
         </Card>
       )}
 
