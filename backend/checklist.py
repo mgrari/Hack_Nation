@@ -6,8 +6,15 @@ CHECKLIST_PATH = Path(__file__).parent.parent / "data" / "checklists" / "gold_ch
 
 
 def load_gold_checklist() -> list[dict]:
-    with open(CHECKLIST_PATH) as f:
-        return json.load(f)["items"]
+    try:
+        with open(CHECKLIST_PATH) as f:
+            return json.load(f)["items"]
+    except FileNotFoundError:
+        raise FileNotFoundError(f"Gold checklist file not found: {CHECKLIST_PATH}.")
+    except json.JSONDecodeError as e:
+        raise json.JSONDecodeError(
+            f"Gold checklist file is not valid JSON: {CHECKLIST_PATH} ({e.msg})", e.doc, e.pos
+        )
 
 
 def evaluate_checklist(confirmed_fields: dict, consent_given: bool) -> list[dict]:
@@ -21,9 +28,13 @@ def evaluate_checklist(confirmed_fields: dict, consent_given: bool) -> list[dict
             if not value:
                 status = "missing"
             elif item["max_age_days"]:
-                field_date = datetime.fromisoformat(value)
-                age = datetime.utcnow() - field_date
-                status = "expired" if age > timedelta(days=item["max_age_days"]) else "present"
+                try:
+                    field_date = datetime.fromisoformat(value)
+                except ValueError:
+                    status = "missing"
+                else:
+                    age = datetime.utcnow() - field_date
+                    status = "expired" if age > timedelta(days=item["max_age_days"]) else "present"
             else:
                 status = "present"
         else:
