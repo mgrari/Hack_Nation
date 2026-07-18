@@ -12,6 +12,8 @@ services:
         sync: false
       - key: FRONTEND_ORIGIN
         sync: false # fill in with the deployed Vercel URL, e.g. https://realdoor.vercel.app
+      - key: ENVIRONMENT
+        value: production # required so the session cookie uses Secure+SameSite=None for cross-domain auth
       - key: DATABASE_URL
         fromDatabase:
           name: realdoor-db
