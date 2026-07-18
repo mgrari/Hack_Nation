@@ -132,6 +132,62 @@ a disclaimer without working controls does not satisfy the challenge.
 **Minimum bar:** A submission that approves, denies, scores, ranks, silently
 suppresses options, or exposes sensitive data cannot win regardless of model quality.
 
+## Repository Layout
+
+| Path | What it is |
+|---|---|
+| [`backend/`](backend) | FastAPI service — extraction, rules RAG, deterministic MTSP math, packet prep. See [backend/README.md](backend/README.md). |
+| [`frontend/`](frontend) | Next.js 16 + React 19 web client for the Profile → Understand → Prepare journey. See [frontend/README.md](frontend/README.md). |
+| [`data/`](data) | Organizer + gold data: `rules/` (cited corpus), `checklists/` (gold checklists), `synthetic_docs/` (synthetic uploads). |
+
+## Getting Started
+
+Clone the repo, then set up each half. Run both for the end-to-end flow.
+
+### Prerequisites
+
+- **Python 3.11+** (backend)
+- **Node.js 20+** (frontend)
+- An **OpenAI API key**
+
+### 1. Backend
+
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate          # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Create `backend/.env`:
+
+```env
+OPENAI_API_KEY=sk-...
+DATABASE_URL=sqlite:///./realdoor.db
+```
+
+Run it:
+
+```bash
+uvicorn main:app --reload --port 8000   # http://localhost:8000
+```
+
+Details: [backend/README.md](backend/README.md).
+
+### 2. Frontend
+
+In a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev                       # http://localhost:3000
+```
+
+Details: [frontend/README.md](frontend/README.md).
+
+With both running, the client (port 3000) talks to the API (port 8000).
+
 ## Status
 
 Project scaffolding in progress.
