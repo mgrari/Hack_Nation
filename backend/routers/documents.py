@@ -1,9 +1,11 @@
 import io
 import os
 import uuid
+from datetime import datetime
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from openai import OpenAI
+from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from config import settings
@@ -86,3 +88,31 @@ async def upload_document(
     db.add(AuditLogRecord(session_id=session_id, action="document_uploaded"))
     db.commit()
     return {"document_id": doc_id, "fields": fields_out}
+
+
+class FieldCorrection(BaseModel):
+    value: str
+
+
+@router.patch("/documents/{document_id}/fields/{field_name}")
+def correct_field(
+    document_id: str,
+    field_name: str,
+    body: FieldCorrection,
+    session_id: str = Depends(get_or_create_session),
+    db: Session = Depends(get_db),
+):
+    document = db.query(DocumentRecord).filter_by(id=document_id, session_id=session_id).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    field = db.query(FieldRecord).filter_by(document_id=document_id, field_name=field_name).first()
+    if not field:
+        raise HTTPException(status_code=404, detail="Field not found")
+
+    field.confirmed_value = body.value
+    field.confirmed = True
+    field.corrected_at = datetime.utcnow()
+    db.add(AuditLogRecord(session_id=session_id, action="field_corrected", field_name=field_name))
+    db.commit()
+    return {"field_name": field_name, "confirmed_value": field.confirmed_value, "confirmed": True}
