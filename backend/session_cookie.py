@@ -1,6 +1,7 @@
 from fastapi import Depends, Request, Response
 from sqlalchemy.orm import Session
 
+from config import settings
 from db import get_db
 from models import SessionRecord
 
@@ -22,5 +23,12 @@ def get_or_create_session(
     db.add(record)
     db.commit()
     db.refresh(record)
-    response.set_cookie(COOKIE_NAME, record.id, httponly=True, samesite="lax")
+    is_production = settings.environment == "production"
+    response.set_cookie(
+        COOKIE_NAME,
+        record.id,
+        httponly=True,
+        samesite="none" if is_production else "lax",
+        secure=is_production,
+    )
     return record.id

@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     fernet_key: str
     consent_version: str = "2026-07-18"
     frontend_origin: str = "http://localhost:3000"
+    environment: str = "development"
 
     model_config = SettingsConfigDict(env_file=".env")
 
