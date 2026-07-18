@@ -4,8 +4,9 @@ from sqlalchemy.orm import Session
 from calculator import calculate_income_vs_threshold
 from checklist import evaluate_checklist
 from db import get_db
-from models import AuditLogRecord, ConsentRecord, DocumentRecord, FieldRecord
+from models import AuditLogRecord, ConsentRecord
 from packet_pdf import render_packet_pdf
+from queries import get_confirmed_fields
 from session_cookie import get_or_create_session
 
 router = APIRouter()
@@ -16,13 +17,7 @@ def get_checklist(
     session_id: str = Depends(get_or_create_session),
     db: Session = Depends(get_db),
 ):
-    fields = (
-        db.query(FieldRecord)
-        .join(DocumentRecord, FieldRecord.document_id == DocumentRecord.id)
-        .filter(DocumentRecord.session_id == session_id, FieldRecord.confirmed.is_(True))
-        .all()
-    )
-    confirmed_fields = {f.field_name: f.confirmed_value for f in fields}
+    confirmed_fields = get_confirmed_fields(db, session_id)
     consent = db.query(ConsentRecord).filter_by(session_id=session_id).first()
     return {"items": evaluate_checklist(confirmed_fields, consent is not None)}
 
@@ -34,13 +29,7 @@ def get_packet(
     session_id: str = Depends(get_or_create_session),
     db: Session = Depends(get_db),
 ):
-    fields = (
-        db.query(FieldRecord)
-        .join(DocumentRecord, FieldRecord.document_id == DocumentRecord.id)
-        .filter(DocumentRecord.session_id == session_id, FieldRecord.confirmed.is_(True))
-        .all()
-    )
-    confirmed_fields = {f.field_name: f.confirmed_value for f in fields}
+    confirmed_fields = get_confirmed_fields(db, session_id)
     if "gross_pay" not in confirmed_fields:
         raise HTTPException(
             status_code=400,

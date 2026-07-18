@@ -18,7 +18,8 @@ def render_packet_pdf(profile: dict, calculation: dict, checklist: list[dict]) -
     c.setFont("Helvetica", 10)
     for name, value in profile.items():
         y -= 16
-        c.drawString(60, y, f"{name}: {value}")
+        label = f"{name} (monthly)" if name == "gross_pay" else name
+        c.drawString(60, y, f"{label}: {value}")
 
     y -= 24
     c.setFont("Helvetica-Bold", 12)
