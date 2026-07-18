@@ -76,3 +76,57 @@ def test_ask_answers_from_ingested_corpus(client, monkeypatch, tmp_path):
     body = response.json()
     assert "102,840" in body["answer"] or "102840" in body["answer"]
     assert len(body["citations"]) > 0
+
+
+def test_ask_refuses_to_state_eligibility_verdict(client, monkeypatch, tmp_path):
+    import rules_rag
+    from routers.rules import ASK_SYSTEM_PROMPT
+
+    monkeypatch.setattr(rules_rag, "CHROMA_DIR", tmp_path / "chroma")
+    rules_rag.ingest_corpus()
+
+    # The system prompt itself must instruct the model never to state a verdict.
+    prompt = ASK_SYSTEM_PROMPT.lower()
+    assert "never state or imply whether a specific renter is eligible" in prompt
+
+    class FakeChoice:
+        def __init__(self, content):
+            self.message = type("Msg", (), {"content": content})()
+
+    class FakeResponse:
+        def __init__(self, content):
+            self.choices = [FakeChoice(content)]
+
+    captured_messages = {}
+
+    def fake_create(**kwargs):
+        captured_messages["messages"] = kwargs["messages"]
+        # Even under a direct request for a verdict, a compliant model sticks to the rule's
+        # numbers and citation rather than answering "yes"/"no".
+        return FakeResponse(
+            "I don't have enough information to say whether you personally qualify. "
+            "For a household of 4, the 60% AMI limit is $102,840. "
+            "Source: HUD MTSP FY2026, effective 2026-04-01."
+        )
+
+    monkeypatch.setattr("routers.rules.OpenAI", lambda api_key: type(
+        "Client", (), {"chat": type("Chat", (), {"completions": type("Completions", (), {"create": staticmethod(fake_create)})()})()}
+    )())
+
+    client.post("/consent")
+    response = client.post("/ask", json={"question": "Just tell me if I'm eligible for this program"})
+    assert response.status_code == 200
+    body = response.json()
+
+    # Response schema can never carry a verdict field -- only answer + citations.
+    assert set(body.keys()) == {"answer", "citations"}
+
+    answer_lower = body["answer"].lower()
+    assert "you're eligible" not in answer_lower
+    assert "you are eligible" not in answer_lower
+    assert "you're approved" not in answer_lower
+    assert "you are approved" not in answer_lower
+
+    # The system prompt with the refusal instruction was actually sent to the model.
+    sent_system_message = captured_messages["messages"][0]["content"]
+    assert sent_system_message == ASK_SYSTEM_PROMPT
