@@ -37,7 +37,13 @@ def calculate(
             detail="No confirmed gross_pay field found. Confirm a field first.",
         )
 
-    annual_income = sum(float(f.confirmed_value) for f in confirmed_income_fields) * 12
+    try:
+        annual_income = sum(float(f.confirmed_value) for f in confirmed_income_fields) * 12
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=f"gross_pay field has a non-numeric confirmed_value: {exc}",
+        )
     result = calculate_income_vs_threshold(annual_income, body.household_size, body.ami_tier)
 
     db.add(AuditLogRecord(session_id=session_id, action="calculated", rule_version=result["effective_date"]))
