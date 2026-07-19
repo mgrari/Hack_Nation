@@ -5,7 +5,7 @@ from openai import OpenAI
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from calculator import annualize, calculate_income_vs_threshold, compare_to_threshold
+from calculator import annualize, calculate_income_vs_threshold, compare_to_threshold, parse_confirmed_amount
 from config import settings
 from db import get_db
 from models import AuditLogRecord, DocumentRecord, FieldRecord
@@ -65,7 +65,7 @@ def calculate(
         )
 
     try:
-        gross_pay = sum(float(f.confirmed_value) for f in confirmed_income_fields)
+        gross_pay = sum(parse_confirmed_amount(f.confirmed_value) for f in confirmed_income_fields)
         annual_income = annualize(gross_pay, confirmed_frequency_field.confirmed_value)
     except (TypeError, ValueError) as exc:
         raise HTTPException(

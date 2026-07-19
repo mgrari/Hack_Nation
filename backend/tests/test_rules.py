@@ -30,6 +30,31 @@ def test_calculate_returns_threshold_with_confirmed_income(client):
     assert "eligible" not in str(body).lower()
 
 
+def test_calculate_accepts_currency_formatted_confirmed_value(client):
+    """Vision-extracted amounts (backend/extraction.py's image path) come back
+    formatted like "$2,166.00" rather than a bare number -- confirming that value
+    as-is must still work, not 400 with "could not convert string to float"."""
+    from db import get_db
+    from main import app
+    from models import DocumentRecord, FieldRecord
+
+    client.post("/consent")
+    session_id = client.cookies.get("realdoor_session")
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    doc = DocumentRecord(session_id=session_id, encrypted_path="unused", content_type="application/pdf")
+    db.add(doc)
+    db.commit()
+    db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="$2,166.00", confirmed=True))
+    db.add(FieldRecord(document_id=doc.id, field_name="pay_frequency", confirmed_value="biweekly", confirmed=True))
+    db.commit()
+
+    response = client.post("/calculate", json={"household_size": 1, "ami_tier": "60"})
+    assert response.status_code == 200
+    assert response.json()["confirmed_value"] == 56316.0
+
+
 def test_calculate_returns_readiness_status_and_review_reasons(client):
     from db import get_db
     from main import app

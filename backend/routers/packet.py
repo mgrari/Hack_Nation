@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
-from calculator import annualize, calculate_income_vs_threshold
+from calculator import annualize, calculate_income_vs_threshold, parse_confirmed_amount
 from checklist import evaluate_checklist
 from db import get_db
 from models import AuditLogRecord, ConsentRecord
@@ -43,7 +43,7 @@ def get_packet(
         )
 
     try:
-        annual_income = annualize(float(confirmed_fields["gross_pay"]), confirmed_fields["pay_frequency"])
+        annual_income = annualize(parse_confirmed_amount(confirmed_fields["gross_pay"]), confirmed_fields["pay_frequency"])
     except (TypeError, ValueError) as exc:
         raise HTTPException(
             status_code=400,

@@ -3,6 +3,13 @@ from rules_corpus import load_mtsp_limits
 FREQUENCY = {"weekly": 52, "biweekly": 26, "semimonthly": 24, "monthly": 12, "annual": 1}
 
 
+def parse_confirmed_amount(value: str) -> float:
+    """Parse a renter-confirmed dollar amount, tolerating the currency formatting
+    ("$2,166.00") that vision-extracted fields (backend/extraction.py's image path)
+    return, unlike plain-text extraction which yields bare numbers."""
+    return float(value.replace("$", "").replace(",", "").strip())
+
+
 def annualize(amount: float, frequency: str) -> float:
     if frequency not in FREQUENCY:
         raise ValueError(f"Unsupported frequency: {frequency}")

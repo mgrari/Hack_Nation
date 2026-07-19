@@ -68,3 +68,21 @@ def test_calculate_rejects_invalid_household_size():
 
     with pytest.raises(ValueError):
         calculate_income_vs_threshold(confirmed_annual_income=50000, household_size=9, ami_tier="60")
+
+
+def test_parse_confirmed_amount_plain_number():
+    from calculator import parse_confirmed_amount
+
+    assert parse_confirmed_amount("2166.0") == 2166.0
+
+
+def test_parse_confirmed_amount_currency_formatted():
+    from calculator import parse_confirmed_amount
+
+    assert parse_confirmed_amount("$2,166.00") == 2166.0
+
+
+def test_parse_confirmed_amount_with_whitespace():
+    from calculator import parse_confirmed_amount
+
+    assert parse_confirmed_amount(" $1,689.48 ") == 1689.48

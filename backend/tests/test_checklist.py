@@ -97,6 +97,30 @@ def test_get_packet_returns_pdf(client):
     assert response.content[:4] == b"%PDF"
 
 
+def test_get_packet_accepts_currency_formatted_confirmed_value(client):
+    """Vision-extracted amounts come back formatted like "$2,166.00" -- confirming
+    that value as-is must still work, not 400 with "could not convert to float"."""
+    from db import get_db
+    from main import app
+    from models import DocumentRecord, FieldRecord
+
+    client.post("/consent")
+    session_id = client.cookies.get("realdoor_session")
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    doc = DocumentRecord(session_id=session_id, encrypted_path="unused", content_type="application/pdf")
+    db.add(doc)
+    db.commit()
+    db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="$2,166.00", confirmed=True))
+    db.add(FieldRecord(document_id=doc.id, field_name="pay_frequency", confirmed_value="biweekly", confirmed=True))
+    db.commit()
+
+    response = client.get("/packet?household_size=1&ami_tier=60")
+    assert response.status_code == 200
+    assert response.content[:4] == b"%PDF"
+
+
 def test_get_packet_requires_confirmed_income(client):
     client.post("/consent")
     response = client.get("/packet?household_size=4&ami_tier=60")
