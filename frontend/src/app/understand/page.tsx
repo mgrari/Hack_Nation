@@ -70,6 +70,23 @@ export default function UnderstandPage() {
     }
   }
 
+  // Once the comparison is shown, keep it in sync with the +/- stepper so the
+  // threshold and difference reflect the current household size without a re-click.
+  useEffect(() => {
+    if (!tableVisible) return;
+    let cancelled = false;
+    calculate(householdSize, "60")
+      .then((result) => {
+        if (!cancelled) setCalculation(result);
+      })
+      .catch((err) => {
+        if (!cancelled) setError((err as Error).message);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [householdSize, tableVisible]);
+
   async function handleAsk() {
     const q = question.trim();
     // In-flight guard: an answer takes a few seconds, and a second Enter press or
