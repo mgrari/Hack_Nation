@@ -70,6 +70,8 @@ def main():
                 "zip": r[idx["proj_zip"]],
                 "n_units": clean_int(r[idx["n_units"]]),
                 "yr_pis": clean_int(r[idx["yr_pis"]]),
+                "latitude": r[idx["latitude"]] if r[idx["latitude"]] not in ("", None) else None,
+                "longitude": r[idx["longitude"]] if r[idx["longitude"]] not in ("", None) else None,
             }
         )
 

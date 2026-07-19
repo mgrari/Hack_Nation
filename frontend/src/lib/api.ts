@@ -55,6 +55,8 @@ export type Property = {
   zip: string;
   n_units: number | null;
   yr_pis: number | null;
+  latitude: number | null;
+  longitude: number | null;
   safmr: {
     fmr_0br: number;
     fmr_1br: number;

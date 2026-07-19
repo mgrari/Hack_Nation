@@ -5,7 +5,9 @@
     "town": "BOSTON",
     "zip": "02135",
     "n_units": 90,
-    "yr_pis": 1995
+    "yr_pis": 1995,
+    "latitude": 42.337749,
+    "longitude": -71.150028
   },
   {
     "project": "CABOT PARK VILLAGE",
@@ -13,7 +15,9 @@
     "town": "NEWTON",
     "zip": "02460",
     "n_units": 100,
-    "yr_pis": 1996
+    "yr_pis": 1996,
+    "latitude": 42.352198,
+    "longitude": -71.198447
   },
   {
     "project": "HERITAGE AT DANVERS",
@@ -21,7 +25,9 @@
     "town": "DANVERS",
     "zip": "01923",
     "n_units": 80,
-    "yr_pis": 1997
+    "yr_pis": 1997,
+    "latitude": 42.574653,
+    "longitude": -70.947489
   },
   {
     "project": "LONGWOOD PLACE AT READING",
@@ -29,7 +35,9 @@
     "town": "READING",
     "zip": "01867",
     "n_units": 86,
-    "yr_pis": 1997
+    "yr_pis": 1997,
+    "latitude": 42.530424,
+    "longitude": -71.099405
   },
   {
     "project": "MAPLEWOOD PLACE",
@@ -37,7 +45,9 @@
     "town": "MALDEN",
     "zip": "02148",
     "n_units": 98,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 42.433508,
+    "longitude": -71.038788
   },
   {
     "project": "ORCHARD HILL AT SUDBURY",
@@ -45,7 +55,9 @@
     "town": "SUDBURY",
     "zip": "01776",
     "n_units": 45,
-    "yr_pis": 1999
+    "yr_pis": 1999,
+    "latitude": 42.360335,
+    "longitude": -71.451431
   },
   {
     "project": "AMY LOWELL HOUSE",
@@ -53,7 +65,9 @@
     "town": "BOSTON",
     "zip": "02114",
     "n_units": 151,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.365617,
+    "longitude": -71.065372
   },
   {
     "project": "LEISURE TOWER",
@@ -61,7 +75,9 @@
     "town": "LYNN",
     "zip": "01902",
     "n_units": 180,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.462186,
+    "longitude": -70.940469
   },
   {
     "project": "NEW MASS PIKE TOWERS",
@@ -69,7 +85,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 200,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.348694,
+    "longitude": -71.066207
   },
   {
     "project": "BROADWAY GLEN APTS",
@@ -77,7 +95,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 120,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.398532,
+    "longitude": -71.023596
   },
   {
     "project": "SYMPHONY PLAZA EAST",
@@ -85,7 +105,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 188,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.342543,
+    "longitude": -71.084284
   },
   {
     "project": "SYMPHONY PLAZA WEST",
@@ -93,7 +115,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 216,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.342307,
+    "longitude": -71.084592
   },
   {
     "project": "STEARNS APTS",
@@ -101,7 +125,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 140,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.355673,
+    "longitude": -71.062624
   },
   {
     "project": "VIVIENDAS APTS LP",
@@ -109,7 +135,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 181,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.338439,
+    "longitude": -71.068343
   },
   {
     "project": "TRADITIONS OF DEDHAM",
@@ -117,7 +145,9 @@
     "town": "DEDHAM",
     "zip": "02026",
     "n_units": 95,
-    "yr_pis": 2002
+    "yr_pis": 2002,
+    "latitude": 42.237104,
+    "longitude": -71.182172
   },
   {
     "project": "VICTORIA APTS",
@@ -125,7 +155,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 190,
-    "yr_pis": 2002
+    "yr_pis": 2002,
+    "latitude": 42.342199,
+    "longitude": -71.072851
   },
   {
     "project": "WALDEN SQUARE APTS",
@@ -133,7 +165,9 @@
     "town": "CAMBRIDGE",
     "zip": "02140",
     "n_units": 240,
-    "yr_pis": 2002
+    "yr_pis": 2002,
+    "latitude": 42.389261,
+    "longitude": -71.129183
   },
   {
     "project": "JOHN F KENNEDY APTS",
@@ -141,7 +175,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 69,
-    "yr_pis": 2003
+    "yr_pis": 2003,
+    "latitude": 42.367514,
+    "longitude": -71.101362
   },
   {
     "project": "SOUTH COVE PLAZA",
@@ -149,7 +185,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 231,
-    "yr_pis": 2003
+    "yr_pis": 2003,
+    "latitude": 42.350292,
+    "longitude": -71.068753
   },
   {
     "project": "SUSAN S BAILIS ASSISTED LIVING COMMUNITY",
@@ -157,7 +195,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 82,
-    "yr_pis": 2003
+    "yr_pis": 2003,
+    "latitude": 42.342262,
+    "longitude": -71.08377
   },
   {
     "project": "MASON PLACE",
@@ -165,7 +205,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 127,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.353452,
+    "longitude": -71.063494
   },
   {
     "project": "SOUTH END TENANTS HOUSING II",
@@ -173,7 +215,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 185,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.341225,
+    "longitude": -71.083065
   },
   {
     "project": "CONANT VILLAGE",
@@ -181,7 +225,9 @@
     "town": "DANVERS",
     "zip": "01923",
     "n_units": 60,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.572659,
+    "longitude": -70.909533
   },
   {
     "project": "MAVERICK GARDENS I",
@@ -189,7 +235,9 @@
     "town": "BOSTON",
     "zip": "02128",
     "n_units": 150,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.371758,
+    "longitude": -71.043003
   },
   {
     "project": "WESTLAND AVENUE APTS",
@@ -197,7 +245,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 96,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.343908,
+    "longitude": -71.08856
   },
   {
     "project": "BOWDOIN APTS",
@@ -205,7 +255,9 @@
     "town": "MALDEN",
     "zip": "02148",
     "n_units": 226,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.428043,
+    "longitude": -71.051118
   },
   {
     "project": "MAVERICK GARDENS IV",
@@ -213,7 +265,9 @@
     "town": "BOSTON",
     "zip": "",
     "n_units": 74,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.371952,
+    "longitude": -71.04178
   },
   {
     "project": "WILLOW APTS",
@@ -221,7 +275,9 @@
     "town": "LYNN",
     "zip": "01901",
     "n_units": 44,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.464481,
+    "longitude": -70.94541
   },
   {
     "project": "ARBORPOINT AT WOODLAND STATION",
@@ -229,7 +285,9 @@
     "town": "NEWTON",
     "zip": "02466",
     "n_units": 180,
-    "yr_pis": 2007
+    "yr_pis": 2007,
+    "latitude": 42.333974,
+    "longitude": -71.244199
   },
   {
     "project": "CABLE GARDENS",
@@ -237,7 +295,9 @@
     "town": "IPSWICH",
     "zip": "01938",
     "n_units": 70,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.667869,
+    "longitude": -70.837769
   },
   {
     "project": "HUNTINGTON AFFORDABLE HOUSING",
@@ -245,7 +305,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 88,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.340777,
+    "longitude": -71.087183
   },
   {
     "project": "33 BOW ST",
@@ -253,7 +315,9 @@
     "town": "SOMERVILLE",
     "zip": "02143",
     "n_units": 18,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.381785,
+    "longitude": -71.097665
   },
   {
     "project": "ADMIRAL HILL ASSISTED LIVING I",
@@ -261,7 +325,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 69,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.391327,
+    "longitude": -71.046562
   },
   {
     "project": "AUBURN COURT",
@@ -269,7 +335,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 77,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.361523,
+    "longitude": -71.102977
   },
   {
     "project": "BAYBERRY POINT",
@@ -277,7 +345,9 @@
     "town": "SALISBURY",
     "zip": "01952",
     "n_units": 30,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.838983,
+    "longitude": -70.853801
   },
   {
     "project": "BRICKYARD VILLAGE",
@@ -285,7 +355,9 @@
     "town": "LYNN",
     "zip": "01902",
     "n_units": 28,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.461175,
+    "longitude": -70.957715
   },
   {
     "project": "BRIDLEPATH APTS",
@@ -293,7 +365,9 @@
     "town": "RANDOLPH",
     "zip": "02368",
     "n_units": 104,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.163078,
+    "longitude": -71.053576
   },
   {
     "project": "CABOT AFFORDABLE HOUSING",
@@ -301,7 +375,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 45,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.550268,
+    "longitude": -70.877814
   },
   {
     "project": "CARTER HEIGHTS",
@@ -309,7 +385,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 108,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.398947,
+    "longitude": -71.03062
   },
   {
     "project": "CASA MARIA APTS",
@@ -317,7 +395,9 @@
     "town": "BOSTON",
     "zip": "02113",
     "n_units": 84,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.364758,
+    "longitude": -71.057583
   },
   {
     "project": "CGM",
@@ -325,7 +405,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 43,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.391474,
+    "longitude": -71.038005
   },
   {
     "project": "CHELSEA HOMES I",
@@ -333,7 +415,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 86,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.3946,
+    "longitude": -71.030829
   },
   {
     "project": "CHESTNUT GARDEN APTS",
@@ -341,7 +425,9 @@
     "town": "LYNN",
     "zip": "01902",
     "n_units": 65,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.470546,
+    "longitude": -70.937938
   },
   {
     "project": "COLUMBIA CAST",
@@ -349,7 +435,9 @@
     "town": "BOSTON",
     "zip": "",
     "n_units": 42,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "COPLEY GARDENS",
@@ -357,7 +445,9 @@
     "town": "ROCKLAND",
     "zip": "02370",
     "n_units": 82,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.121458,
+    "longitude": -70.915936
   },
   {
     "project": "DARTMOUTH TCB",
@@ -365,7 +455,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 83,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.338717,
+    "longitude": -71.08095
   },
   {
     "project": "EVANS PARK AT NEWTON CORNER",
@@ -373,7 +465,9 @@
     "town": "NEWTON",
     "zip": "02458",
     "n_units": 112,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.355904,
+    "longitude": -71.185046
   },
   {
     "project": "FAIRWEATHER APTS",
@@ -381,7 +475,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 321,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.513993,
+    "longitude": -70.906661
   },
   {
     "project": "HARBORCOV COMMUNITY HOUSING",
@@ -389,7 +485,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 24,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.395121,
+    "longitude": -71.032876
   },
   {
     "project": "IRVING SQUARE APTS",
@@ -397,7 +495,9 @@
     "town": "FRAMINGHAM",
     "zip": "01702",
     "n_units": 46,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.275644,
+    "longitude": -71.416198
   },
   {
     "project": "LAFAYETTE HOUSING",
@@ -405,7 +505,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 61,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.518057,
+    "longitude": -70.893368
   },
   {
     "project": "LORING TOWERS",
@@ -413,7 +515,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 250,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.484798,
+    "longitude": -70.905915
   },
   {
     "project": "MORVILLE HOUSE",
@@ -421,7 +525,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 175,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.345098,
+    "longitude": -71.088466
   },
   {
     "project": "NASHOBA PARK",
@@ -429,7 +535,9 @@
     "town": "AYER",
     "zip": "01432",
     "n_units": 73,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.561317,
+    "longitude": -71.580722
   },
   {
     "project": "NEWTON CORNER PLACE",
@@ -437,7 +545,9 @@
     "town": "NEWTON",
     "zip": "02458",
     "n_units": 28,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.354901,
+    "longitude": -71.189927
   },
   {
     "project": "PLANTATION APTS",
@@ -445,7 +555,9 @@
     "town": "STOW",
     "zip": "01775",
     "n_units": 50,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.433117,
+    "longitude": -71.496442
   },
   {
     "project": "PROSPECT HOUSE",
@@ -453,7 +565,9 @@
     "town": "REVERE",
     "zip": "02151",
     "n_units": 110,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.411807,
+    "longitude": -71.027765
   },
   {
     "project": "PUTNAM FARM AT DANVERS",
@@ -461,7 +575,9 @@
     "town": "DANVERS",
     "zip": "01923",
     "n_units": 80,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.573024,
+    "longitude": -70.946457
   },
   {
     "project": "RTH COMMUNITY APTS",
@@ -469,7 +585,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 20,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.334146,
+    "longitude": -71.105395
   },
   {
     "project": "SALEM HEIGHTS PRESERVATION ASSOC",
@@ -477,7 +595,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 283,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.517181,
+    "longitude": -70.908757
   },
   {
     "project": "SETH APTS I",
@@ -485,7 +605,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 100,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.340833,
+    "longitude": -71.081061
   },
   {
     "project": "SQUANTUM GARDENS II",
@@ -493,7 +615,9 @@
     "town": "QUINCY",
     "zip": "02171",
     "n_units": 79,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.288979,
+    "longitude": -71.023073
   },
   {
     "project": "TENANT'S DEVELOPMENT II",
@@ -501,7 +625,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 185,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.340833,
+    "longitude": -71.081061
   },
   {
     "project": "COOLIDGE SCHOOL APTS",
@@ -509,7 +635,9 @@
     "town": "WATERTOWN",
     "zip": "02472",
     "n_units": 38,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.37336,
+    "longitude": -71.15756
   },
   {
     "project": "AVONDALE PLACE",
@@ -517,7 +645,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 22,
-    "yr_pis": 1987
+    "yr_pis": 1987,
+    "latitude": 42.333118,
+    "longitude": -71.106709
   },
   {
     "project": "ROCKLAND PLACE I",
@@ -525,7 +655,9 @@
     "town": "ROCKLAND",
     "zip": "02370",
     "n_units": 204,
-    "yr_pis": 1987
+    "yr_pis": 1987,
+    "latitude": 42.118642,
+    "longitude": -70.91291
   },
   {
     "project": "STONE BROOK FARMS",
@@ -533,7 +665,9 @@
     "town": "BURLINGTON",
     "zip": "01803",
     "n_units": 202,
-    "yr_pis": 1987
+    "yr_pis": 1987,
+    "latitude": 42.502498,
+    "longitude": -71.191775
   },
   {
     "project": "WINNDEVELOPMENT",
@@ -541,7 +675,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 85,
-    "yr_pis": 1987
+    "yr_pis": 1987,
+    "latitude": 42.364386,
+    "longitude": -71.104979
   },
   {
     "project": "117 LAFAYETTE ST",
@@ -549,7 +685,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 63,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.517867,
+    "longitude": -70.892881
   },
   {
     "project": "300 SHAWMUT AVE",
@@ -557,7 +695,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 15,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.342379,
+    "longitude": -71.069815
   },
   {
     "project": "ANDREW SQUARE",
@@ -565,7 +705,9 @@
     "town": "BOSTON",
     "zip": "02127",
     "n_units": 6,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.328659,
+    "longitude": -71.056703
   },
   {
     "project": "BITTERSWEET APTS",
@@ -573,7 +715,9 @@
     "town": "RANDOLPH",
     "zip": "02368",
     "n_units": 35,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.163651,
+    "longitude": -71.052963
   },
   {
     "project": "COBBET HILL",
@@ -581,7 +725,9 @@
     "town": "LYNN",
     "zip": "01902",
     "n_units": 117,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.466628,
+    "longitude": -70.947067
   },
   {
     "project": "KATAHDIN WOODS",
@@ -589,7 +735,9 @@
     "town": "LEXINGTON",
     "zip": "02421",
     "n_units": 102,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.462332,
+    "longitude": -71.262322
   },
   {
     "project": "KIMBALL COURT I",
@@ -597,7 +745,9 @@
     "town": "WOBURN",
     "zip": "01801",
     "n_units": 184,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.500066,
+    "longitude": -71.166328
   },
   {
     "project": "WASHINGTON MEWS",
@@ -605,7 +755,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 20,
-    "yr_pis": 1988
+    "yr_pis": 1988,
+    "latitude": 42.351522,
+    "longitude": -71.063035
   },
   {
     "project": "BOWDITCH SCHOOL",
@@ -613,7 +765,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 50,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.311706,
+    "longitude": -71.109453
   },
   {
     "project": "DOUGLAS PARK",
@@ -621,7 +775,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 122,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.338675,
+    "longitude": -71.083721
   },
   {
     "project": "FIELDS CORNER GRANITE",
@@ -629,7 +785,9 @@
     "town": "BOSTON",
     "zip": "02114",
     "n_units": 67,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.357573,
+    "longitude": -71.070411
   },
   {
     "project": "HANOVER WOODS",
@@ -637,7 +795,9 @@
     "town": "HANOVER",
     "zip": "02339",
     "n_units": 60,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.141292,
+    "longitude": -70.845265
   },
   {
     "project": "KILMARNOCK STREET",
@@ -645,7 +805,9 @@
     "town": "BOSTON",
     "zip": "02215",
     "n_units": 55,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.342963,
+    "longitude": -71.099758
   },
   {
     "project": "LIBERTY PLACE",
@@ -653,7 +815,9 @@
     "town": "RANDOLPH",
     "zip": "02368",
     "n_units": 107,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.176881,
+    "longitude": -71.037877
   },
   {
     "project": "PLEASANT PLAZA",
@@ -661,7 +825,9 @@
     "town": "MALDEN",
     "zip": "02148",
     "n_units": 125,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.427644,
+    "longitude": -71.068489
   },
   {
     "project": "POND SIDE APTS",
@@ -669,7 +835,9 @@
     "town": "LITTLETON",
     "zip": "01460",
     "n_units": 90,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.540029,
+    "longitude": -71.498752
   },
   {
     "project": "WALNUT WASHINGTON GRANITE",
@@ -677,7 +845,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 65,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.31204,
+    "longitude": -71.101719
   },
   {
     "project": "WATERFORD PLACE APTS",
@@ -685,7 +855,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 40,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": 42.345004,
+    "longitude": -71.066485
   },
   {
     "project": "WAYNE APTS",
@@ -693,7 +865,9 @@
     "town": "BOSTON",
     "zip": "",
     "n_units": 349,
-    "yr_pis": 1989
+    "yr_pis": 1989,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "1734 WASHINGTON ST",
@@ -701,7 +875,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 31,
-    "yr_pis": 1990
+    "yr_pis": 1990,
+    "latitude": 42.336675,
+    "longitude": -71.0764
   },
   {
     "project": "24 ROBINWOOD AVE",
@@ -709,7 +885,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 10,
-    "yr_pis": 1990
+    "yr_pis": 1990,
+    "latitude": 42.316234,
+    "longitude": -71.112208
   },
   {
     "project": "523 MASSACHUSETTS AVE",
@@ -717,7 +895,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 18,
-    "yr_pis": 1990
+    "yr_pis": 1990,
+    "latitude": 42.338697,
+    "longitude": -71.080041
   },
   {
     "project": "KIMBALL COURT III",
@@ -725,7 +905,9 @@
     "town": "WOBURN",
     "zip": "01801",
     "n_units": 167,
-    "yr_pis": 1990
+    "yr_pis": 1990,
+    "latitude": 42.502524,
+    "longitude": -71.166878
   },
   {
     "project": "BROADWAY TOWER",
@@ -733,7 +915,9 @@
     "town": "REVERE",
     "zip": "02151",
     "n_units": 95,
-    "yr_pis": 1991
+    "yr_pis": 1991,
+    "latitude": 42.407487,
+    "longitude": -71.01418
   },
   {
     "project": "KENDRIGAN PLACE",
@@ -741,7 +925,9 @@
     "town": "QUINCY",
     "zip": "02169",
     "n_units": 78,
-    "yr_pis": 1991
+    "yr_pis": 1991,
+    "latitude": 42.241239,
+    "longitude": -70.979969
   },
   {
     "project": "KENNEDY BISCUIT LOFTS",
@@ -749,7 +935,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 142,
-    "yr_pis": 1991
+    "yr_pis": 1991,
+    "latitude": 42.362204,
+    "longitude": -71.101666
   },
   {
     "project": "LANGHAM COURT",
@@ -757,7 +945,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 84,
-    "yr_pis": 1991
+    "yr_pis": 1991,
+    "latitude": 42.337986,
+    "longitude": -71.076583
   },
   {
     "project": "PARMELEE COURT",
@@ -765,7 +955,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 74,
-    "yr_pis": 1991
+    "yr_pis": 1991,
+    "latitude": 42.335311,
+    "longitude": -71.076509
   },
   {
     "project": "PILOT GROVE",
@@ -773,7 +965,9 @@
     "town": "STOW",
     "zip": "01775",
     "n_units": 60,
-    "yr_pis": 1991
+    "yr_pis": 1991,
+    "latitude": 42.439157,
+    "longitude": -71.500714
   },
   {
     "project": "ROXBURY CORNERS",
@@ -781,7 +975,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 48,
-    "yr_pis": 1991
+    "yr_pis": 1991,
+    "latitude": 42.33603,
+    "longitude": -71.077884
   },
   {
     "project": "BAY BERRY POINT",
@@ -789,7 +985,9 @@
     "town": "SALISBURY",
     "zip": "01952",
     "n_units": 30,
-    "yr_pis": 1992
+    "yr_pis": 1992,
+    "latitude": 42.838926,
+    "longitude": -70.849992
   },
   {
     "project": "LOUIS BARRETT HOUSE",
@@ -797,7 +995,9 @@
     "town": "LYNN",
     "zip": "01902",
     "n_units": 145,
-    "yr_pis": 1992
+    "yr_pis": 1992,
+    "latitude": 42.467491,
+    "longitude": -70.953335
   },
   {
     "project": "POINT COOP",
@@ -805,7 +1005,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 77,
-    "yr_pis": 1992
+    "yr_pis": 1992,
+    "latitude": 42.517834,
+    "longitude": -70.88989
   },
   {
     "project": "ST PATRICK'S PLACE",
@@ -813,7 +1015,9 @@
     "town": "CAMBRIDGE",
     "zip": "02141",
     "n_units": 32,
-    "yr_pis": 1992
+    "yr_pis": 1992,
+    "latitude": 42.369255,
+    "longitude": -71.091418
   },
   {
     "project": "WHITNEY-LORENTI HOUSE",
@@ -821,7 +1025,9 @@
     "town": "EVERETT",
     "zip": "02149",
     "n_units": 50,
-    "yr_pis": 1992
+    "yr_pis": 1992,
+    "latitude": 42.4085,
+    "longitude": -71.053117
   },
   {
     "project": "CAMBRIDGE YMCA",
@@ -829,7 +1035,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 136,
-    "yr_pis": 1993
+    "yr_pis": 1993,
+    "latitude": 42.367024,
+    "longitude": -71.106727
   },
   {
     "project": "CARITAS PROJECT PLACE CORTES LLC",
@@ -837,7 +1045,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 48,
-    "yr_pis": 1993
+    "yr_pis": 1993,
+    "latitude": 42.348426,
+    "longitude": -71.06978
   },
   {
     "project": "PARKVIEW HOUSING",
@@ -845,7 +1055,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 63,
-    "yr_pis": 1993
+    "yr_pis": 1993,
+    "latitude": 42.343983,
+    "longitude": -71.089063
   },
   {
     "project": "PRANG ESTATES",
@@ -853,7 +1065,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 33,
-    "yr_pis": 1993
+    "yr_pis": 1993,
+    "latitude": 42.341228,
+    "longitude": -71.082251
   },
   {
     "project": "270 HUNTINGTON AVE",
@@ -861,7 +1075,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 75,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.341537,
+    "longitude": -71.08603
   },
   {
     "project": "CAPE ANN YMCA COMMUNITY CENTER",
@@ -869,7 +1085,9 @@
     "town": "GLOUCESTER",
     "zip": "01930",
     "n_units": 24,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.613027,
+    "longitude": -70.663796
   },
   {
     "project": "CASTLE SQUARE I",
@@ -877,7 +1095,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 500,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.344901,
+    "longitude": -71.0688
   },
   {
     "project": "CROMESETT WOODS",
@@ -885,7 +1105,9 @@
     "town": "WAREHAM",
     "zip": "02571",
     "n_units": 27,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 41.749363,
+    "longitude": -70.734919
   },
   {
     "project": "PETER FANEUIL HOUSE",
@@ -893,7 +1115,9 @@
     "town": "BOSTON",
     "zip": "02114",
     "n_units": 50,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.360335,
+    "longitude": -71.065316
   },
   {
     "project": "HERITAGE AT VERNON COURT",
@@ -901,7 +1125,9 @@
     "town": "NEWTON",
     "zip": "02458",
     "n_units": null,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.355904,
+    "longitude": -71.185046
   },
   {
     "project": "PROJECT HOME",
@@ -909,7 +1135,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 3,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.337106,
+    "longitude": -71.075808
   },
   {
     "project": "PUTNAM PLACE",
@@ -917,7 +1145,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 12,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.362962,
+    "longitude": -71.113411
   },
   {
     "project": "SEWELL BUILDING",
@@ -925,7 +1155,9 @@
     "town": "MARBLEHEAD",
     "zip": "01945",
     "n_units": 4,
-    "yr_pis": 1994
+    "yr_pis": 1994,
+    "latitude": 42.503713,
+    "longitude": -70.856089
   },
   {
     "project": "64 BURBANK ST",
@@ -933,7 +1165,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 35,
-    "yr_pis": 1995
+    "yr_pis": 1995,
+    "latitude": 42.344267,
+    "longitude": -71.088663
   },
   {
     "project": "DANUBE APTS",
@@ -941,7 +1175,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 71,
-    "yr_pis": 1995
+    "yr_pis": 1995,
+    "latitude": 42.339985,
+    "longitude": -71.082852
   },
   {
     "project": "MARKET STREET APTS",
@@ -949,7 +1185,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 16,
-    "yr_pis": 1995
+    "yr_pis": 1995,
+    "latitude": 42.367443,
+    "longitude": -71.094519
   },
   {
     "project": "OAK TERRACE",
@@ -957,7 +1195,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 88,
-    "yr_pis": 1995
+    "yr_pis": 1995,
+    "latitude": 42.347837,
+    "longitude": -71.064014
   },
   {
     "project": "SOUTH END LOW COST COOPERATIVE HOUSING",
@@ -965,7 +1205,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 75,
-    "yr_pis": 1995
+    "yr_pis": 1995,
+    "latitude": 42.339356,
+    "longitude": -71.078887
   },
   {
     "project": "SWARTZ PROPERTIES",
@@ -973,7 +1215,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 59,
-    "yr_pis": 1995
+    "yr_pis": 1995,
+    "latitude": 42.36201,
+    "longitude": -71.102752
   },
   {
     "project": "CHESNUT - MARLBORO - GROVE",
@@ -981,7 +1225,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 43,
-    "yr_pis": 1996
+    "yr_pis": 1996,
+    "latitude": 42.393129,
+    "longitude": -71.032437
   },
   {
     "project": "COHEN FLORENCE LEVINE ESTATES",
@@ -989,7 +1235,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 63,
-    "yr_pis": 1996
+    "yr_pis": 1996,
+    "latitude": 42.391327,
+    "longitude": -71.046562
   },
   {
     "project": "CONCORD STREET ELDER HOUSING",
@@ -997,7 +1245,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 40,
-    "yr_pis": 1997
+    "yr_pis": 1997,
+    "latitude": 42.337797,
+    "longitude": -71.074857
   },
   {
     "project": "PEQUOT HIGHLANDS",
@@ -1005,7 +1255,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 250,
-    "yr_pis": 1997
+    "yr_pis": 1997,
+    "latitude": 42.502503,
+    "longitude": -70.916317
   },
   {
     "project": "ROCKPORT SCHOOL",
@@ -1013,7 +1265,9 @@
     "town": "ROCKPORT",
     "zip": "01966",
     "n_units": 31,
-    "yr_pis": 1997
+    "yr_pis": 1997,
+    "latitude": 42.658041,
+    "longitude": -70.61655
   },
   {
     "project": "WEST END PLACE",
@@ -1021,7 +1275,9 @@
     "town": "BOSTON",
     "zip": "02114",
     "n_units": 82,
-    "yr_pis": 1997
+    "yr_pis": 1997,
+    "latitude": 42.363942,
+    "longitude": -71.063674
   },
   {
     "project": "CHAUNCY HOUSE",
@@ -1029,7 +1285,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 88,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 42.352938,
+    "longitude": -71.061146
   },
   {
     "project": "CROMESETT HEIGHTS",
@@ -1037,7 +1295,9 @@
     "town": "WAREHAM",
     "zip": "02571",
     "n_units": 18,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 41.749363,
+    "longitude": -70.734919
   },
   {
     "project": "KENT STREET APTS",
@@ -1045,7 +1305,9 @@
     "town": "SOMERVILLE",
     "zip": "02143",
     "n_units": 40,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 42.38274,
+    "longitude": -71.110167
   },
   {
     "project": "MEMORIAL DRIVE HOUSING",
@@ -1053,7 +1315,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 301,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 42.360946,
+    "longitude": -71.115669
   },
   {
     "project": "SOUTH END APTS RENOVATION PROJECT",
@@ -1061,7 +1325,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 83,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 42.337943,
+    "longitude": -71.080287
   },
   {
     "project": "VILLAGE AT BROOKLINE",
@@ -1069,7 +1335,9 @@
     "town": "BROOKLINE",
     "zip": "02445",
     "n_units": 307,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 42.333118,
+    "longitude": -71.114324
   },
   {
     "project": "WARREN APTS",
@@ -1077,7 +1345,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 30,
-    "yr_pis": 1998
+    "yr_pis": 1998,
+    "latitude": 42.345296,
+    "longitude": -71.071393
   },
   {
     "project": "CHURCHILL COURT",
@@ -1085,7 +1355,9 @@
     "town": "CAMBRIDGE",
     "zip": "02140",
     "n_units": 12,
-    "yr_pis": 1999
+    "yr_pis": 1999,
+    "latitude": 42.399403,
+    "longitude": -71.132347
   },
   {
     "project": "GRANT MANOR",
@@ -1093,7 +1365,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 181,
-    "yr_pis": 1999
+    "yr_pis": 1999,
+    "latitude": 42.33572,
+    "longitude": -71.077664
   },
   {
     "project": "HARBORLIGHT HOUSE",
@@ -1101,7 +1375,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 35,
-    "yr_pis": 1999
+    "yr_pis": 1999,
+    "latitude": 42.547579,
+    "longitude": -70.876839
   },
   {
     "project": "MANDELA HOMES LP",
@@ -1109,7 +1385,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 202,
-    "yr_pis": 1999
+    "yr_pis": 1999,
+    "latitude": 42.33535,
+    "longitude": -71.078128
   },
   {
     "project": "WEST STOUGHTON VILLAGE",
@@ -1117,7 +1395,9 @@
     "town": "STOUGHTON",
     "zip": "02072",
     "n_units": 112,
-    "yr_pis": 1999
+    "yr_pis": 1999,
+    "latitude": 42.136022,
+    "longitude": -71.143697
   },
   {
     "project": "AUBURN PARK",
@@ -1125,7 +1405,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 60,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.362314,
+    "longitude": -71.101854
   },
   {
     "project": "COUNTRYSIDE VILLAGE",
@@ -1133,7 +1415,9 @@
     "town": "MARLBOROUGH",
     "zip": "01752",
     "n_units": 118,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.347648,
+    "longitude": -71.511975
   },
   {
     "project": "VISITING NURSE ASSISTED LIVING COMMUNITY",
@@ -1141,7 +1425,9 @@
     "town": "SOMERVILLE",
     "zip": "02144",
     "n_units": 97,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.392416,
+    "longitude": -71.106169
   },
   {
     "project": "WILLOW TRACE APTS",
@@ -1149,7 +1435,9 @@
     "town": "PLAINVILLE",
     "zip": "02762",
     "n_units": 88,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.009674,
+    "longitude": -71.304523
   },
   {
     "project": "MISSION PARK LP",
@@ -1157,7 +1445,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 775,
-    "yr_pis": 2000
+    "yr_pis": 2000,
+    "latitude": 42.333355,
+    "longitude": -71.109608
   },
   {
     "project": "71 WESTLAND AVENUE II LP",
@@ -1165,7 +1455,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 20,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.343936,
+    "longitude": -71.088749
   },
   {
     "project": "NEVILLE PLACE ASSISTED LIVING",
@@ -1173,7 +1465,9 @@
     "town": "CAMBRIDGE",
     "zip": "02138",
     "n_units": 71,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.3896,
+    "longitude": -71.148804
   },
   {
     "project": "WOLLASTON MANOR - QUINCY",
@@ -1181,7 +1475,9 @@
     "town": "QUINCY",
     "zip": "02170",
     "n_units": 150,
-    "yr_pis": 2001
+    "yr_pis": 2001,
+    "latitude": 42.265607,
+    "longitude": -71.016195
   },
   {
     "project": "34 LINDEN STREET APTS LP",
@@ -1189,7 +1485,9 @@
     "town": "SOMERVILLE",
     "zip": "02143",
     "n_units": 42,
-    "yr_pis": 2002
+    "yr_pis": 2002,
+    "latitude": 42.377163,
+    "longitude": -71.092358
   },
   {
     "project": "ADMIRAL HILL ASSISTED LIVING II",
@@ -1197,7 +1495,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 36,
-    "yr_pis": 2002
+    "yr_pis": 2002,
+    "latitude": 42.391049,
+    "longitude": -71.045494
   },
   {
     "project": "SQUIRREL BRAND APTS",
@@ -1205,7 +1505,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 20,
-    "yr_pis": 2002
+    "yr_pis": 2002,
+    "latitude": 42.367027,
+    "longitude": -71.096411
   },
   {
     "project": "BRIGHAM HOUSE",
@@ -1213,7 +1515,9 @@
     "town": "WATERTOWN",
     "zip": "02472",
     "n_units": 62,
-    "yr_pis": 2003
+    "yr_pis": 2003,
+    "latitude": 42.369869,
+    "longitude": -71.169076
   },
   {
     "project": "CAMBRIDGE ALLIANCE",
@@ -1221,7 +1525,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 42,
-    "yr_pis": 2003
+    "yr_pis": 2003,
+    "latitude": 42.364898,
+    "longitude": -71.099308
   },
   {
     "project": "ROLLINS SQUARE",
@@ -1229,7 +1535,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 37,
-    "yr_pis": 2003
+    "yr_pis": 2003,
+    "latitude": 42.341714,
+    "longitude": -71.068427
   },
   {
     "project": "INTERFAITH APTS",
@@ -1237,7 +1545,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 69,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.346791,
+    "longitude": -71.073682
   },
   {
     "project": "ROBERT L FORTES HOUSE",
@@ -1245,7 +1555,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 44,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.337172,
+    "longitude": -71.078621
   },
   {
     "project": "ROXBURY TENANTS",
@@ -1253,7 +1565,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 20,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.335521,
+    "longitude": -71.106662
   },
   {
     "project": "THE METROPOLITAN",
@@ -1261,7 +1575,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 81,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.348689,
+    "longitude": -71.063189
   },
   {
     "project": "WARREN SHEPARD STREET",
@@ -1269,7 +1585,9 @@
     "town": "LYNN",
     "zip": "01902",
     "n_units": 28,
-    "yr_pis": 2004
+    "yr_pis": 2004,
+    "latitude": 42.462261,
+    "longitude": -70.957857
   },
   {
     "project": "CROSS STREET HOUSING",
@@ -1277,7 +1595,9 @@
     "town": "MALDEN",
     "zip": "02148",
     "n_units": 19,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.424845,
+    "longitude": -71.055705
   },
   {
     "project": "LANCASTER STREET APTS",
@@ -1285,7 +1605,9 @@
     "town": "CAMBRIDGE",
     "zip": "02140",
     "n_units": 65,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.385428,
+    "longitude": -71.120049
   },
   {
     "project": "HILLTOP PRESERVE LP",
@@ -1293,7 +1615,9 @@
     "town": "WALPOLE",
     "zip": "02081",
     "n_units": 300,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.10979,
+    "longitude": -71.243882
   },
   {
     "project": "ST JEAN BAPTISTE APTS",
@@ -1301,7 +1625,9 @@
     "town": "LYNN",
     "zip": "01902",
     "n_units": 24,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.46865,
+    "longitude": -70.956286
   },
   {
     "project": "SALEM POINT RENTAL",
@@ -1309,7 +1635,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 61,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.517314,
+    "longitude": -70.890546
   },
   {
     "project": "YWCA BOSTON",
@@ -1317,7 +1645,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 184,
-    "yr_pis": 2005
+    "yr_pis": 2005,
+    "latitude": 42.348445,
+    "longitude": -71.074345
   },
   {
     "project": "ARBOR AT WAKEFIELD",
@@ -1325,7 +1655,9 @@
     "town": "WAKEFIELD",
     "zip": "01880",
     "n_units": 90,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.515651,
+    "longitude": -71.06962
   },
   {
     "project": "ONE LENOX",
@@ -1333,7 +1665,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 26,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.334906,
+    "longitude": -71.078888
   },
   {
     "project": "POND VIEW VILLAGE",
@@ -1341,7 +1675,9 @@
     "town": "GLOUCESTER",
     "zip": "01930",
     "n_units": 43,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.615735,
+    "longitude": -70.690466
   },
   {
     "project": "TROLLEY SQUARE",
@@ -1349,7 +1685,9 @@
     "town": "CAMBRIDGE",
     "zip": "02140",
     "n_units": 32,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.397374,
+    "longitude": -71.129854
   },
   {
     "project": "BROWN SCHOOL RESIDENCES",
@@ -1357,7 +1695,9 @@
     "town": "PEABODY",
     "zip": "01960",
     "n_units": 61,
-    "yr_pis": 2007
+    "yr_pis": 2007,
+    "latitude": 42.503643,
+    "longitude": -70.95186
   },
   {
     "project": "QUAIL RUN APTS PHASE I",
@@ -1365,7 +1705,9 @@
     "town": "STOUGHTON",
     "zip": "02072",
     "n_units": 108,
-    "yr_pis": 2007
+    "yr_pis": 2007,
+    "latitude": 42.136069,
+    "longitude": -71.124289
   },
   {
     "project": "QUAIL RUN APTS PHASE II",
@@ -1373,7 +1715,9 @@
     "town": "STOUGHTON",
     "zip": "02072",
     "n_units": 24,
-    "yr_pis": 2007
+    "yr_pis": 2007,
+    "latitude": 42.136069,
+    "longitude": -71.124289
   },
   {
     "project": "ROCKLAND PLACE II",
@@ -1381,7 +1725,9 @@
     "town": "ROCKLAND",
     "zip": "02370",
     "n_units": 204,
-    "yr_pis": 2007
+    "yr_pis": 2007,
+    "latitude": 42.118119,
+    "longitude": -70.912286
   },
   {
     "project": "SQUANTUM GARDENS I",
@@ -1389,7 +1735,9 @@
     "town": "QUINCY",
     "zip": "02171",
     "n_units": 144,
-    "yr_pis": 2007
+    "yr_pis": 2007,
+    "latitude": 42.288482,
+    "longitude": -71.023263
   },
   {
     "project": "1460 DORCHESTER AVE",
@@ -1397,7 +1745,9 @@
     "town": "BOSTON",
     "zip": "02122",
     "n_units": 43,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.300974,
+    "longitude": -71.059732
   },
   {
     "project": "ADAMS COURT B",
@@ -1405,7 +1755,9 @@
     "town": "BOSTON",
     "zip": "02126",
     "n_units": 45,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.269298,
+    "longitude": -71.091604
   },
   {
     "project": "ASHMONT TOD",
@@ -1413,7 +1765,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 74,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.286047,
+    "longitude": -71.063993
   },
   {
     "project": "CHRISTOPHER HEIGHTS OF MARLBOROUGH",
@@ -1421,7 +1775,9 @@
     "town": "MARLBOROUGH",
     "zip": "01752",
     "n_units": 83,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.347167,
+    "longitude": -71.559666
   },
   {
     "project": "DOUGLAS HOUSE",
@@ -1429,7 +1785,9 @@
     "town": "LEXINGTON",
     "zip": "02420",
     "n_units": 15,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.449173,
+    "longitude": -71.226118
   },
   {
     "project": "DUDLEY VILLAGE NORTH",
@@ -1437,7 +1795,9 @@
     "town": "BOSTON",
     "zip": "02125",
     "n_units": 24,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.320947,
+    "longitude": -71.072346
   },
   {
     "project": "DUDLEY VILLAGE SOUTH",
@@ -1445,7 +1805,9 @@
     "town": "BOSTON",
     "zip": "02125",
     "n_units": 26,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.320787,
+    "longitude": -71.072219
   },
   {
     "project": "FRANKLIN HILL REVITALIZATION IA",
@@ -1453,7 +1815,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 90,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.296106,
+    "longitude": -71.090864
   },
   {
     "project": "JANUS HIGHLANDS APTS",
@@ -1461,7 +1825,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 41,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.393953,
+    "longitude": -71.030201
   },
   {
     "project": "NEW GIRLS LATIN ACADEMY",
@@ -1469,7 +1835,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 35,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.290118,
+    "longitude": -71.069621
   },
   {
     "project": "PARKWAY HEIGHTS",
@@ -1477,7 +1845,9 @@
     "town": "EVERETT",
     "zip": "02149",
     "n_units": 74,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.403316,
+    "longitude": -71.047738
   },
   {
     "project": "SCHOOL HOUSE BROOKLEDGE & CUMMINS",
@@ -1485,7 +1855,9 @@
     "town": "BOSTON",
     "zip": "02121",
     "n_units": 90,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.309456,
+    "longitude": -71.089542
   },
   {
     "project": "TILL BUILDING",
@@ -1493,7 +1865,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 23,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.390447,
+    "longitude": -71.037881
   },
   {
     "project": "VNA SENIOR LIVING COMMUNITY",
@@ -1501,7 +1875,9 @@
     "town": "SOMERVILLE",
     "zip": "02144",
     "n_units": 99,
-    "yr_pis": 2008
+    "yr_pis": 2008,
+    "latitude": 42.414259,
+    "longitude": -71.130999
   },
   {
     "project": "FRANKLIN HILL REVITALIZATION IIA",
@@ -1509,7 +1885,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 114,
-    "yr_pis": 2009
+    "yr_pis": 2009,
+    "latitude": 42.295099,
+    "longitude": -71.088888
   },
   {
     "project": "ST POLYCARP I",
@@ -1517,7 +1895,9 @@
     "town": "SOMERVILLE",
     "zip": "02145",
     "n_units": 24,
-    "yr_pis": 2009
+    "yr_pis": 2009,
+    "latitude": 42.396555,
+    "longitude": -71.090753
   },
   {
     "project": "SCHOOL HOUSE KENILWORTH & WILLIAMS",
@@ -1525,7 +1905,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 38,
-    "yr_pis": 2009
+    "yr_pis": 2009,
+    "latitude": 42.328793,
+    "longitude": -71.086849
   },
   {
     "project": "SPENCER GREEN",
@@ -1533,7 +1915,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 48,
-    "yr_pis": 2009
+    "yr_pis": 2009,
+    "latitude": 42.397415,
+    "longitude": -71.023994
   },
   {
     "project": "ST AIDANS RENTAL",
@@ -1541,7 +1925,9 @@
     "town": "BROOKLINE",
     "zip": "02446",
     "n_units": 20,
-    "yr_pis": 2009
+    "yr_pis": 2009,
+    "latitude": 42.347491,
+    "longitude": -71.118529
   },
   {
     "project": "WAVERLY WOODS - ZONE 6 MCLEAN",
@@ -1549,7 +1935,9 @@
     "town": "BELMONT",
     "zip": "02478",
     "n_units": 40,
-    "yr_pis": 2009
+    "yr_pis": 2009,
+    "latitude": 42.388872,
+    "longitude": -71.190468
   },
   {
     "project": "1060 BELMONT ST",
@@ -1557,7 +1945,9 @@
     "town": "WATERTOWN",
     "zip": "02472",
     "n_units": 18,
-    "yr_pis": 2010
+    "yr_pis": 2010,
+    "latitude": 42.382242,
+    "longitude": -71.197166
   },
   {
     "project": "CENTRE-CREIGHTON APTS",
@@ -1565,7 +1955,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 36,
-    "yr_pis": 2010
+    "yr_pis": 2010,
+    "latitude": 42.322627,
+    "longitude": -71.107534
   },
   {
     "project": "CHERRY HILL II",
@@ -1573,7 +1965,9 @@
     "town": "PLYMOUTH",
     "zip": "02360",
     "n_units": 35,
-    "yr_pis": 2010
+    "yr_pis": 2010,
+    "latitude": 41.961369,
+    "longitude": -70.672588
   },
   {
     "project": "OLMSTED GREEN RENTAL HOUSING PHASE II",
@@ -1581,7 +1975,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 50,
-    "yr_pis": 2010
+    "yr_pis": 2010,
+    "latitude": 42.292624,
+    "longitude": -71.093524
   },
   {
     "project": "VILLAGE AT 815 MAIN ST",
@@ -1589,7 +1985,9 @@
     "town": "WAREHAM",
     "zip": "02571",
     "n_units": 49,
-    "yr_pis": 2010
+    "yr_pis": 2010,
+    "latitude": 41.773439,
+    "longitude": -70.755166
   },
   {
     "project": "WILBER SCHOOL",
@@ -1597,7 +1995,9 @@
     "town": "SHARON",
     "zip": "02067",
     "n_units": 75,
-    "yr_pis": 2010
+    "yr_pis": 2010,
+    "latitude": 42.121676,
+    "longitude": -71.180382
   },
   {
     "project": "CWL HOUSING",
@@ -1605,7 +2005,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 30,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.32267,
+    "longitude": -71.101054
   },
   {
     "project": "CHURCH SQUARE SRO",
@@ -1613,7 +2015,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 29,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.323515,
+    "longitude": -71.107823
   },
   {
     "project": "CABOT STREET HOMES",
@@ -1621,7 +2025,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 43,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.553474,
+    "longitude": -70.87842
   },
   {
     "project": "CBES DUDLEY SQUARE",
@@ -1629,7 +2035,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 57,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.330207,
+    "longitude": -71.084423
   },
   {
     "project": "CUTLER HEIGHTS HOUSING",
@@ -1637,7 +2045,9 @@
     "town": "HOLLISTON",
     "zip": "01746",
     "n_units": 30,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.202089,
+    "longitude": -71.432355
   },
   {
     "project": "ELM PLACE",
@@ -1645,7 +2055,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 19,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.372904,
+    "longitude": -71.095797
   },
   {
     "project": "JAMAICA PLAIN APTS",
@@ -1653,7 +2065,9 @@
     "town": "BOSTON",
     "zip": "02108",
     "n_units": 103,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.357637,
+    "longitude": -71.059852
   },
   {
     "project": "LEVEDO BUILDING - TALBOT AVENUE",
@@ -1661,7 +2075,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 24,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.29133,
+    "longitude": -71.076393
   },
   {
     "project": "BEACON OCEAN SHORES",
@@ -1669,7 +2085,9 @@
     "town": "MARSHFIELD",
     "zip": "02050",
     "n_units": 97,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.10208,
+    "longitude": -70.675674
   },
   {
     "project": "OLIVER LOFTS",
@@ -1677,7 +2095,9 @@
     "town": "BOSTON",
     "zip": "02120",
     "n_units": 62,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.326677,
+    "longitude": -71.098556
   },
   {
     "project": "POND VIEW III",
@@ -1685,7 +2105,9 @@
     "town": "GLOUCESTER",
     "zip": "01930",
     "n_units": 34,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.613894,
+    "longitude": -70.689736
   },
   {
     "project": "POWDER HOUSE VILLAGE",
@@ -1693,7 +2115,9 @@
     "town": "IPSWICH",
     "zip": "01938",
     "n_units": 48,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.671017,
+    "longitude": -70.836853
   },
   {
     "project": "SHILLMAN HOUSE",
@@ -1701,7 +2125,9 @@
     "town": "FRAMINGHAM",
     "zip": "01701",
     "n_units": 150,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.329011,
+    "longitude": -71.438232
   },
   {
     "project": "SPENCER ROW",
@@ -1709,7 +2135,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 32,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.399276,
+    "longitude": -71.021272
   },
   {
     "project": "40 UPTON STREET",
@@ -1717,7 +2145,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 19,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.342554,
+    "longitude": -71.072759
   },
   {
     "project": "WASHINGTON BEECH HOPE VI",
@@ -1725,7 +2155,9 @@
     "town": "BOSTON",
     "zip": "02131",
     "n_units": 78,
-    "yr_pis": 2011
+    "yr_pis": 2011,
+    "latitude": 42.2777,
+    "longitude": -71.137392
   },
   {
     "project": "BARSTOW VILLAGE LLC",
@@ -1733,7 +2165,9 @@
     "town": "HANOVER",
     "zip": "02339",
     "n_units": 66,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.112667,
+    "longitude": -70.836865
   },
   {
     "project": "BLACKSTONE APTS",
@@ -1741,7 +2175,9 @@
     "town": "BOSTON",
     "zip": "02114",
     "n_units": 144,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.362425,
+    "longitude": -71.066659
   },
   {
     "project": "CASTLE SQUARE II",
@@ -1749,7 +2185,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 500,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.345221,
+    "longitude": -71.06962
   },
   {
     "project": "FRANKLIN SQUARE APTS",
@@ -1757,7 +2195,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 193,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.338528,
+    "longitude": -71.07348
   },
   {
     "project": "HERITAGE 195 PLEASANT ST",
@@ -1765,7 +2205,9 @@
     "town": "MALDEN",
     "zip": "02148",
     "n_units": 176,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.427368,
+    "longitude": -71.072063
   },
   {
     "project": "KENMORE ABBEY",
@@ -1773,7 +2215,9 @@
     "town": "BOSTON",
     "zip": "02215",
     "n_units": 199,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.348983,
+    "longitude": -71.09409
   },
   {
     "project": "LBB HOUSING",
@@ -1781,7 +2225,9 @@
     "town": "BOSTON",
     "zip": "02121",
     "n_units": 103,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.299296,
+    "longitude": -71.086223
   },
   {
     "project": "OLD HIGH SCHOOL COMMONS",
@@ -1789,7 +2235,9 @@
     "town": "ACTON",
     "zip": "01720",
     "n_units": 15,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.475189,
+    "longitude": -71.455394
   },
   {
     "project": "PUTNAM GREEN",
@@ -1797,7 +2245,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 40,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.356184,
+    "longitude": -71.106324
   },
   {
     "project": "WINTER GARDENS APTS",
@@ -1805,7 +2255,9 @@
     "town": "QUINCY",
     "zip": "02169",
     "n_units": 24,
-    "yr_pis": 2012
+    "yr_pis": 2012,
+    "latitude": 42.240885,
+    "longitude": -70.979697
   },
   {
     "project": "225 CENTRE LLC",
@@ -1813,7 +2265,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 103,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.292994,
+    "longitude": -71.063845
   },
   {
     "project": "TC CAPITOL SQUARE",
@@ -1821,7 +2275,9 @@
     "town": "ARLINGTON",
     "zip": "02474",
     "n_units": 32,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.407389,
+    "longitude": -71.144671
   },
   {
     "project": "CHARLESVIEW REDEVELOPMENT",
@@ -1829,7 +2285,9 @@
     "town": "BOSTON",
     "zip": "02135",
     "n_units": 240,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.362667,
+    "longitude": -71.137934
   },
   {
     "project": "GEORGETOWNE HOMES ONE A",
@@ -1837,7 +2295,9 @@
     "town": "BOSTON",
     "zip": "02136",
     "n_units": 219,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.257988,
+    "longitude": -71.144909
   },
   {
     "project": "GEORGETOWNE HOMES ONE B",
@@ -1845,7 +2305,9 @@
     "town": "BOSTON",
     "zip": "02136",
     "n_units": 382,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.257988,
+    "longitude": -71.144909
   },
   {
     "project": "HIGHLAND TERRACE",
@@ -1853,7 +2315,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 32,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.393589,
+    "longitude": -71.029284
   },
   {
     "project": "HOLCROFT PARK HOMES PHASE II",
@@ -1861,7 +2325,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 29,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.557648,
+    "longitude": -70.883717
   },
   {
     "project": "JACLEN TOWER",
@@ -1869,7 +2335,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 100,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.548798,
+    "longitude": -70.883597
   },
   {
     "project": "JAMAICA PLAIN SCATTERED SITES COOP",
@@ -1877,7 +2345,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 18,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.322584,
+    "longitude": -71.103631
   },
   {
     "project": "PLEASANT ST APTS",
@@ -1885,7 +2355,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 33,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.546084,
+    "longitude": -70.885287
   },
   {
     "project": "ST JOSEPH & APOSS HALL",
@@ -1893,7 +2365,9 @@
     "town": "WATERTOWN",
     "zip": "02472",
     "n_units": 25,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.374445,
+    "longitude": -71.195441
   },
   {
     "project": "ST JOSEPH & APOSS REDEVELOPMENT",
@@ -1901,7 +2375,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 51,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.516923,
+    "longitude": -70.89272
   },
   {
     "project": "SUMMERHILL GLEN",
@@ -1909,7 +2385,9 @@
     "town": "MAYNARD",
     "zip": "01754",
     "n_units": 120,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.4327,
+    "longitude": -71.460122
   },
   {
     "project": "WAYNE AT BLUE HILL",
@@ -1917,7 +2395,9 @@
     "town": "BOSTON",
     "zip": "02126",
     "n_units": 48,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.275013,
+    "longitude": -71.093843
   },
   {
     "project": "WILKINS GLEN",
@@ -1925,7 +2405,9 @@
     "town": "MEDFIELD",
     "zip": "02052",
     "n_units": 103,
-    "yr_pis": 2013
+    "yr_pis": 2013,
+    "latitude": 42.19067,
+    "longitude": -71.300235
   },
   {
     "project": "BENFIELD FARMS",
@@ -1933,7 +2415,9 @@
     "town": "CARLISLE",
     "zip": "01741",
     "n_units": 26,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.511103,
+    "longitude": -71.380818
   },
   {
     "project": "CONIFER HILL COMMONS I",
@@ -1941,7 +2425,9 @@
     "town": "DANVERS",
     "zip": "01923",
     "n_units": 48,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.586598,
+    "longitude": -70.962738
   },
   {
     "project": "DUDLEY GREENVILLE",
@@ -1949,7 +2435,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 43,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.328314,
+    "longitude": -71.081353
   },
   {
     "project": "EDMANDS HOUSE",
@@ -1957,7 +2445,9 @@
     "town": "FRAMINGHAM",
     "zip": "01701",
     "n_units": 132,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.328986,
+    "longitude": -71.437319
   },
   {
     "project": "MACHADO HOUSE AT PETER'S GROVE",
@@ -1965,7 +2455,9 @@
     "town": "HUDSON",
     "zip": "01749",
     "n_units": 95,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.395649,
+    "longitude": -71.567986
   },
   {
     "project": "OLD COLONY PHASE 2A",
@@ -1973,7 +2465,9 @@
     "town": "BOSTON",
     "zip": "02127",
     "n_units": 45,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.330285,
+    "longitude": -71.052254
   },
   {
     "project": "OLD COLONY PHASE 2B",
@@ -1981,7 +2475,9 @@
     "town": "BOSTON",
     "zip": "02127",
     "n_units": 84,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.331053,
+    "longitude": -71.05196
   },
   {
     "project": "PILOT GROVE 2",
@@ -1989,7 +2485,9 @@
     "town": "STOW",
     "zip": "01775",
     "n_units": 30,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.442076,
+    "longitude": -71.502219
   },
   {
     "project": "ST POLYCARP III",
@@ -1997,7 +2495,9 @@
     "town": "SOMERVILLE",
     "zip": "02145",
     "n_units": 31,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.395577,
+    "longitude": -71.091309
   },
   {
     "project": "WASHINGTON PARK",
@@ -2005,7 +2505,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 96,
-    "yr_pis": 2014
+    "yr_pis": 2014,
+    "latitude": 42.319813,
+    "longitude": -71.089465
   },
   {
     "project": "BISHOP ALLEN APARTMENTS",
@@ -2013,7 +2515,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 32,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.3669,
+    "longitude": -71.1035
   },
   {
     "project": "GEORGETOWNE HOMES 1A",
@@ -2021,7 +2525,9 @@
     "town": "BOSTON",
     "zip": "02136",
     "n_units": 219,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.257988,
+    "longitude": -71.144909
   },
   {
     "project": "GEORGETOWNE HOMES 1B",
@@ -2029,7 +2535,9 @@
     "town": "BOSTON",
     "zip": "02136",
     "n_units": 382,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.257988,
+    "longitude": -71.144909
   },
   {
     "project": "JACKSON COMMONS",
@@ -2037,7 +2545,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 37,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.323603,
+    "longitude": -71.098218
   },
   {
     "project": "OLD COLONY PHASE 2C",
@@ -2045,7 +2555,9 @@
     "town": "BOSTON",
     "zip": "02127",
     "n_units": 40,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.331596,
+    "longitude": -71.052827
   },
   {
     "project": "ONE GREENWAY FKA PARCEL 24 AFF RENTAL(FKA PHI+ II)",
@@ -2053,7 +2565,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 95,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.3511,
+    "longitude": -71.0559
   },
   {
     "project": "TEMPLE PLACE",
@@ -2061,7 +2575,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 40,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.366721,
+    "longitude": -71.104171
   },
   {
     "project": "UPHAMS CORNER RESIDENTIAL",
@@ -2069,7 +2585,9 @@
     "town": "BOSTON",
     "zip": "02125",
     "n_units": 47,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.315857,
+    "longitude": -71.066594
   },
   {
     "project": "WALNUT WASHINGTON APARTMENTS",
@@ -2077,7 +2595,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 65,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.3156,
+    "longitude": -71.096023
   },
   {
     "project": "GEORGETOWN HOMES PHASE ONE",
@@ -2085,7 +2605,9 @@
     "town": "BOSTON",
     "zip": "01570",
     "n_units": 219,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.258866,
+    "longitude": -71.149544
   },
   {
     "project": "HUDSON STREET GATEWAY",
@@ -2093,7 +2615,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 45,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.349778,
+    "longitude": -71.060233
   },
   {
     "project": "JACKSON COMMONS",
@@ -2101,7 +2625,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 85,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.323603,
+    "longitude": -71.098218
   },
   {
     "project": "MALDEN MILLS II",
@@ -2109,7 +2635,9 @@
     "town": "BOSTON",
     "zip": "01841",
     "n_units": 18,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.335709,
+    "longitude": -71.040292
   },
   {
     "project": "OLD COLONY PHASE TWO C",
@@ -2117,7 +2645,9 @@
     "town": "BOSTON",
     "zip": "02127",
     "n_units": 39,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.331262,
+    "longitude": -71.052186
   },
   {
     "project": "PARC AT MEDFIELD PHASE II",
@@ -2125,7 +2655,9 @@
     "town": "MEDFIELD",
     "zip": "02052",
     "n_units": 44,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.191424,
+    "longitude": -71.328789
   },
   {
     "project": "TRUSTMAN APTS/86 DUMMER STREET",
@@ -2133,7 +2665,9 @@
     "town": "BROOKLINE",
     "zip": "02446",
     "n_units": 25,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.349585,
+    "longitude": -71.113336
   },
   {
     "project": "AUBURN COURT",
@@ -2141,7 +2675,9 @@
     "town": "BOSTON",
     "zip": "02139",
     "n_units": 77,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.36201,
+    "longitude": -71.102752
   },
   {
     "project": "BEDFORD GREEN",
@@ -2149,7 +2685,9 @@
     "town": "BEDFORD",
     "zip": "01730",
     "n_units": 71,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.504932,
+    "longitude": -71.27321
   },
   {
     "project": "RTH RIVERWAY",
@@ -2157,7 +2695,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 60,
-    "yr_pis": 2015
+    "yr_pis": 2015,
+    "latitude": 42.34297,
+    "longitude": -71.091237
   },
   {
     "project": "MADISON BOTOLPH II",
@@ -2165,7 +2705,9 @@
     "town": "BOSTON",
     "zip": "01375",
     "n_units": 52,
-    "yr_pis": 2016
+    "yr_pis": 2016,
+    "latitude": 42.342103,
+    "longitude": -71.084035
   },
   {
     "project": "TEMPLE PLACE",
@@ -2173,7 +2715,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 41,
-    "yr_pis": 2016
+    "yr_pis": 2016,
+    "latitude": 42.366769,
+    "longitude": -71.104125
   },
   {
     "project": "51-57 BEALS STREET",
@@ -2181,7 +2725,9 @@
     "town": "BROOKLINE",
     "zip": "02446",
     "n_units": 31,
-    "yr_pis": 2016
+    "yr_pis": 2016,
+    "latitude": 42.34602,
+    "longitude": -71.124761
   },
   {
     "project": "ISLAND CREEK VILLAGE NORTH AGE RESTRICTED",
@@ -2189,7 +2735,9 @@
     "town": "DUXBURY",
     "zip": "02332",
     "n_units": 94,
-    "yr_pis": 2016
+    "yr_pis": 2016,
+    "latitude": 42.014185,
+    "longitude": -70.72541
   },
   {
     "project": "ISLAND CREEK VILLAGE NORTH UNRESTRICTED",
@@ -2197,7 +2745,9 @@
     "town": "DUXBURY",
     "zip": "02332",
     "n_units": 120,
-    "yr_pis": 2016
+    "yr_pis": 2016,
+    "latitude": 42.015709,
+    "longitude": -70.722575
   },
   {
     "project": "WALNUT APARTMENTS",
@@ -2205,7 +2755,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 31,
-    "yr_pis": 2016
+    "yr_pis": 2016,
+    "latitude": 42.311363,
+    "longitude": -71.097996
   },
   {
     "project": "BC HIGHLAND GLENN",
@@ -2213,7 +2765,9 @@
     "town": "WESTWOOD",
     "zip": "02090",
     "n_units": 180,
-    "yr_pis": 2016
+    "yr_pis": 2016,
+    "latitude": 42.213472,
+    "longitude": -71.229703
   },
   {
     "project": "189 BROADWAY",
@@ -2221,7 +2775,9 @@
     "town": "REVERE",
     "zip": "02151",
     "n_units": 39,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.406348,
+    "longitude": -71.014625
   },
   {
     "project": "BRISTON ARMS",
@@ -2229,7 +2785,9 @@
     "town": "CAMBRIDGE",
     "zip": "02138",
     "n_units": 154,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.386651,
+    "longitude": -71.134633
   },
   {
     "project": "COTTAGE BROOK APARTMENTS",
@@ -2237,7 +2795,9 @@
     "town": "BOSTON",
     "zip": "02125",
     "n_units": 147,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.319991,
+    "longitude": -71.073599
   },
   {
     "project": "75 AMORY",
@@ -2245,7 +2805,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 39,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.320951,
+    "longitude": -71.100603
   },
   {
     "project": "FITCHBURG YARN",
@@ -2253,7 +2815,9 @@
     "town": "BOSTON",
     "zip": "01420",
     "n_units": 96,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.360092,
+    "longitude": -71.055785
   },
   {
     "project": "RINDGE TOWER",
@@ -2261,7 +2825,9 @@
     "town": "CAMBRIDGE",
     "zip": "02141",
     "n_units": 273,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.393848,
+    "longitude": -71.139742
   },
   {
     "project": "WHITTIER PLACE",
@@ -2269,7 +2835,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 44,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.290134,
+    "longitude": -71.074538
   },
   {
     "project": "JAS CONSOLIDATED",
@@ -2277,7 +2845,9 @@
     "town": "CAMBRIDGE",
     "zip": "02141",
     "n_units": 112,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.368422,
+    "longitude": -71.092636
   },
   {
     "project": "WAYNE AT BICKNELL",
@@ -2285,7 +2855,9 @@
     "town": "BOSTON",
     "zip": "02121",
     "n_units": 72,
-    "yr_pis": 2017
+    "yr_pis": 2017,
+    "latitude": 42.297141,
+    "longitude": -71.083481
   },
   {
     "project": "48 BOYLSTON",
@@ -2293,7 +2865,9 @@
     "town": "BOSTON",
     "zip": "02109",
     "n_units": 46,
-    "yr_pis": 2018
+    "yr_pis": 2018,
+    "latitude": 42.352161,
+    "longitude": -71.064028
   },
   {
     "project": "BOSTON STREET CROSSING",
@@ -2301,7 +2875,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 26,
-    "yr_pis": 2018
+    "yr_pis": 2018,
+    "latitude": 42.518546,
+    "longitude": -70.908467
   },
   {
     "project": "BURBANK GARDENS",
@@ -2309,7 +2885,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 52,
-    "yr_pis": 2018
+    "yr_pis": 2018,
+    "latitude": 42.344479,
+    "longitude": -71.087577
   },
   {
     "project": "ORIENT HEIGHTS",
@@ -2317,7 +2895,9 @@
     "town": "BOSTON",
     "zip": "02128",
     "n_units": 88,
-    "yr_pis": 2018
+    "yr_pis": 2018,
+    "latitude": 42.393157,
+    "longitude": -71.008248
   },
   {
     "project": "RESIDENCES AT FAIRMOUNT STATION",
@@ -2325,7 +2905,9 @@
     "town": "BOSTON",
     "zip": "02136",
     "n_units": 27,
-    "yr_pis": 2018
+    "yr_pis": 2018,
+    "latitude": 42.254354,
+    "longitude": -71.119514
   },
   {
     "project": "HARBOR LAFAYETTE",
@@ -2333,7 +2915,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 27,
-    "yr_pis": 2019
+    "yr_pis": 2019,
+    "latitude": 42.517834,
+    "longitude": -70.892418
   },
   {
     "project": "RESIDENCES AT SALISBURY",
@@ -2341,7 +2925,9 @@
     "town": "SALISBURY",
     "zip": "01952",
     "n_units": 42,
-    "yr_pis": 2019
+    "yr_pis": 2019,
+    "latitude": 42.839524,
+    "longitude": -70.864436
   },
   {
     "project": "BARTLETT BUILDING B",
@@ -2349,7 +2935,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 55,
-    "yr_pis": 2019
+    "yr_pis": 2019,
+    "latitude": 42.326496,
+    "longitude": -71.087812
   },
   {
     "project": "MECHANIC MILL",
@@ -2357,7 +2945,9 @@
     "town": "BOSTON",
     "zip": "02108",
     "n_units": 130,
-    "yr_pis": 2019
+    "yr_pis": 2019,
+    "latitude": 42.36295,
+    "longitude": -71.05496
   },
   {
     "project": "PARIS VILLAGE",
@@ -2365,7 +2955,9 @@
     "town": "BOSTON",
     "zip": "02128",
     "n_units": 62,
-    "yr_pis": 2019
+    "yr_pis": 2019,
+    "latitude": 42.374444,
+    "longitude": -71.035534
   },
   {
     "project": "THE CLARION",
@@ -2373,7 +2965,9 @@
     "town": "BOSTON",
     "zip": "02121",
     "n_units": 63,
-    "yr_pis": 2019
+    "yr_pis": 2019,
+    "latitude": 42.314328,
+    "longitude": -71.079239
   },
   {
     "project": "370 HARVARD STREET",
@@ -2381,7 +2975,9 @@
     "town": "BROOKLINE",
     "zip": "02446",
     "n_units": 62,
-    "yr_pis": 2019
+    "yr_pis": 2019,
+    "latitude": 42.344398,
+    "longitude": -71.125561
   },
   {
     "project": "ASHMONT TOD",
@@ -2389,7 +2985,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 74,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.283528,
+    "longitude": -71.065157
   },
   {
     "project": "BC HIGHLAND GLENN",
@@ -2397,7 +2995,9 @@
     "town": "WESTWOOD",
     "zip": "02090",
     "n_units": 180,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.213472,
+    "longitude": -71.229703
   },
   {
     "project": "BOSTON STREET",
@@ -2405,7 +3005,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 26,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.518546,
+    "longitude": -70.908467
   },
   {
     "project": "HARBOR LAFAYETTE",
@@ -2413,7 +3015,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 27,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.517834,
+    "longitude": -70.892418
   },
   {
     "project": "JEFFERSON PARK",
@@ -2421,7 +3025,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 31,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.393789,
+    "longitude": -71.136205
   },
   {
     "project": "ORIENT HEIGHT PHASE 3",
@@ -2429,7 +3035,9 @@
     "town": "BOSTON",
     "zip": "02128",
     "n_units": 88,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.393157,
+    "longitude": -71.008248
   },
   {
     "project": "WAYNE AT BICKNELL 2",
@@ -2437,7 +3045,9 @@
     "town": "BOSTON",
     "zip": "02121",
     "n_units": 72,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.297141,
+    "longitude": -71.083481
   },
   {
     "project": "ASIAN CDC OAK TERRACE",
@@ -2445,7 +3055,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 88,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.348199,
+    "longitude": -71.063646
   },
   {
     "project": "COOLIDGE AT SUDBURY PHASE 2",
@@ -2453,7 +3065,9 @@
     "town": "SUDBURY",
     "zip": "01776",
     "n_units": 56,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.361565,
+    "longitude": -71.399547
   },
   {
     "project": "ROBERT HILL WAY",
@@ -2461,7 +3075,9 @@
     "town": "ASHLAND",
     "zip": "07172",
     "n_units": 64,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.2443,
+    "longitude": -71.465
   },
   {
     "project": "SQUIRRELWOOD",
@@ -2469,7 +3085,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 88,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.368134,
+    "longitude": -71.096126
   },
   {
     "project": "TALBOT COMMONS PHASE 1",
@@ -2477,7 +3095,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 40,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.291098,
+    "longitude": -71.077458
   },
   {
     "project": "TANNERY",
@@ -2485,7 +3105,9 @@
     "town": "PEABODY",
     "zip": "01960",
     "n_units": 284,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.529018,
+    "longitude": -70.930752
   },
   {
     "project": "WAYNE AT SCHUYLER",
@@ -2493,7 +3115,9 @@
     "town": "BOSTON",
     "zip": "02124",
     "n_units": 74,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.296974,
+    "longitude": -71.084996
   },
   {
     "project": "25 ARMORY",
@@ -2501,7 +3125,9 @@
     "town": "BOSTON",
     "zip": "02130",
     "n_units": 44,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.381372,
+    "longitude": -71.07058
   },
   {
     "project": "571 REVERE STREET",
@@ -2509,7 +3135,9 @@
     "town": "BOSTON",
     "zip": "02151",
     "n_units": 51,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.418582,
+    "longitude": -70.988788
   },
   {
     "project": "COTE VILLAGE",
@@ -2517,7 +3145,9 @@
     "town": "BOSTON",
     "zip": "02126",
     "n_units": 24,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.270691,
+    "longitude": -71.095555
   },
   {
     "project": "DOWNING SQUARE",
@@ -2525,7 +3155,9 @@
     "town": "ARLINGTON",
     "zip": "02474",
     "n_units": 48,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.426256,
+    "longitude": -71.182632
   },
   {
     "project": "FROST TERRACE",
@@ -2533,7 +3165,9 @@
     "town": "CAMBRIDGE",
     "zip": "01240",
     "n_units": 40,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.385982,
+    "longitude": -71.118998
   },
   {
     "project": "GLEN BROOK WAY",
@@ -2541,7 +3175,9 @@
     "town": "MEDWAY",
     "zip": "02053",
     "n_units": 48,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.1458,
+    "longitude": -71.4243
   },
   {
     "project": "HARBOR VILLAGE",
@@ -2549,7 +3185,9 @@
     "town": "GLOUCESTER",
     "zip": "01930",
     "n_units": 30,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.613047,
+    "longitude": -70.660601
   },
   {
     "project": "LYDIA SQUARE",
@@ -2557,7 +3195,9 @@
     "town": "ROCKLAND",
     "zip": "02370",
     "n_units": 44,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.120233,
+    "longitude": -70.907456
   },
   {
     "project": "OLD COLONY PHASE 3 A9",
@@ -2565,7 +3205,9 @@
     "town": "BOSTON",
     "zip": "02127",
     "n_units": 27,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.331756,
+    "longitude": -71.051517
   },
   {
     "project": "OLD COLONY PHASE 3 B9",
@@ -2573,7 +3215,9 @@
     "town": "BOSTON",
     "zip": "02127",
     "n_units": 27,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.3319,
+    "longitude": -71.049946
   },
   {
     "project": "OLMSTED GREEN PHASE 4",
@@ -2581,7 +3225,9 @@
     "town": "BOSTON",
     "zip": "02126",
     "n_units": 47,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.287215,
+    "longitude": -71.095208
   },
   {
     "project": "LIGHTHOUSES APARTMENTS",
@@ -2589,7 +3235,9 @@
     "town": "SALEM",
     "zip": "01970",
     "n_units": 46,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.515122,
+    "longitude": -70.889613
   },
   {
     "project": "MICHAEL E. HAYNES",
@@ -2597,7 +3245,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 55,
-    "yr_pis": 2020
+    "yr_pis": 2020,
+    "latitude": 42.320564,
+    "longitude": -71.080821
   },
   {
     "project": "SENIOR RESIDENCES AT THE MACHON",
@@ -2605,7 +3255,9 @@
     "town": "SWAMPSCOTT",
     "zip": "01970",
     "n_units": 38,
-    "yr_pis": 2021
+    "yr_pis": 2021,
+    "latitude": 42.477803,
+    "longitude": -70.921141
   },
   {
     "project": "140 CLARENDON",
@@ -2613,7 +3265,9 @@
     "town": "BOSTON",
     "zip": "02116",
     "n_units": 210,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.348445,
+    "longitude": -71.074345
   },
   {
     "project": "270 BAKER STREET",
@@ -2621,7 +3275,9 @@
     "town": "BOSTON",
     "zip": "02132",
     "n_units": 60,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.279056,
+    "longitude": -71.16762
   },
   {
     "project": "DUDLEY CROSSING",
@@ -2629,7 +3285,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 47,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.326191,
+    "longitude": -71.075725
   },
   {
     "project": "GRANITE STREET BULDING A",
@@ -2637,7 +3295,9 @@
     "town": "ROCKPORT",
     "zip": "01966",
     "n_units": 23,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.658071,
+    "longitude": -70.626256
   },
   {
     "project": "HAYWOOD HOUSE",
@@ -2645,7 +3305,9 @@
     "town": "NEWTON",
     "zip": "02458",
     "n_units": 55,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.3556,
+    "longitude": -71.1834
   },
   {
     "project": "HOLBROOK",
@@ -2653,7 +3315,9 @@
     "town": "HOLBROOK",
     "zip": "02343",
     "n_units": 72,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.156902,
+    "longitude": -71.008323
   },
   {
     "project": "MORTON STATION",
@@ -2661,7 +3325,9 @@
     "town": "BOSTON",
     "zip": "02126",
     "n_units": 28,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.281119,
+    "longitude": -71.085129
   },
   {
     "project": "PARCEL 25 PHASE 2",
@@ -2669,7 +3335,9 @@
     "town": "BOSTON",
     "zip": "02121",
     "n_units": 46,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.333996,
+    "longitude": -71.094275
   },
   {
     "project": "SIMON C. FIRMAN EXPANSION",
@@ -2677,7 +3345,9 @@
     "town": "RANDOLPH",
     "zip": "02368",
     "n_units": 45,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.178296,
+    "longitude": -71.050691
   },
   {
     "project": "TAVERNIER",
@@ -2685,7 +3355,9 @@
     "town": "ACTON",
     "zip": "01720",
     "n_units": 31,
-    "yr_pis": 2023
+    "yr_pis": 2023,
+    "latitude": 42.475014,
+    "longitude": -71.457093
   },
   {
     "project": "9 LEYLAND",
@@ -2693,7 +3365,9 @@
     "town": "BOSTON",
     "zip": "02125",
     "n_units": 43,
-    "yr_pis": 2024
+    "yr_pis": 2024,
+    "latitude": 42.320892,
+    "longitude": -71.070624
   },
   {
     "project": "BARTLETT LOT D",
@@ -2701,7 +3375,9 @@
     "town": "BOSTON",
     "zip": "02119",
     "n_units": 50,
-    "yr_pis": 2024
+    "yr_pis": 2024,
+    "latitude": 42.3234,
+    "longitude": -71.086
   },
   {
     "project": "GBW SENIOR",
@@ -2709,7 +3385,9 @@
     "town": "MEDWAY",
     "zip": "02053",
     "n_units": 44,
-    "yr_pis": 2024
+    "yr_pis": 2024,
+    "latitude": 42.1458,
+    "longitude": -71.4243
   },
   {
     "project": "GRACE APARTMENTS",
@@ -2717,7 +3395,9 @@
     "town": "BOSTON",
     "zip": "02128",
     "n_units": 42,
-    "yr_pis": 2024
+    "yr_pis": 2024,
+    "latitude": 42.369033,
+    "longitude": -71.040525
   },
   {
     "project": "RINDGE COMMONS",
@@ -2725,7 +3405,9 @@
     "town": "CAMBRIDGE",
     "zip": "02141",
     "n_units": 24,
-    "yr_pis": 2024
+    "yr_pis": 2024,
+    "latitude": 42.373033,
+    "longitude": -71.094241
   },
   {
     "project": "WALANDO HOMES",
@@ -2733,7 +3415,9 @@
     "town": "BOSTON",
     "zip": "02126",
     "n_units": 59,
-    "yr_pis": 2024
+    "yr_pis": 2024,
+    "latitude": 42.275411,
+    "longitude": -71.098497
   },
   {
     "project": "110 PETERBOROUGH STREET LP",
@@ -2741,7 +3425,9 @@
     "town": "BOSTON",
     "zip": "02215",
     "n_units": 48,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.342856,
+    "longitude": -71.099842
   },
   {
     "project": "240 CONANT STREET",
@@ -2749,7 +3435,9 @@
     "town": "DANVERS",
     "zip": "01923",
     "n_units": 18,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.572829,
+    "longitude": -70.909141
   },
   {
     "project": "27TH ST DEVELOPMENT",
@@ -2757,7 +3445,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 3,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.341537,
+    "longitude": -71.08603
   },
   {
     "project": "51-57 BEALS STREET",
@@ -2765,7 +3455,9 @@
     "town": "BROOKLINE",
     "zip": "02446",
     "n_units": 31,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.345863,
+    "longitude": -71.124924
   },
   {
     "project": "525 BEACH",
@@ -2773,7 +3465,9 @@
     "town": "REVERE",
     "zip": "02151",
     "n_units": 30,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.40961,
+    "longitude": -70.998287
   },
   {
     "project": "6 FORT STREET APTS",
@@ -2781,7 +3475,9 @@
     "town": "QUINCY",
     "zip": "02169",
     "n_units": 34,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.244447,
+    "longitude": -71.006789
   },
   {
     "project": "62 PLEASANT STREET",
@@ -2789,7 +3485,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 32,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.546114,
+    "longitude": -70.885444
   },
   {
     "project": "64 70 BURBANK STREET",
@@ -2797,7 +3495,9 @@
     "town": "BOSTON",
     "zip": "02115",
     "n_units": 31,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.344296,
+    "longitude": -71.088848
   },
   {
     "project": "86 DUMMER",
@@ -2805,7 +3505,9 @@
     "town": "BROOKLINE",
     "zip": "02446",
     "n_units": 32,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.349566,
+    "longitude": -71.114265
   },
   {
     "project": "BEDFORD GREEN",
@@ -2813,7 +3515,9 @@
     "town": "BEDFORD",
     "zip": "",
     "n_units": 70,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "BRIDGEVIEW CENTER",
@@ -2821,7 +3525,9 @@
     "town": "BOSTON",
     "zip": "02129",
     "n_units": 61,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.379079,
+    "longitude": -71.071101
   },
   {
     "project": "BROWNSTONE APTS LLC",
@@ -2829,7 +3535,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 73,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.341297,
+    "longitude": -71.081728
   },
   {
     "project": "CAPEN COURT APTS",
@@ -2837,7 +3545,9 @@
     "town": "SOMERVILLE",
     "zip": "02144",
     "n_units": 95,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.414514,
+    "longitude": -71.130099
   },
   {
     "project": "CEDAR GLEN",
@@ -2845,7 +3555,9 @@
     "town": "READING",
     "zip": "01867",
     "n_units": 114,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.557402,
+    "longitude": -71.105868
   },
   {
     "project": "CENTRAL GRAMMAR APTS",
@@ -2853,7 +3565,9 @@
     "town": "GLOUCESTER",
     "zip": "01930",
     "n_units": 78,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.614298,
+    "longitude": -70.663431
   },
   {
     "project": "CLARENDON HILL TOWERS",
@@ -2861,7 +3575,9 @@
     "town": "SOMERVILLE",
     "zip": "02144",
     "n_units": 472,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.406434,
+    "longitude": -71.133027
   },
   {
     "project": "COLUMBIA CAST LLC",
@@ -2869,7 +3585,9 @@
     "town": "CAMBRIDGE",
     "zip": "",
     "n_units": 37,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "CONIFER HILL COMMONS II",
@@ -2877,7 +3595,9 @@
     "town": "DANVERS",
     "zip": "01923",
     "n_units": 42,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.586598,
+    "longitude": -70.962738
   },
   {
     "project": "HOLCROFT PARK HOMES ONE LP",
@@ -2885,7 +3605,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 28,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.557738,
+    "longitude": -70.883043
   },
   {
     "project": "HONG LOK HOUSE",
@@ -2893,7 +3615,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 40,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.352279,
+    "longitude": -71.061922
   },
   {
     "project": "INMAN CAST 2",
@@ -2901,7 +3625,9 @@
     "town": "CAMBRIDGE",
     "zip": "",
     "n_units": 113,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "JACKSON GARDENS",
@@ -2909,7 +3635,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 45,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.368748,
+    "longitude": -71.102313
   },
   {
     "project": "LINCOLN WAY",
@@ -2917,7 +3645,9 @@
     "town": "CAMBRIDGE",
     "zip": "",
     "n_units": 62,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "LYNDON B JOHNSON APTS LLC",
@@ -2925,7 +3655,9 @@
     "town": "CAMBRIDGE",
     "zip": "02139",
     "n_units": 175,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.359382,
+    "longitude": -71.106907
   },
   {
     "project": "MUSTERFIELD PLACE LLC",
@@ -2933,7 +3665,9 @@
     "town": "FRAMINGHAM",
     "zip": "",
     "n_units": 110,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "PARCEL 24 AFFORDABLE RENTAL",
@@ -2941,7 +3675,9 @@
     "town": "BOSTON",
     "zip": "02111",
     "n_units": 95,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.350027,
+    "longitude": -71.060035
   },
   {
     "project": "PRI GLEN GROVE LLC",
@@ -2949,7 +3685,9 @@
     "town": "WELLESLEY",
     "zip": "02482",
     "n_units": 123,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.293981,
+    "longitude": -71.29092
   },
   {
     "project": "PRI LONGFELLOW GLEN LLC",
@@ -2957,7 +3695,9 @@
     "town": "SUDBURY",
     "zip": "01776",
     "n_units": 120,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.360766,
+    "longitude": -71.442234
   },
   {
     "project": "PRI NEHOIDEN GLEN LLC",
@@ -2965,7 +3705,9 @@
     "town": "NEEDHAM",
     "zip": "02492",
     "n_units": 59,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.28468,
+    "longitude": -71.252915
   },
   {
     "project": "PRI NOONAN GLEN LLC",
@@ -2973,7 +3715,9 @@
     "town": "WINCHESTER",
     "zip": "01890",
     "n_units": 18,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.461937,
+    "longitude": -71.145405
   },
   {
     "project": "PRI OLD MILL GLEN LLC",
@@ -2981,7 +3725,9 @@
     "town": "MAYNARD",
     "zip": "01754",
     "n_units": 50,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.434758,
+    "longitude": -71.444203
   },
   {
     "project": "SALEM TOWERS",
@@ -2989,7 +3735,9 @@
     "town": "MALDEN",
     "zip": "02148",
     "n_units": 79,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.431254,
+    "longitude": -71.057363
   },
   {
     "project": "ST KEVIN'S RESIDENTIAL",
@@ -2997,7 +3745,9 @@
     "town": "BOSTON",
     "zip": "",
     "n_units": 33,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "ST POLYCARP II",
@@ -3005,7 +3755,9 @@
     "town": "SOMERVILLE",
     "zip": "02145",
     "n_units": 29,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.396673,
+    "longitude": -71.090917
   },
   {
     "project": "STANDARD BOX APTS",
@@ -3013,7 +3765,9 @@
     "town": "CHELSEA",
     "zip": "02150",
     "n_units": 50,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.394234,
+    "longitude": -71.029974
   },
   {
     "project": "THE COOLIDGE AT SUDBURY",
@@ -3021,7 +3775,9 @@
     "town": "SUDBURY",
     "zip": "01776",
     "n_units": 64,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.361528,
+    "longitude": -71.399675
   },
   {
     "project": "THE HOMES AT OLD COLONY",
@@ -3029,7 +3785,9 @@
     "town": "BOSTON",
     "zip": "",
     "n_units": 116,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "THE PARC AT MEDFIELD PHASE I",
@@ -3037,7 +3795,9 @@
     "town": "MEDFIELD",
     "zip": "",
     "n_units": 48,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.1744,
+    "longitude": -71.2971
   },
   {
     "project": "THE VILLAGE AT BROOKLINE",
@@ -3045,7 +3805,9 @@
     "town": "BROOKLINE",
     "zip": "",
     "n_units": 197,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": null,
+    "longitude": null
   },
   {
     "project": "TURTLE CREEK HOUSING LLC",
@@ -3053,7 +3815,9 @@
     "town": "BEVERLY",
     "zip": "01915",
     "n_units": 109,
-    "yr_pis": null
+    "yr_pis": null,
+    "latitude": 42.57274,
+    "longitude": -70.855889
   },
   {
     "project": "EAST CANTON STREET APTS",
@@ -3061,7 +3825,9 @@
     "town": "BOSTON",
     "zip": "02118",
     "n_units": 80,
-    "yr_pis": 2006
+    "yr_pis": 2006,
+    "latitude": 42.337483,
+    "longitude": -71.068992
   },
   {
     "project": "LEVENTHAL HOUSE",
@@ -3069,6 +3835,8 @@
     "town": "BOSTON",
     "zip": "02135",
     "n_units": 255,
-    "yr_pis": 2007
+    "yr_pis": 2007,
+    "latitude": 42.342766,
+    "longitude": -71.151367
   }
 ]

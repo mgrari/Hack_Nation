@@ -1,9 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { StepNav } from "@/components/StepNav";
 import { getFairMarketRent, getProperties, getTowns, type FairMarketRent, type Property } from "@/lib/api";
+
+// Leaflet touches `window` on import, which breaks Next.js server rendering -- load it
+// client-only.
+const PropertyMap = dynamic(() => import("@/components/PropertyMap"), {
+  ssr: false,
+  loading: () => <div className="h-[360px] rounded-lg bg-card border border-border animate-pulse" />,
+});
 
 function average(values: number[]) {
   return values.reduce((sum, v) => sum + v, 0) / values.length;
@@ -16,6 +24,7 @@ export default function DiscoverPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [fmr, setFmr] = useState<FairMarketRent | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
   useEffect(() => {
     getTowns().then((result) => setTowns(result.towns));
@@ -24,10 +33,16 @@ export default function DiscoverPage() {
 
   useEffect(() => {
     setError(null);
+    setSelectedKey(null);
     getProperties(city || undefined, minUnits ? Number(minUnits) : undefined)
       .then((result) => setProperties(result.properties))
       .catch((err) => setError((err as Error).message));
   }, [city, minUnits]);
+
+  const propertyKey = (p: Property, i: number) => `${p.project}-${p.address}-${i}`;
+  const mapProperties = selectedKey
+    ? properties.filter((p, i) => propertyKey(p, i) === selectedKey)
+    : properties;
 
   // HUD's Fair Market Rent is metro-wide, not per town -- so when a town is selected,
   // show the average of the town's actual per-ZIP SAFMRs instead of the flat metro figure.
@@ -122,32 +137,59 @@ export default function DiscoverPage() {
           </p>
         )}
 
-        <p role="status" className="text-[13px] text-ink/55 mb-4">
-          {properties.length} propert{properties.length === 1 ? "y" : "ies"}
-        </p>
+        <div className="flex items-center justify-between mb-4">
+          <p role="status" className="text-[13px] text-ink/55">
+            {properties.length} propert{properties.length === 1 ? "y" : "ies"}
+          </p>
+          {selectedKey && (
+            <button
+              onClick={() => setSelectedKey(null)}
+              className="font-heading text-[12.5px] font-semibold text-sage underline"
+            >
+              Show all on map
+            </button>
+          )}
+        </div>
+
+        <div className="rounded-lg overflow-hidden border border-border mb-6">
+          <PropertyMap properties={mapProperties} />
+        </div>
 
         <div className="flex flex-col gap-3">
-          {properties.map((p, i) => (
-            <div key={`${p.project}-${p.address}-${i}`} className="rounded-lg border border-border bg-card px-5 py-[18px]">
-              <div className="font-heading text-[14px] font-semibold mb-1">{p.project}</div>
-              <div className="text-[13px] text-ink/70 mb-2">
-                {p.address}, {p.town}
+          {properties.map((p, i) => {
+            const key = propertyKey(p, i);
+            return (
+              <div key={key} className="rounded-lg border border-border bg-card px-5 py-[18px]">
+                <div className="flex items-start justify-between gap-3 mb-1">
+                  <div className="font-heading text-[14px] font-semibold">{p.project}</div>
+                  {p.latitude != null && p.longitude != null && (
+                    <button
+                      onClick={() => setSelectedKey(key)}
+                      className="shrink-0 font-heading text-[12.5px] font-semibold text-sage underline"
+                    >
+                      Show on map
+                    </button>
+                  )}
+                </div>
+                <div className="text-[13px] text-ink/70 mb-2">
+                  {p.address}, {p.town}
+                </div>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-ink/50 mb-1.5">
+                  {p.n_units != null && <span>{p.n_units} total units</span>}
+                  {p.yr_pis != null && <span>Placed in service {p.yr_pis}</span>}
+                  {p.safmr && (
+                    <span>
+                      HUD typical rent for ZIP {p.zip}: ${p.safmr.fmr_1br.toLocaleString()} (1BR) / $
+                      {p.safmr.fmr_2br.toLocaleString()} (2BR)
+                    </span>
+                  )}
+                </div>
+                <div className="text-[12.5px] font-semibold text-ink/70">
+                  Availability: unknown — not published by HUD
+                </div>
               </div>
-              <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-ink/50 mb-1.5">
-                {p.n_units != null && <span>{p.n_units} total units</span>}
-                {p.yr_pis != null && <span>Placed in service {p.yr_pis}</span>}
-                {p.safmr && (
-                  <span>
-                    HUD typical rent for ZIP {p.zip}: ${p.safmr.fmr_1br.toLocaleString()} (1BR) / $
-                    {p.safmr.fmr_2br.toLocaleString()} (2BR)
-                  </span>
-                )}
-              </div>
-              <div className="text-[12.5px] font-semibold text-ink/70">
-                Availability: unknown — not published by HUD
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </main>
