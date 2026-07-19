@@ -5,6 +5,29 @@ import { PageHeader } from "@/components/PageHeader";
 import { StepNav } from "@/components/StepNav";
 import { ask, calculate, type Calculation } from "@/lib/api";
 
+const READINESS_META: Record<Calculation["readiness_status"], { color: string; label: string }> = {
+  READY_TO_REVIEW: { color: "text-sage border-sage", label: "Ready to review" },
+  NEEDS_REVIEW: { color: "text-rust border-rust", label: "Needs review" },
+};
+
+const REVIEW_REASON_SENTENCES: Record<string, string> = {
+  PAY_STUB_TOTAL_CONFLICT:
+    "Your two pay stubs show different totals — double check which one is current.",
+  EMPLOYMENT_LETTER_EXPIRED:
+    "Your employment letter is older than the review window — a more recent one may be needed.",
+  FIELD_SOURCE_MISSING:
+    "One of your confirmed values couldn't be traced back to a spot on the document — it may need to be re-confirmed.",
+  GIG_INCOME_UNCORROBORATED:
+    "Your gig income doesn't yet have a corroborating document attached.",
+  APPLICATION_SUMMARY_MISSING: "An application summary hasn't been uploaded yet.",
+  PAY_STUB_MISSING: "A pay stub hasn't been uploaded yet.",
+  EMPLOYMENT_LETTER_MISSING: "An employment letter hasn't been uploaded yet.",
+};
+
+function reasonSentence(code: string) {
+  return REVIEW_REASON_SENTENCES[code] ?? code;
+}
+
 type QaEntry = {
   question: string;
   answer: string;
@@ -152,6 +175,30 @@ export default function UnderstandPage() {
               These are the numbers, not a verdict. RealDoor doesn&apos;t determine eligibility —
               your property or housing authority does, using these figures.
             </p>
+
+            <div className="mt-4 pt-3.5 border-t border-ink/10">
+              <div className="flex items-center gap-2.5">
+                <span
+                  className={`rounded border-[1.5px] px-2.5 py-1 font-heading text-[11.5px] font-bold uppercase tracking-wide ${READINESS_META[calculation.readiness_status].color}`}
+                >
+                  {READINESS_META[calculation.readiness_status].label}
+                </span>
+              </div>
+              {calculation.review_reasons.length > 0 && (
+                <ul className="mt-3 flex flex-col gap-1.5">
+                  {calculation.review_reasons.map((reason) => (
+                    <li key={reason} className="text-[13.5px] leading-[1.5] text-ink/75 pl-3.5 relative">
+                      <span className="absolute left-0 text-ink/40">–</span>
+                      {reasonSentence(reason)}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <p className="text-[12.5px] text-ink/50 mt-3 leading-[1.5]">
+                This status reflects packet completeness and consistency, not an eligibility
+                decision — that&apos;s still your property or housing authority&apos;s call.
+              </p>
+            </div>
           </div>
         )}
 

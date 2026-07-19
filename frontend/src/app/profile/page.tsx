@@ -20,6 +20,18 @@ function labelFor(fieldName: string) {
   return FIELD_LABELS[fieldName] ?? fieldName.replaceAll("_", " ");
 }
 
+const DOCUMENT_TYPE_LABELS: Record<string, string> = {
+  application_summary: "Application summary",
+  pay_stub: "Pay stub",
+  employment_letter: "Employment letter",
+  benefit_letter: "Benefit letter",
+  gig_statement: "Gig income statement",
+};
+
+function documentTypeLabel(documentType: string) {
+  return DOCUMENT_TYPE_LABELS[documentType] ?? documentType.replaceAll("_", " ");
+}
+
 type UploadStage = "idle" | "uploading" | "uploaded";
 
 export default function ProfilePage() {
@@ -28,6 +40,7 @@ export default function ProfilePage() {
   const [uploadStage, setUploadStage] = useState<UploadStage>("idle");
   const [fileName, setFileName] = useState<string | null>(null);
   const [documentId, setDocumentId] = useState<string | null>(null);
+  const [documentType, setDocumentType] = useState<string | null>(null);
   const [fields, setFields] = useState<ExtractedField[]>([]);
   const [confirmedIds, setConfirmedIds] = useState<Set<string>>(new Set());
   const [draftValues, setDraftValues] = useState<Record<string, string>>({});
@@ -56,6 +69,7 @@ export default function ProfilePage() {
     try {
       const result = await uploadDocument(file);
       setDocumentId(result.document_id);
+      setDocumentType(result.document_type);
       setFields(result.fields);
       setDraftValues(Object.fromEntries(result.fields.map((f) => [f.field_name, f.value ?? ""])));
       setConfirmedIds(new Set());
@@ -73,6 +87,7 @@ export default function ProfilePage() {
     setFields([]);
     setConfirmedIds(new Set());
     setDocumentId(null);
+    setDocumentType(null);
   }
 
   async function handleConfirm(fieldName: string) {
@@ -105,7 +120,8 @@ export default function ProfilePage() {
 
         <StepNav current="/profile" />
         <p className="text-[13px] text-ink/55 mb-9">
-          Step 1 of 3 — upload a recent pay stub so we can help you get organized.
+          Step 1 of 3 — upload an income document (pay stub, benefit letter, and more) and
+          RealDoor will detect what it is.
         </p>
 
         {/* Consent */}
@@ -197,6 +213,9 @@ export default function ProfilePage() {
               <div>
                 <div className="font-heading text-[13px] font-semibold">{fileName}</div>
                 <div className="text-[12.5px] text-ink/50">Uploaded · read on this device only</div>
+                {documentType && (
+                  <div className="text-[12.5px] text-ink/50">Detected: {documentTypeLabel(documentType)}</div>
+                )}
               </div>
             </div>
             <button onClick={handleReplace} className="font-heading text-xs font-semibold text-rust underline shrink-0">

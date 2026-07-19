@@ -15,6 +15,9 @@ export type Calculation = {
   source_citation: string;
   source_url: string;
   effective_date: string;
+  threshold_comparison: string;
+  readiness_status: "READY_TO_REVIEW" | "NEEDS_REVIEW";
+  review_reasons: string[];
 };
 
 export type ChecklistItem = {
@@ -42,7 +45,7 @@ export function giveConsent() {
 export function uploadDocument(file: File) {
   const formData = new FormData();
   formData.append("file", file);
-  return request<{ document_id: string; fields: ExtractedField[] }>("/documents", {
+  return request<{ document_id: string; fields: ExtractedField[]; document_type: string }>("/documents", {
     method: "POST",
     body: formData,
   });
