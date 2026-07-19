@@ -342,3 +342,71 @@ def test_upload_benefit_letter_matches_gold_fields(client, monkeypatch):
     field_names = {f["field_name"] for f in body["fields"]}
     assert field_names == expected_field_names
     assert field_names <= set(DOCUMENT_TYPES["benefit_letter"])
+
+
+def _bbox_center_within_expanded_gold(located_bbox, gold_bbox, margin=5.0):
+    """pdfplumber's word segmentation may not land on pixel-identical edges to however
+    the gold boxes were generated -- assert the located box's center falls inside the
+    gold box expanded by a small margin, rather than requiring an exact match."""
+    cx = (located_bbox[0] + located_bbox[2]) / 2
+    cy = (located_bbox[1] + located_bbox[3]) / 2
+    gx0, gy0, gx1, gy1 = gold_bbox
+    return (gx0 - margin) <= cx <= (gx1 + margin) and (gy0 - margin) <= cy <= (gy1 + margin)
+
+
+def test_upload_locates_real_source_box_against_gold_bbox(client, monkeypatch):
+    """HH-001-D03 is a non-rasterized pay stub (has a real text layer), so locate_bbox()
+    should find each field's text on the page and the resulting box should overlap the
+    gold bbox region for that field."""
+    response, gold = _upload_with_gold(client, monkeypatch, "HH-001-D03")
+    assert response.status_code == 200
+    body = response.json()
+
+    field_ids = {f["field_name"]: f["id"] for f in body["fields"]}
+
+    from db import get_db
+    from main import app
+    from models import FieldRecord
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    try:
+        gold_by_field = {f["field"]: f for f in gold["fields"]}
+        located_count = 0
+        for field_name, field_id in field_ids.items():
+            record = db.query(FieldRecord).filter_by(id=field_id).first()
+            gold_field = gold_by_field[field_name]
+            if record.source_box is None:
+                continue
+            located_count += 1
+            assert record.source_box["page"] == gold_field["page"]
+            assert record.source_box["bbox_units"] == "pdf_points_bottom_left_origin"
+            assert _bbox_center_within_expanded_gold(record.source_box["bbox"], gold_field["bbox"])
+        # At least the majority of fields on a real text-layer PDF must be located --
+        # a wrong box is worse than a missing one, but finding none would mean the
+        # search logic itself is broken, not that the document lacks a text layer.
+        assert located_count >= len(field_ids) - 1
+    finally:
+        db.close()
+
+
+def test_upload_rasterized_document_yields_no_fabricated_source_box(client, monkeypatch):
+    """HH-001-D02 is rasterized (scanned image, no embedded text layer) -- locate_bbox()
+    must honestly return None rather than fabricate a box, since there is no text to
+    search against."""
+    response, gold = _upload_with_gold(client, monkeypatch, "HH-001-D02")
+    assert response.status_code == 200
+    body = response.json()
+
+    from db import get_db
+    from main import app
+    from models import FieldRecord
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    try:
+        for f in body["fields"]:
+            record = db.query(FieldRecord).filter_by(id=f["id"]).first()
+            assert record.source_box is None
+    finally:
+        db.close()

@@ -42,6 +42,7 @@ onnxruntime==1.27.0
 openai==2.46.0
 openpyxl==3.1.5
 pandas==2.3.3
+pdfplumber==0.11.10
 Pillow==12.3.0
 opentelemetry-api==1.44.0
 opentelemetry-exporter-otlp-proto-common==1.44.0

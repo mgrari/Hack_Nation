@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from config import settings
 from crypto import encrypt_bytes
 from db import get_db
-from extraction import DOCUMENT_TYPES, call_extraction_model, extract_text_from_pdf
+from extraction import DOCUMENT_TYPES, call_extraction_model, extract_text_from_pdf, locate_bbox
 from models import AuditLogRecord, ConsentRecord, DocumentRecord, FieldRecord
 from session_cookie import get_or_create_session
 
@@ -70,16 +70,19 @@ async def upload_document(
     # own detected document_type. Drop anything that leaked across types.
     allowed_fields = set(DOCUMENT_TYPES.get(result.document_type, []))
 
+    is_pdf = file.content_type == "application/pdf"
+
     fields_out = []
     for extracted in result.fields:
         if extracted.field_name not in allowed_fields:
             continue
+        source_box = locate_bbox(raw_bytes, page=1, text=extracted.value) if is_pdf else None
         field_record = FieldRecord(
             document_id=doc_id,
             field_name=extracted.field_name,
             extracted_value=extracted.value,
             confidence=extracted.confidence,
-            source_box=extracted.source_box.model_dump() if extracted.source_box else None,
+            source_box=source_box,
             confirmed=False,
         )
         db.add(field_record)

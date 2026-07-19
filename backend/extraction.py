@@ -1,9 +1,16 @@
+import io
 import json
 from typing import BinaryIO
 
+import pdfplumber
 from pypdf import PdfReader
 
 from schemas import ExtractionResult
+
+# Watermark/background text in the synthetic fixtures is rendered far larger than any
+# real field value (see data/synthetic_documents fixtures) -- drop chars above this size
+# before searching so watermark glyphs interleaved with real text don't corrupt matches.
+_WATERMARK_MIN_SIZE = 20
 
 # Real document types and their allowed fields, derived from
 # data/synthetic_documents/gold/document_gold.jsonl (Task 15 gold set).
@@ -80,3 +87,54 @@ def call_extraction_model(client, document_text: str) -> ExtractionResult:
     )
     raw = json.loads(response.choices[0].message.content)
     return ExtractionResult.model_validate(raw)
+
+
+def _candidate_strings(text: str) -> list[str]:
+    """Exact value first, then a comma-grouped numeric variant (e.g. "2166.0" ->
+    "2,166.00") since PDFs render currency amounts formatted while the model returns
+    the raw number as extracted from plain text."""
+    candidates = [text]
+    try:
+        candidates.append(f"{float(text):,.2f}")
+    except ValueError:
+        pass
+    return candidates
+
+
+def locate_bbox(pdf_bytes: bytes, page: int, text: str) -> dict | None:
+    """Find where `text` (an already-extracted field value) appears on `page` (1-indexed)
+    of the PDF and return its real bounding box, matching the gold schema shape. Returns
+    None if the text can't be located -- never fabricate a box (e.g. scanned/rasterized
+    pages have no text layer to search)."""
+    if not text:
+        return None
+    try:
+        with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
+            if page < 1 or page > len(pdf.pages):
+                return None
+            pdf_page = pdf.pages[page - 1]
+            width, height = pdf_page.width, pdf_page.height
+            # Drop oversized watermark glyphs that would otherwise interleave with and
+            # break matches against real field text (see synthetic fixture watermarks).
+            searchable = pdf_page.filter(
+                lambda obj: obj.get("object_type") != "char" or obj.get("size", 0) < _WATERMARK_MIN_SIZE
+            )
+            for candidate in _candidate_strings(text):
+                matches = searchable.search(candidate)
+                if not matches:
+                    continue
+                match = matches[0]
+                x0, x1 = match["x0"], match["x1"]
+                # pdfplumber's top/bottom are measured from the page's top-left origin;
+                # flip to the bottom-left PDF-points origin the gold schema uses.
+                y0, y1 = height - match["bottom"], height - match["top"]
+                if not (0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height):
+                    continue
+                return {
+                    "page": page,
+                    "bbox": [x0, y0, x1, y1],
+                    "bbox_units": "pdf_points_bottom_left_origin",
+                }
+    except Exception:
+        return None
+    return None
