@@ -219,11 +219,38 @@ def test_ask_includes_renter_own_confirmed_data_in_prompt(client, monkeypatch, t
 
 
 def test_ask_declines_when_no_passages_and_no_confirmed_data(client, monkeypatch, tmp_path):
+    """With an empty corpus and no confirmed renter data, the model must be sent neither
+    a <passages> nor a <renter_data> block, and whatever it answers must carry no
+    citations. (The model call itself is mocked -- since f57d568 every /ask reaches the
+    LLM so how-it-works questions can be answered even with nothing retrieved.)"""
     import rules_rag
 
     # An empty, un-ingested Chroma dir -- no rule corpus and (freshly consented session)
     # no confirmed renter data either.
     monkeypatch.setattr(rules_rag, "CHROMA_DIR", tmp_path / "chroma")
+
+    class FakeChoice:
+        def __init__(self, content):
+            self.message = type("Msg", (), {"content": content})()
+
+    class FakeResponse:
+        def __init__(self, content):
+            self.choices = [FakeChoice(content)]
+
+    captured = {}
+
+    def fake_create(**kwargs):
+        captured["messages"] = kwargs["messages"]
+        # A compliant model, given no passages and no renter data, reports it doesn't
+        # have the renter's information rather than guessing a value.
+        return FakeResponse(json.dumps({
+            "answer": "I don't have any confirmed pay information for you yet.",
+            "used_rule_ids": [],
+        }))
+
+    monkeypatch.setattr("routers.rules.OpenAI", lambda api_key: type(
+        "Client", (), {"chat": type("Chat", (), {"completions": type("Completions", (), {"create": staticmethod(fake_create)})()})()}
+    )())
 
     client.post("/consent")
     response = client.post("/ask", json={"question": "What's my confirmed gross pay?"})
@@ -231,6 +258,10 @@ def test_ask_declines_when_no_passages_and_no_confirmed_data(client, monkeypatch
     body = response.json()
     assert body["citations"] == []
     assert "don't have" in body["answer"].lower()
+
+    user_message = captured["messages"][1]["content"]
+    assert "<passages>" not in user_message
+    assert "<renter_data>" not in user_message
 
 
 def test_ask_does_not_attach_irrelevant_citation_for_off_topic_question(client, monkeypatch, tmp_path):
