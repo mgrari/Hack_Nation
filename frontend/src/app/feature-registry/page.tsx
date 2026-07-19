@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 const ROWS: { feature: string; source: string; purpose: string; usedFor: string }[] = [
   {
     feature: "document_type",
-    source: "Detected server-side during extraction, constrained to 5 known types (backend/extraction.py::DOCUMENT_TYPES)",
+    source: "Detected automatically when your document is read — always one of 5 known types (pay stub, employment letter, benefit letter, gig statement, application summary)",
     purpose: "Determine which fields are valid for this document and drive the checklist",
     usedFor: "Profile-stage display, Prepare-stage checklist",
   },
@@ -123,13 +123,13 @@ const ROWS: { feature: string; source: string; purpose: string; usedFor: string 
   },
   {
     feature: "readiness_status",
-    source: "Computed server-side from confirmed documents (backend/readiness.py)",
+    source: "Computed from the documents and values you confirmed — nothing else",
     purpose: "Signal document completeness/consistency, never an eligibility determination",
     usedFor: "Understand-stage display only",
   },
   {
     feature: "review_reasons",
-    source: "Computed server-side from confirmed documents (backend/readiness.py)",
+    source: "Computed from the documents and values you confirmed — nothing else",
     purpose: "Explain in plain language why readiness_status is NEEDS_REVIEW",
     usedFor: "Understand-stage display only",
   },
@@ -158,9 +158,8 @@ export default function FeatureRegistryPage() {
       <p className="leading-relaxed">
         Every field and signal RealDoor touches, and why. Nothing demographic, behavioral, or
         landlord-revenue-related appears anywhere in the system — this list is exhaustive by
-        construction (it&apos;s every field in <code>backend/extraction.py::ALL_ALLOWED_FIELDS</code>{" "}
-        and every input <code>backend/routers/rules.py::CalculateRequest</code> accepts), not a
-        curated subset.
+        construction: it covers every value the system is allowed to read from a document and
+        every input the calculator accepts. Nothing else exists to collect.
       </p>
 
       <Card className="overflow-x-auto p-4">
@@ -197,7 +196,7 @@ export default function FeatureRegistryPage() {
       <p className="leading-relaxed">
         No field for eligibility, approval, ranking, score, race, national origin, disability,
         familial status, income source type beyond wages, or any landlord-revenue signal exists
-        anywhere in this list or in any request/response schema in the codebase.
+        anywhere in this list — or anywhere else in the system.
       </p>
 
       <a
