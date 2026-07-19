@@ -29,6 +29,10 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[settings.frontend_origin],
+    # Vercel gives every preview deployment its own subdomain (e.g.
+    # hack-nation-<hash>-<team>.vercel.app), not just the stable production URL above --
+    # match those too so preview links work without a manual FRONTEND_ORIGIN update each time.
+    allow_origin_regex=r"^https://hack-nation-[a-z0-9-]+\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
