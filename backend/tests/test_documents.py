@@ -494,3 +494,100 @@ def test_upload_unsupported_content_type_is_rejected(client):
         files={"file": ("resume.docx", io.BytesIO(b"not a real docx"), "application/msword")},
     )
     assert response.status_code == 415
+
+
+def _upload_simple(client, monkeypatch, filename="paystub.pdf", raw_bytes=b"%PDF-1.4 fake"):
+    from schemas import ExtractedField, ExtractionResult
+
+    def fake_extraction_call(_client, _text):
+        return ExtractionResult(
+            document_type="pay_stub",
+            fields=[ExtractedField(field_name="gross_pay", value="2000", confidence=0.9)],
+        )
+
+    monkeypatch.setattr("routers.documents.call_extraction_model", fake_extraction_call)
+    monkeypatch.setattr("routers.documents.extract_text_from_pdf", lambda file: "Gross Pay: 2000")
+
+    client.post("/consent")
+    response = client.post(
+        "/documents",
+        files={"file": (filename, io.BytesIO(raw_bytes), "application/pdf")},
+    )
+    return response
+
+
+def test_list_documents_includes_filename(client, monkeypatch):
+    upload_response = _upload_simple(client, monkeypatch, filename="my-paystub.pdf")
+    assert upload_response.status_code == 200
+
+    response = client.get("/documents")
+    assert response.status_code == 200
+    documents = response.json()["documents"]
+    assert len(documents) == 1
+    assert documents[0]["filename"] == "my-paystub.pdf"
+    assert documents[0]["document_type"] == "pay_stub"
+
+
+def test_get_document_file_returns_original_bytes(client, monkeypatch):
+    raw_bytes = b"%PDF-1.4 fake pdf content"
+    upload_response = _upload_simple(client, monkeypatch, filename="my-paystub.pdf", raw_bytes=raw_bytes)
+    document_id = upload_response.json()["document_id"]
+
+    response = client.get(f"/documents/{document_id}/file")
+    assert response.status_code == 200
+    assert response.content == raw_bytes
+    assert response.headers["content-type"] == "application/pdf"
+    assert "my-paystub.pdf" in response.headers["content-disposition"]
+
+
+def test_get_document_file_404_for_unknown_document(client):
+    client.post("/consent")
+    response = client.get("/documents/does-not-exist/file")
+    assert response.status_code == 404
+
+
+def test_get_document_file_404_for_other_sessions_document(client, monkeypatch):
+    upload_response = _upload_simple(client, monkeypatch)
+    document_id = upload_response.json()["document_id"]
+
+    client.cookies.clear()
+    response = client.get(f"/documents/{document_id}/file")
+    assert response.status_code == 404
+
+
+def test_delete_document_removes_record_and_file(client, monkeypatch):
+    upload_response = _upload_simple(client, monkeypatch)
+    document_id = upload_response.json()["document_id"]
+
+    from db import get_db
+    from main import app
+    from models import DocumentRecord
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    try:
+        record = db.query(DocumentRecord).filter_by(id=document_id).first()
+        encrypted_path = record.encrypted_path
+        assert os.path.exists(encrypted_path)
+    finally:
+        db.close()
+
+    response = client.delete(f"/documents/{document_id}")
+    assert response.status_code == 200
+    assert response.json() == {"deleted": True}
+    assert not os.path.exists(encrypted_path)
+
+    listing = client.get("/documents").json()["documents"]
+    assert listing == []
+
+    file_response = client.get(f"/documents/{document_id}/file")
+    assert file_response.status_code == 404
+
+
+def test_delete_document_404_for_other_sessions_document(client, monkeypatch):
+    upload_response = _upload_simple(client, monkeypatch)
+    document_id = upload_response.json()["document_id"]
+
+    client.cookies.clear()
+    response = client.delete(f"/documents/{document_id}")
+    assert response.status_code == 404

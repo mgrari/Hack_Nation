@@ -31,6 +31,7 @@ class DocumentRecord(Base):
     encrypted_path = Column(String, nullable=False)
     content_type = Column(String, nullable=False)
     document_type = Column(String, nullable=True)
+    original_filename = Column(String, nullable=True)
     uploaded_at = Column(DateTime, default=datetime.utcnow)
 
 

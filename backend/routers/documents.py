@@ -3,13 +3,13 @@ import os
 import uuid
 from datetime import datetime
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, Response, UploadFile
 from openai import OpenAI
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from config import settings
-from crypto import encrypt_bytes
+from crypto import decrypt_bytes, encrypt_bytes
 from db import get_db
 from extraction import (
     DOCUMENT_TYPES,
@@ -50,6 +50,7 @@ async def upload_document(
         session_id=session_id,
         encrypted_path=path,
         content_type=file.content_type or "application/octet-stream",
+        original_filename=file.filename,
     )
 
     is_pdf = file.content_type == "application/pdf"
@@ -144,6 +145,7 @@ def list_documents(
             {
                 "document_id": document.id,
                 "document_type": document.document_type,
+                "filename": document.original_filename,
                 "fields": [
                     {
                         "id": f.id,
@@ -157,6 +159,53 @@ def list_documents(
             }
         )
     return {"documents": result}
+
+
+@router.get("/documents/{document_id}/file")
+def get_document_file(
+    document_id: str,
+    session_id: str = Depends(get_or_create_session),
+    db: Session = Depends(get_db),
+):
+    document = db.query(DocumentRecord).filter_by(id=document_id, session_id=session_id).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    try:
+        with open(document.encrypted_path, "rb") as f:
+            raw_bytes = decrypt_bytes(f.read())
+    except Exception:
+        raise HTTPException(status_code=404, detail="Stored file could not be read")
+
+    filename = document.original_filename or f"{document_id}"
+    return Response(
+        content=raw_bytes,
+        media_type=document.content_type,
+        headers={"Content-Disposition": f'inline; filename="{filename}"'},
+    )
+
+
+@router.delete("/documents/{document_id}")
+def delete_document(
+    document_id: str,
+    session_id: str = Depends(get_or_create_session),
+    db: Session = Depends(get_db),
+):
+    document = db.query(DocumentRecord).filter_by(id=document_id, session_id=session_id).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    if os.path.exists(document.encrypted_path):
+        try:
+            os.remove(document.encrypted_path)
+        except OSError:
+            pass
+
+    db.query(FieldRecord).filter_by(document_id=document_id).delete()
+    db.delete(document)
+    db.add(AuditLogRecord(session_id=session_id, action="document_deleted"))
+    db.commit()
+    return {"deleted": True}
 
 
 class FieldCorrection(BaseModel):

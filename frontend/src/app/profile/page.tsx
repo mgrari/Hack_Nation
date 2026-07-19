@@ -3,7 +3,15 @@
 import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { StepNav } from "@/components/StepNav";
-import { confirmField, getDocuments, giveConsent, uploadDocument, type UploadedDocument } from "@/lib/api";
+import {
+  confirmField,
+  deleteDocument,
+  fetchDocumentFile,
+  getDocuments,
+  giveConsent,
+  uploadDocument,
+  type UploadedDocument,
+} from "@/lib/api";
 
 const CONFIDENCE_THRESHOLD = 0.85;
 
@@ -89,6 +97,7 @@ export default function ProfilePage() {
       const newDoc: UploadedDocument = {
         document_id: result.document_id,
         document_type: result.document_type,
+        filename: file.name,
         fields: result.fields,
       };
       setDocuments((prev) => [...prev, newDoc]);
@@ -122,6 +131,43 @@ export default function ProfilePage() {
               },
         ),
       );
+    } catch (err) {
+      setError((err as Error).message);
+    }
+  }
+
+  async function handleView(documentId: string) {
+    setError(null);
+    try {
+      const blob = await fetchDocumentFile(documentId);
+      const url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
+    } catch (err) {
+      setError((err as Error).message);
+    }
+  }
+
+  async function handleDownload(documentId: string, filename: string | null) {
+    setError(null);
+    try {
+      const blob = await fetchDocumentFile(documentId);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename ?? "document";
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      setError((err as Error).message);
+    }
+  }
+
+  async function handleDelete(documentId: string) {
+    setError(null);
+    try {
+      await deleteDocument(documentId);
+      setDocuments((prev) => prev.filter((doc) => doc.document_id !== documentId));
     } catch (err) {
       setError((err as Error).message);
     }
@@ -202,11 +248,33 @@ export default function ProfilePage() {
                   <path d="M1 4.5L4.2 7.5L11 1" stroke="var(--paper)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <div>
-                <div className="font-heading text-[13px] font-semibold">
-                  {documentTypeLabel(doc.document_type)}
+              <div className="min-w-0 flex-1">
+                <div className="font-heading text-[13px] font-semibold truncate">
+                  {doc.filename ?? documentTypeLabel(doc.document_type)}
                 </div>
-                <div className="text-[12.5px] text-ink/50">Uploaded · read on this device only</div>
+                <div className="text-[12.5px] text-ink/50">
+                  Detected: {documentTypeLabel(doc.document_type)} · read on this device only
+                </div>
+              </div>
+              <div className="flex shrink-0 items-center gap-3">
+                <button
+                  onClick={() => handleView(doc.document_id)}
+                  className="font-heading text-xs font-semibold text-sage underline"
+                >
+                  View
+                </button>
+                <button
+                  onClick={() => handleDownload(doc.document_id, doc.filename)}
+                  className="font-heading text-xs font-semibold text-sage underline"
+                >
+                  Download
+                </button>
+                <button
+                  onClick={() => handleDelete(doc.document_id)}
+                  className="font-heading text-xs font-semibold text-rust underline"
+                >
+                  Delete
+                </button>
               </div>
             </div>
 

@@ -11,6 +11,7 @@ export type ExtractedField = {
 export type UploadedDocument = {
   document_id: string;
   document_type: string | null;
+  filename: string | null;
   fields: ExtractedField[];
 };
 
@@ -60,6 +61,23 @@ export function uploadDocument(file: File) {
 
 export function getDocuments() {
   return request<{ documents: UploadedDocument[] }>("/documents");
+}
+
+export function getDocumentFileUrl(documentId: string) {
+  return `${BASE_URL}/documents/${documentId}/file`;
+}
+
+export async function fetchDocumentFile(documentId: string) {
+  const response = await fetch(getDocumentFileUrl(documentId), { credentials: "include" });
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`${response.status}: ${detail}`);
+  }
+  return response.blob();
+}
+
+export function deleteDocument(documentId: string) {
+  return request<{ deleted: boolean }>(`/documents/${documentId}`, { method: "DELETE" });
 }
 
 export function confirmField(documentId: string, fieldName: string, value: string) {
