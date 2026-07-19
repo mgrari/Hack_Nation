@@ -28,11 +28,13 @@ export function StepNav({ current }: { current: (typeof STEPS)[number]["href"] }
               >
                 {step.num}
               </span>
-              <span className={`font-heading text-xs font-semibold tracking-wide ${isCurrent ? "text-ink" : "text-ink/40"}`}>
+              <span
+                className={`sr-only font-heading text-xs font-semibold tracking-wide sm:not-sr-only ${isCurrent ? "text-ink" : "text-ink/40"}`}
+              >
                 {step.label}
               </span>
             </Link>
-            {i < STEPS.length - 1 && <div className="mx-3.5 h-px flex-1 bg-ink/[0.18]" aria-hidden="true" />}
+            {i < STEPS.length - 1 && <div className="mx-1.5 h-px flex-1 bg-ink/[0.18] sm:mx-3.5" aria-hidden="true" />}
           </div>
         );
       })}
