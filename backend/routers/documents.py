@@ -11,7 +11,14 @@ from sqlalchemy.orm import Session
 from config import settings
 from crypto import encrypt_bytes
 from db import get_db
-from extraction import DOCUMENT_TYPES, call_extraction_model, extract_text_from_pdf, locate_bbox
+from extraction import (
+    DOCUMENT_TYPES,
+    call_extraction_model,
+    call_extraction_model_from_image,
+    extract_text_from_pdf,
+    locate_bbox,
+    render_pdf_page_to_png,
+)
 from models import AuditLogRecord, ConsentRecord, DocumentRecord, FieldRecord
 from session_cookie import get_or_create_session
 
@@ -45,20 +52,37 @@ async def upload_document(
         content_type=file.content_type or "application/octet-stream",
     )
 
-    if file.content_type == "application/pdf":
+    is_pdf = file.content_type == "application/pdf"
+    is_image = file.content_type in ("image/jpeg", "image/png")
+    if not is_pdf and not is_image:
+        db.rollback()
+        raise HTTPException(
+            status_code=415,
+            detail="Unsupported file type. Upload a PDF, JPG, or PNG.",
+        )
+
+    text = ""
+    if is_pdf:
         try:
             text = extract_text_from_pdf(io.BytesIO(raw_bytes))
         except Exception:
             db.rollback()
             raise HTTPException(status_code=422, detail="Could not read this document")
-    else:
-        # Vision path for scanned images: extraction.py's OpenAI call is text-only for now;
-        # image support is a documented v1.1 follow-up (design spec section "Cut for v1").
-        text = ""
 
     client = OpenAI(api_key=settings.openai_api_key)
     try:
-        result = call_extraction_model(client, text)
+        if text.strip():
+            # Real text layer present (typical for a text-based PDF) -- cheaper and more
+            # reliable than vision, use it.
+            result = call_extraction_model(client, text)
+        elif is_pdf:
+            # No text layer (scanned/rasterized PDF page) -- fall back to reading the
+            # rendered page image directly instead of refusing the upload.
+            image_bytes = render_pdf_page_to_png(raw_bytes, page=1)
+            result = call_extraction_model_from_image(client, image_bytes, "image/png")
+        else:
+            # Direct photo/screenshot upload (JPG/PNG) -- always goes through vision.
+            result = call_extraction_model_from_image(client, raw_bytes, file.content_type)
     except Exception:
         db.rollback()
         raise HTTPException(status_code=502, detail="Extraction service unavailable")
@@ -69,8 +93,6 @@ async def upload_document(
     # Safety-critical: never trust the model to self-police which fields belong to its
     # own detected document_type. Drop anything that leaked across types.
     allowed_fields = set(DOCUMENT_TYPES.get(result.document_type, []))
-
-    is_pdf = file.content_type == "application/pdf"
 
     fields_out = []
     for extracted in result.fields:
@@ -101,37 +123,40 @@ async def upload_document(
     return {"document_id": doc_id, "document_type": result.document_type, "fields": fields_out}
 
 
-@router.get("/documents/current")
-def get_current_document(
+@router.get("/documents")
+def list_documents(
     session_id: str = Depends(get_or_create_session),
     db: Session = Depends(get_db),
 ):
-    document = (
+    """Every document uploaded so far this session, oldest first, with each field's
+    current value (confirmed_value once confirmed, otherwise the extracted value) --
+    restores the Profile page's full upload history on page revisit."""
+    documents = (
         db.query(DocumentRecord)
         .filter_by(session_id=session_id)
-        .order_by(DocumentRecord.uploaded_at.desc())
-        .first()
+        .order_by(DocumentRecord.uploaded_at.asc())
+        .all()
     )
-    if not document:
-        return {"document": None}
-
-    fields = db.query(FieldRecord).filter_by(document_id=document.id).all()
-    return {
-        "document": {
-            "document_id": document.id,
-            "document_type": document.document_type,
-            "fields": [
-                {
-                    "id": f.id,
-                    "field_name": f.field_name,
-                    "value": f.confirmed_value if f.confirmed else f.extracted_value,
-                    "confidence": f.confidence,
-                    "confirmed": f.confirmed,
-                }
-                for f in fields
-            ],
-        }
-    }
+    result = []
+    for document in documents:
+        fields = db.query(FieldRecord).filter_by(document_id=document.id).all()
+        result.append(
+            {
+                "document_id": document.id,
+                "document_type": document.document_type,
+                "fields": [
+                    {
+                        "id": f.id,
+                        "field_name": f.field_name,
+                        "value": f.confirmed_value if f.confirmed else f.extracted_value,
+                        "confidence": f.confidence,
+                        "confirmed": f.confirmed,
+                    }
+                    for f in fields
+                ],
+            }
+        )
+    return {"documents": result}
 
 
 class FieldCorrection(BaseModel):

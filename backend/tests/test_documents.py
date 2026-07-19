@@ -410,3 +410,87 @@ def test_upload_rasterized_document_yields_no_fabricated_source_box(client, monk
             assert record.source_box is None
     finally:
         db.close()
+
+
+def test_upload_rasterized_document_falls_back_to_vision(client, monkeypatch):
+    """HH-001-D02 is rasterized (scanned image, no embedded text layer): pypdf's real
+    extract_text_from_pdf() returns empty text for it. Sending empty text to the
+    text-based extraction model would produce an unfounded document_type guess, so the
+    upload must instead fall back to rendering the page as an image and calling the
+    vision extraction path -- never the text path -- with the correct document_type
+    coming through despite there being no text layer."""
+    from schemas import ExtractedField, ExtractionResult
+
+    gold = _load_gold("HH-001-D02")
+
+    def fail_if_called(*_args, **_kwargs):
+        raise AssertionError("call_extraction_model (text path) must not be called with no readable text")
+
+    seen_images = []
+
+    def fake_vision_call(_client, image_bytes, mime_type):
+        seen_images.append((image_bytes, mime_type))
+        fields = [
+            ExtractedField(field_name=f["field"], value=str(f["value"]), confidence=0.9)
+            for f in gold["fields"]
+            if f["field"] != "untrusted_instruction_text"
+        ]
+        return ExtractionResult(document_type=gold["document_type"], fields=fields)
+
+    monkeypatch.setattr("routers.documents.call_extraction_model", fail_if_called)
+    monkeypatch.setattr("routers.documents.call_extraction_model_from_image", fake_vision_call)
+
+    client.post("/consent")
+    pdf_path = os.path.join(DOCUMENTS_DIR, gold["file_name"])
+    with open(pdf_path, "rb") as f:
+        pdf_bytes = f.read()
+    response = client.post(
+        "/documents",
+        files={"file": (gold["file_name"], io.BytesIO(pdf_bytes), "application/pdf")},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["document_type"] == gold["document_type"] == "pay_stub"
+    assert len(seen_images) == 1
+    image_bytes, mime_type = seen_images[0]
+    assert mime_type == "image/png"
+    assert image_bytes.startswith(b"\x89PNG")
+
+
+def test_upload_direct_image_uses_vision_path(client, monkeypatch):
+    """A photo/screenshot uploaded directly as image/jpeg or image/png (not a PDF) has
+    no text layer at all -- it must always go through the vision extraction path."""
+    from schemas import ExtractedField, ExtractionResult
+
+    def fail_if_called(*_args, **_kwargs):
+        raise AssertionError("call_extraction_model (text path) must not be called for a direct image upload")
+
+    def fake_vision_call(_client, image_bytes, mime_type):
+        assert mime_type == "image/jpeg"
+        assert image_bytes == b"fake-jpeg-bytes"
+        return ExtractionResult(
+            document_type="pay_stub",
+            fields=[ExtractedField(field_name="gross_pay", value="2000", confidence=0.9)],
+        )
+
+    monkeypatch.setattr("routers.documents.call_extraction_model", fail_if_called)
+    monkeypatch.setattr("routers.documents.call_extraction_model_from_image", fake_vision_call)
+
+    client.post("/consent")
+    response = client.post(
+        "/documents",
+        files={"file": ("paystub.jpg", io.BytesIO(b"fake-jpeg-bytes"), "image/jpeg")},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["document_type"] == "pay_stub"
+    assert body["fields"] == [{"id": body["fields"][0]["id"], "field_name": "gross_pay", "value": "2000", "confidence": 0.9}]
+
+
+def test_upload_unsupported_content_type_is_rejected(client):
+    client.post("/consent")
+    response = client.post(
+        "/documents",
+        files={"file": ("resume.docx", io.BytesIO(b"not a real docx"), "application/msword")},
+    )
+    assert response.status_code == 415

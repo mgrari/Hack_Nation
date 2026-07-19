@@ -8,7 +8,7 @@ export type ExtractedField = {
   confirmed?: boolean;
 };
 
-export type CurrentDocument = {
+export type UploadedDocument = {
   document_id: string;
   document_type: string | null;
   fields: ExtractedField[];
@@ -58,8 +58,8 @@ export function uploadDocument(file: File) {
   });
 }
 
-export function getCurrentDocument() {
-  return request<{ document: CurrentDocument | null }>("/documents/current");
+export function getDocuments() {
+  return request<{ documents: UploadedDocument[] }>("/documents");
 }
 
 export function confirmField(documentId: string, fieldName: string, value: string) {
