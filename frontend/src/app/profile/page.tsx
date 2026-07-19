@@ -8,12 +8,10 @@ import { confirmField, giveConsent, uploadDocument, type ExtractedField } from "
 const CONFIDENCE_THRESHOLD = 0.85;
 
 const FIELD_LABELS: Record<string, string> = {
-  employer: "Employer",
   gross_pay: "Gross pay (this period)",
   pay_period_start: "Pay period start",
   pay_period_end: "Pay period end",
   pay_date: "Pay date",
-  ytd_gross: "YTD gross pay",
 };
 
 function labelFor(fieldName: string) {
@@ -133,7 +131,7 @@ export default function ProfilePage() {
             <div>
               <div className="font-heading text-[13px] font-semibold tracking-wide mb-1.5">BEFORE YOU UPLOAD</div>
               <p className="text-[14.5px] leading-[1.55] text-ink/85 max-w-[52ch]">
-                RealDoor reads your pay stub to fill in this form for you. Nothing is sent anywhere
+                RealDoor reads your document to fill in this form for you. Nothing is sent anywhere
                 or shared with a landlord or housing authority until you choose to include it in
                 your packet. You can review every value before it&apos;s saved, and delete
                 everything at any time in Step 3. See{" "}
@@ -150,7 +148,7 @@ export default function ProfilePage() {
                   className="size-[17px] shrink-0 accent-ink cursor-pointer"
                 />
                 <span className="font-heading text-[12.5px] font-medium">
-                  I understand, and I&apos;m ready to upload my pay stub.
+                  I understand, and I&apos;m ready to upload my document.
                 </span>
               </label>
               {consentError && (
@@ -175,7 +173,7 @@ export default function ProfilePage() {
               </svg>
             </div>
             <div className="font-heading text-sm font-semibold mb-1">
-              {consented ? "Drag your pay stub here, or click to upload" : "Confirm the notice above to enable upload"}
+              {consented ? "Drag your document here, or click to upload" : "Confirm the notice above to enable upload"}
             </div>
             <div className="text-[13px] text-ink/55">PDF, JPG, or PNG · this device only</div>
             <input
@@ -236,7 +234,7 @@ export default function ProfilePage() {
             <div className="mb-1">
               <div className="font-heading text-[15px] font-bold mb-1">Confirm what we found</div>
               <p className="text-[13.5px] text-ink/60 mb-4.5">
-                Check each value against your pay stub. Fix anything that&apos;s wrong, then confirm
+                Check each value against your document. Fix anything that&apos;s wrong, then confirm
                 it.
               </p>
             </div>

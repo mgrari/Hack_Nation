@@ -92,5 +92,6 @@ def evaluate_readiness(
             if field.get("value") is not None and field.get("source_box") is None:
                 reasons.append("FIELD_SOURCE_MISSING")
 
+    reasons = list(dict.fromkeys(reasons))  # dedupe (e.g. repeated FIELD_SOURCE_MISSING), preserve order
     status = NEEDS_REVIEW if reasons else READY
     return status, reasons

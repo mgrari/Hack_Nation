@@ -124,6 +124,22 @@ def test_missing_source_box_triggers_review():
     assert "FIELD_SOURCE_MISSING" in reasons
 
 
+def test_multiple_missing_source_boxes_dedupe_to_one_reason():
+    documents = [{
+        "document_type": "pay_stub",
+        "fields": [
+            {"field_name": "gross_pay", "value": "1000", "source_box": None},
+            {"field_name": "net_pay", "value": "900", "source_box": None},
+        ],
+    }]
+
+    status, reasons = evaluate_readiness(documents, ["pay_stub"], REFERENCE_DATE)
+
+    assert status == NEEDS_REVIEW
+    assert reasons == ["FIELD_SOURCE_MISSING"]
+    assert len(reasons) == len(set(reasons))
+
+
 def test_missing_required_type_with_no_corroboration_is_blocking():
     documents = [_doc("application_summary", {"household_size": 1})]
 

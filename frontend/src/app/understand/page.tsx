@@ -22,6 +22,8 @@ const REVIEW_REASON_SENTENCES: Record<string, string> = {
   APPLICATION_SUMMARY_MISSING: "An application summary hasn't been uploaded yet.",
   PAY_STUB_MISSING: "A pay stub hasn't been uploaded yet.",
   EMPLOYMENT_LETTER_MISSING: "An employment letter hasn't been uploaded yet.",
+  BENEFIT_LETTER_MISSING: "We don't have your benefit letter yet.",
+  GIG_STATEMENT_MISSING: "We don't have your gig income statement yet.",
 };
 
 function reasonSentence(code: string) {

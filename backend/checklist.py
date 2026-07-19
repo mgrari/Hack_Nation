@@ -25,5 +25,5 @@ def evaluate_checklist(
     ]
     for doc_type in REQUIRED_DOCUMENT_TYPES:
         status = "present" if doc_type in present_types else "missing"
-        results.append({"id": doc_type, "label": DOCUMENT_TYPE_LABELS[doc_type], "status": status})
+        results.append({"id": doc_type, "label": DOCUMENT_TYPE_LABELS.get(doc_type, doc_type), "status": status})
     return results

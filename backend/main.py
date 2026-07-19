@@ -10,6 +10,12 @@ from routers.packet import router as packet_router
 from routers.rules import router as rules_router
 from routers.session import router as session_router
 
+# NOTE: create_all() only creates tables that don't exist yet -- it never ALTERs an
+# existing table. This project has no migration framework by design (kept out on
+# purpose), so if a model gains/changes a column (e.g. DocumentRecord.document_type)
+# after a table has already been created in a persistent environment (e.g. Render's
+# production Postgres), that column will silently never appear there. Fix by manually
+# running the equivalent ALTER TABLE, or by resetting the DB, in that environment.
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
