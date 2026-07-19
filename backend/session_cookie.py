@@ -27,6 +27,10 @@ def get_or_create_session(
     response.set_cookie(
         COOKIE_NAME,
         record.id,
+        # max_age makes this a persistent cookie (survives browser close) instead of a
+        # session cookie, so a returning renter keeps the same session and their prior
+        # documents rather than starting over.
+        max_age=settings.session_ttl_days * 24 * 60 * 60,
         httponly=True,
         samesite="none" if is_production else "lax",
         secure=is_production,

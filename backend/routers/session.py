@@ -3,6 +3,7 @@ import os
 from fastapi import APIRouter, Depends, Response
 from sqlalchemy.orm import Session
 
+from config import settings
 from db import get_db
 from models import AuditLogRecord, ConsentRecord, DocumentRecord, FieldRecord, SessionRecord
 from session_cookie import COOKIE_NAME, get_or_create_session
@@ -31,5 +32,13 @@ def delete_session(
     db.query(SessionRecord).filter_by(id=session_id).delete()
     db.commit()
 
-    response.delete_cookie(COOKIE_NAME)
+    # Match the attributes the cookie was set with so browsers actually clear it
+    # (a Secure/SameSite=None cookie won't be removed by a bare delete in production).
+    is_production = settings.environment == "production"
+    response.delete_cookie(
+        COOKIE_NAME,
+        httponly=True,
+        samesite="none" if is_production else "lax",
+        secure=is_production,
+    )
     return {"deleted": True}
