@@ -27,6 +27,13 @@ def delete_session(
         db.query(FieldRecord).filter_by(document_id=doc.id).delete()
         db.delete(doc)
 
+    # autoflush is off (see db.py), so the db.delete(doc) calls above are only queued --
+    # without an explicit flush here, the bulk deletes below would run before those
+    # deletes hit the database, violating documents.session_id's foreign key to
+    # sessions.id on Postgres (SQLite doesn't enforce FKs by default, so this was
+    # invisible locally).
+    db.flush()
+
     db.query(ConsentRecord).filter_by(session_id=session_id).delete()
     db.query(AuditLogRecord).filter_by(session_id=session_id).delete()
     db.query(SessionRecord).filter_by(id=session_id).delete()
