@@ -278,62 +278,74 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-3">
-              {doc.fields.map((field) => {
-                const key = draftKey(doc.document_id, field.field_name);
-                const pct = Math.round(field.confidence * 100);
-                const good = field.confidence >= CONFIDENCE_THRESHOLD;
-                const confColor = good ? "text-sage" : "text-rust";
-                const dotColor = good ? "bg-sage" : "bg-rust";
+            {(() => {
+              const docConfirmed = doc.fields.filter((f) => f.confirmed).length;
+              const docTotal = doc.fields.length;
+              return (
+                <details className="group" open={docConfirmed < docTotal}>
+                  <summary className="mb-3 flex cursor-pointer list-none items-center justify-between rounded-lg border border-border bg-card px-5 py-3 font-heading text-[12.5px] font-semibold text-ink/70 [&::-webkit-details-marker]:hidden">
+                    <span>{docConfirmed}/{docTotal} fields confirmed</span>
+                    <span className="text-ink/40 transition-transform group-open:rotate-180">▾</span>
+                  </summary>
+                  <div className="flex flex-col gap-3">
+                    {doc.fields.map((field) => {
+                      const key = draftKey(doc.document_id, field.field_name);
+                      const pct = Math.round(field.confidence * 100);
+                      const good = field.confidence >= CONFIDENCE_THRESHOLD;
+                      const confColor = good ? "text-sage" : "text-rust";
+                      const dotColor = good ? "bg-sage" : "bg-rust";
 
-                return (
-                  <div key={field.field_name} className="fade-up rounded-lg border border-border bg-card px-5 py-[18px]">
-                    <div className="flex items-center justify-between mb-2.5">
-                      <div className="font-heading text-[11.5px] font-semibold tracking-wide text-ink/60 uppercase">
-                        {labelFor(field.field_name)}
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className={`size-1.5 rounded-full shrink-0 ${dotColor}`} aria-hidden="true" />
-                        <span className={`font-heading text-[11px] font-semibold ${confColor}`}>
-                          {good ? `${pct}% match` : `${pct}% — review`}
-                        </span>
-                      </div>
-                    </div>
+                      return (
+                        <div key={field.field_name} className="fade-up rounded-lg border border-border bg-card px-5 py-[18px]">
+                          <div className="flex items-center justify-between mb-2.5">
+                            <div className="font-heading text-[11.5px] font-semibold tracking-wide text-ink/60 uppercase">
+                              {labelFor(field.field_name)}
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <span className={`size-1.5 rounded-full shrink-0 ${dotColor}`} aria-hidden="true" />
+                              <span className={`font-heading text-[11px] font-semibold ${confColor}`}>
+                                {good ? `${pct}% match` : `${pct}% — review`}
+                              </span>
+                            </div>
+                          </div>
 
-                    {field.confirmed ? (
-                      <div className="flex items-center justify-between">
-                        <span className="highlighter-mark font-mono text-[15px] font-semibold">
-                          {draftValues[key]}
-                        </span>
-                        <button
-                          onClick={() => handleEdit(doc.document_id, field.field_name)}
-                          className="font-heading text-[12.5px] font-semibold text-sage underline"
-                        >
-                          Edit
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2.5">
-                        <input
-                          value={draftValues[key] ?? ""}
-                          onChange={(e) =>
-                            setDraftValues((prev) => ({ ...prev, [key]: e.target.value }))
-                          }
-                          aria-label={`Confirm or correct ${labelFor(field.field_name)}`}
-                          className="flex-1 rounded border border-input bg-[#FAFAF5] px-2.5 py-2 font-mono text-[15px] text-ink focus:outline-2 focus:outline-ink"
-                        />
-                        <button
-                          onClick={() => handleConfirm(doc.document_id, field.field_name)}
-                          className="shrink-0 rounded bg-ink px-4 py-2 font-heading text-[12.5px] font-bold text-paper"
-                        >
-                          Confirm
-                        </button>
-                      </div>
-                    )}
+                          {field.confirmed ? (
+                            <div className="flex items-center justify-between">
+                              <span className="highlighter-mark font-mono text-[15px] font-semibold">
+                                {draftValues[key]}
+                              </span>
+                              <button
+                                onClick={() => handleEdit(doc.document_id, field.field_name)}
+                                className="font-heading text-[12.5px] font-semibold text-sage underline"
+                              >
+                                Edit
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-2.5">
+                              <input
+                                value={draftValues[key] ?? ""}
+                                onChange={(e) =>
+                                  setDraftValues((prev) => ({ ...prev, [key]: e.target.value }))
+                                }
+                                aria-label={`Confirm or correct ${labelFor(field.field_name)}`}
+                                className="flex-1 rounded border border-input bg-[#FAFAF5] px-2.5 py-2 font-mono text-[15px] text-ink focus:outline-2 focus:outline-ink"
+                              />
+                              <button
+                                onClick={() => handleConfirm(doc.document_id, field.field_name)}
+                                className="shrink-0 rounded bg-ink px-4 py-2 font-heading text-[12.5px] font-bold text-paper"
+                              >
+                                Confirm
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
-            </div>
+                </details>
+              );
+            })()}
           </div>
         ))}
 
