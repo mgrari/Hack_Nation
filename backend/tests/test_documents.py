@@ -484,7 +484,15 @@ def test_upload_direct_image_uses_vision_path(client, monkeypatch):
     assert response.status_code == 200
     body = response.json()
     assert body["document_type"] == "pay_stub"
-    assert body["fields"] == [{"id": body["fields"][0]["id"], "field_name": "gross_pay", "value": "2000", "confidence": 0.9}]
+    assert body["fields"] == [
+        {
+            "id": body["fields"][0]["id"],
+            "field_name": "gross_pay",
+            "value": "2000",
+            "confidence": 0.9,
+            "source_box": None,  # image uploads have no text layer to locate a box in
+        }
+    ]
 
 
 def test_upload_unsupported_content_type_is_rejected(client):
@@ -590,4 +598,54 @@ def test_delete_document_404_for_other_sessions_document(client, monkeypatch):
 
     client.cookies.clear()
     response = client.delete(f"/documents/{document_id}")
+    assert response.status_code == 404
+
+
+def test_upload_response_includes_source_box(client, monkeypatch):
+    """HH-001-D03 has a real text layer, so the upload response must carry each field's
+    located source_box (the evidence box the frontend renders over the page image)."""
+    response, gold = _upload_with_gold(client, monkeypatch, "HH-001-D03")
+    assert response.status_code == 200
+    fields = response.json()["fields"]
+    assert all("source_box" in f for f in fields)
+    located = [f["source_box"] for f in fields if f["source_box"] is not None]
+    assert located, "expected at least one located source box on a text-layer PDF"
+    box = located[0]
+    assert box["page"] == 1
+    assert box["bbox_units"] == "pdf_points_bottom_left_origin"
+    assert len(box["bbox"]) == 4
+
+
+def test_list_documents_includes_source_box(client, monkeypatch):
+    upload_response, _ = _upload_with_gold(client, monkeypatch, "HH-001-D03")
+    assert upload_response.status_code == 200
+
+    response = client.get("/documents")
+    assert response.status_code == 200
+    documents = response.json()["documents"]
+    assert len(documents) == 1
+    fields = documents[0]["fields"]
+    assert all("source_box" in f for f in fields)
+    assert any(f["source_box"] is not None for f in fields)
+
+
+def test_preview_returns_page_image_and_dims(client, monkeypatch):
+    import base64
+
+    upload_response, _ = _upload_with_gold(client, monkeypatch, "HH-001-D03")
+    document_id = upload_response.json()["document_id"]
+
+    response = client.get(f"/documents/{document_id}/preview")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["page"] == 1
+    assert body["page_width"] > 0
+    assert body["page_height"] > 0
+    png_bytes = base64.b64decode(body["image_base64"])
+    assert png_bytes.startswith(b"\x89PNG"), "preview image must be a PNG"
+
+
+def test_preview_404_for_unknown_document(client):
+    client.post("/consent")
+    response = client.get("/documents/does-not-exist/preview")
     assert response.status_code == 404

@@ -53,11 +53,18 @@ def extract_text_from_pdf(file: BinaryIO) -> str:
 def render_pdf_page_to_png(pdf_bytes: bytes, page: int = 1) -> bytes:
     """Rasterize a PDF page to PNG bytes, for scanned/rasterized PDFs that have no
     embedded text layer to run text extraction against."""
+    png_bytes, _, _ = render_pdf_page_with_dims(pdf_bytes, page)
+    return png_bytes
+
+
+def render_pdf_page_with_dims(pdf_bytes: bytes, page: int = 1) -> tuple[bytes, float, float]:
+    """Rasterize a PDF page to PNG and also return the page's width/height in PDF points —
+    the units source_box bboxes are stored in — so a client can scale a box onto the image."""
     with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
         pdf_page = pdf.pages[page - 1]
         buf = io.BytesIO()
         pdf_page.to_image(resolution=200).save(buf, format="PNG")
-        return buf.getvalue()
+        return buf.getvalue(), pdf_page.width, pdf_page.height
 
 
 _EXTRACTION_RESPONSE_FORMAT = {

@@ -1,3 +1,4 @@
+import base64
 import io
 import os
 import uuid
@@ -18,6 +19,7 @@ from extraction import (
     extract_text_from_pdf,
     locate_bbox,
     render_pdf_page_to_png,
+    render_pdf_page_with_dims,
 )
 from models import AuditLogRecord, ConsentRecord, DocumentRecord, FieldRecord
 from session_cookie import get_or_create_session
@@ -116,6 +118,7 @@ async def upload_document(
                 "field_name": extracted.field_name,
                 "value": extracted.value,
                 "confidence": extracted.confidence,
+                "source_box": source_box,
             }
         )
 
@@ -153,6 +156,7 @@ def list_documents(
                         "value": f.confirmed_value if f.confirmed else f.extracted_value,
                         "confidence": f.confidence,
                         "confirmed": f.confirmed,
+                        "source_box": f.source_box,
                     }
                     for f in fields
                 ],
@@ -183,6 +187,42 @@ def get_document_file(
         media_type=document.content_type,
         headers={"Content-Disposition": f'inline; filename="{filename}"'},
     )
+
+
+@router.get("/documents/{document_id}/preview")
+def get_document_preview(
+    document_id: str,
+    session_id: str = Depends(get_or_create_session),
+    db: Session = Depends(get_db),
+):
+    """Page-1 render of the renter's own document plus the page's PDF-point dimensions,
+    so the client can scale each field's source_box onto the image as an evidence
+    highlight. PDF-only: image uploads never get source boxes (locate_bbox needs a text
+    layer), so there is nothing to overlay."""
+    document = db.query(DocumentRecord).filter_by(id=document_id, session_id=session_id).first()
+    if not document:
+        raise HTTPException(status_code=404, detail="Document not found")
+    if document.content_type != "application/pdf":
+        raise HTTPException(
+            status_code=422,
+            detail="Evidence preview is only available for PDF documents",
+        )
+
+    try:
+        with open(document.encrypted_path, "rb") as f:
+            raw_bytes = decrypt_bytes(f.read())
+        png_bytes, page_width, page_height = render_pdf_page_with_dims(raw_bytes, page=1)
+    except HTTPException:
+        raise
+    except Exception:
+        raise HTTPException(status_code=422, detail="Could not render this document")
+
+    return {
+        "page": 1,
+        "page_width": page_width,
+        "page_height": page_height,
+        "image_base64": base64.b64encode(png_bytes).decode("ascii"),
+    }
 
 
 @router.delete("/documents/{document_id}")
