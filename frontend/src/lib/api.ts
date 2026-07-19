@@ -48,6 +48,32 @@ export type ChecklistItem = {
   status: "present" | "missing" | "expired";
 };
 
+export type Property = {
+  project: string;
+  address: string;
+  town: string;
+  zip: string;
+  n_units: number | null;
+  yr_pis: number | null;
+  safmr: {
+    fmr_0br: number;
+    fmr_1br: number;
+    fmr_2br: number;
+    fmr_3br: number;
+    fmr_4br: number;
+  } | null;
+};
+
+export type FairMarketRent = {
+  hud_area_code: string;
+  hud_area_name: string;
+  fmr_0br: number;
+  fmr_1br: number;
+  fmr_2br: number;
+  fmr_3br: number;
+  fmr_4br: number;
+};
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${BASE_URL}${path}`, {
     ...init,
@@ -142,6 +168,22 @@ export async function downloadPacket(householdSize: number, amiTier: string) {
     throw new Error(`${response.status}: ${detail}`);
   }
   return response.blob();
+}
+
+export function getFairMarketRent() {
+  return request<FairMarketRent>("/properties/fmr");
+}
+
+export function getTowns() {
+  return request<{ towns: string[] }>("/properties/towns");
+}
+
+export function getProperties(city?: string, minUnits?: number) {
+  const params = new URLSearchParams();
+  if (city) params.set("city", city);
+  if (minUnits) params.set("min_units", String(minUnits));
+  const qs = params.toString();
+  return request<{ properties: Property[] }>(`/properties${qs ? `?${qs}` : ""}`);
 }
 
 export function deleteSession() {
