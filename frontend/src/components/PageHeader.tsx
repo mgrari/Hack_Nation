@@ -3,17 +3,21 @@
 import { useEffect, useState } from "react";
 
 const FULL_TEXT = "RealDoor";
+const TYPE_MS = 110; // per character
+const HOLD_MS = 6000; // pause after fully typed before re-animating
 
 export function PageHeader() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (count >= FULL_TEXT.length) return;
-    const id = setTimeout(() => setCount((c) => c + 1), 110);
+    if (count < FULL_TEXT.length) {
+      const id = setTimeout(() => setCount((c) => c + 1), TYPE_MS);
+      return () => clearTimeout(id);
+    }
+    // fully typed: hold, then restart the typing animation
+    const id = setTimeout(() => setCount(0), HOLD_MS);
     return () => clearTimeout(id);
   }, [count]);
-
-  const done = count >= FULL_TEXT.length;
 
   return (
     <div className="flex items-center gap-2.5 mb-9">
@@ -25,11 +29,6 @@ export function PageHeader() {
         aria-label={FULL_TEXT}
       >
         <span aria-hidden="true">{FULL_TEXT.slice(0, count)}</span>
-        <span
-          aria-hidden="true"
-          className={`ml-0.5 inline-block w-[2px] -translate-y-[1px] align-middle bg-ink ${done ? "animate-caret-blink" : ""}`}
-          style={{ height: "1em" }}
-        />
       </div>
     </div>
   );
