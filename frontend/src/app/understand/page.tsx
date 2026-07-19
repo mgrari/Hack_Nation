@@ -292,6 +292,18 @@ export default function UnderstandPage() {
           </div>
         </div>
 
+        <div className="mt-7 flex items-center justify-between">
+          <a href="/profile" className="font-heading text-[12.5px] font-semibold text-ink/60 underline">
+            ← Back to Profile
+          </a>
+          <a
+            href="/prepare"
+            className="rounded bg-ink px-5 py-2.5 font-heading text-[13px] font-bold text-paper"
+          >
+            Continue to Prepare →
+          </a>
+        </div>
+
         <div className="mt-11 border-t border-ink/[0.12] pt-5 text-[12.5px] text-ink/50">
           Your data stays on this device unless you add it to your packet. You can delete it
           anytime in Step 3 — Prepare.
