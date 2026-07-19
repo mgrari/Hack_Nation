@@ -649,3 +649,48 @@ def test_preview_404_for_unknown_document(client):
     client.post("/consent")
     response = client.get("/documents/does-not-exist/preview")
     assert response.status_code == 404
+
+
+def test_correct_field_relocates_source_box_for_value_still_on_document(client, monkeypatch):
+    """Confirming a value that does appear on the document keeps real evidence: the box
+    is re-located against the corrected value, not left stale from extraction."""
+    upload_response, _ = _upload_with_gold(client, monkeypatch, "HH-001-D03")
+    body = upload_response.json()
+    with_box = next(f for f in body["fields"] if f["source_box"] is not None)
+
+    response = client.patch(
+        f"/documents/{body['document_id']}/fields/{with_box['field_name']}",
+        json={"value": with_box["value"]},
+    )
+    assert response.status_code == 200
+    patched = response.json()
+    assert patched["source_box"] is not None
+    assert patched["source_box"]["bbox_units"] == "pdf_points_bottom_left_origin"
+
+
+def test_correct_field_clears_source_box_when_value_not_on_document(client, monkeypatch):
+    """Correcting a value to something that does NOT appear on the document must clear
+    the evidence box (never point a box at the old value) so readiness reports
+    FIELD_SOURCE_MISSING instead of silently presenting stale evidence."""
+    upload_response, _ = _upload_with_gold(client, monkeypatch, "HH-001-D03")
+    body = upload_response.json()
+    with_box = next(f for f in body["fields"] if f["source_box"] is not None)
+
+    response = client.patch(
+        f"/documents/{body['document_id']}/fields/{with_box['field_name']}",
+        json={"value": "999999.87"},
+    )
+    assert response.status_code == 200
+    assert response.json()["source_box"] is None
+
+    from models import FieldRecord
+
+    db = client.session_local()
+    try:
+        record = db.query(FieldRecord).filter_by(
+            document_id=body["document_id"], field_name=with_box["field_name"]
+        ).one()
+        assert record.source_box is None
+        assert record.confirmed_value == "999999.87"
+    finally:
+        db.close()

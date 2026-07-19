@@ -100,6 +100,9 @@ export default function ProfilePage() {
   const [previewError, setPreviewError] = useState<string | null>(null);
   // Screen-reader completion announcements (WCAG 2.2 AA "clear completion announcements").
   const [liveMessage, setLiveMessage] = useState("");
+  // Fields whose corrected value no longer matches the uploaded document (their evidence
+  // box was cleared server-side) — shown a visible review flag, keyed by draftKey.
+  const [evidenceLostKeys, setEvidenceLostKeys] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     getDocuments().then((result) => {
@@ -175,19 +178,43 @@ export default function ProfilePage() {
   async function handleConfirm(documentId: string, fieldName: string) {
     setError(null);
     const value = draftValues[draftKey(documentId, fieldName)] ?? "";
+    const previousBox = documents
+      .find((doc) => doc.document_id === documentId)
+      ?.fields.find((f) => f.field_name === fieldName)?.source_box;
     try {
-      await confirmField(documentId, fieldName, value);
+      const result = await confirmField(documentId, fieldName, value);
       setDocuments((prev) =>
         prev.map((doc) =>
           doc.document_id !== documentId
             ? doc
             : {
                 ...doc,
-                fields: doc.fields.map((f) => (f.field_name === fieldName ? { ...f, confirmed: true } : f)),
+                fields: doc.fields.map((f) =>
+                  f.field_name === fieldName
+                    ? { ...f, confirmed: true, source_box: result.source_box }
+                    : f,
+                ),
               },
         ),
       );
-      setLiveMessage(`${labelFor(fieldName)} confirmed.`);
+      // The evidence box tracks the confirmed value server-side. If a correction can't
+      // be found on the document, the box is cleared — close any open evidence panel
+      // for it and tell the renter it will be flagged for review (never block the edit).
+      if (activeEvidence?.documentId === documentId && activeEvidence.fieldName === fieldName && !result.source_box) {
+        setActiveEvidence(null);
+      }
+      setEvidenceLostKeys((prev) => {
+        const next = new Set(prev);
+        const key = draftKey(documentId, fieldName);
+        if (previousBox && !result.source_box) next.add(key);
+        else next.delete(key);
+        return next;
+      });
+      setLiveMessage(
+        previousBox && !result.source_box
+          ? `${labelFor(fieldName)} confirmed. The corrected value wasn't found on the document, so it will be flagged for review.`
+          : `${labelFor(fieldName)} confirmed.`,
+      );
     } catch (err) {
       setError((err as Error).message);
     }
@@ -406,17 +433,25 @@ export default function ProfilePage() {
                           </div>
 
                           {field.confirmed ? (
-                            <div className="flex items-center justify-between">
-                              <span className="highlighter-mark font-mono text-[15px] font-semibold">
-                                {draftValues[key]}
-                              </span>
-                              <button
-                                onClick={() => handleEdit(doc.document_id, field.field_name)}
-                                className="font-heading text-[12.5px] font-semibold text-sage underline"
-                              >
-                                Edit
-                              </button>
-                            </div>
+                            <>
+                              <div className="flex items-center justify-between">
+                                <span className="highlighter-mark font-mono text-[15px] font-semibold">
+                                  {draftValues[key]}
+                                </span>
+                                <button
+                                  onClick={() => handleEdit(doc.document_id, field.field_name)}
+                                  className="font-heading text-[12.5px] font-semibold text-sage underline"
+                                >
+                                  Edit
+                                </button>
+                              </div>
+                              {evidenceLostKeys.has(key) && (
+                                <p className="mt-2 text-[12.5px] leading-[1.5] text-rust">
+                                  This value wasn&apos;t found on the document, so it will be
+                                  flagged for human review. You can edit it again if it was a typo.
+                                </p>
+                              )}
+                            </>
                           ) : (
                             <div className="flex items-center gap-2.5">
                               <input

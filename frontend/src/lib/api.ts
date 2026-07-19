@@ -99,10 +99,16 @@ export function deleteDocument(documentId: string) {
 }
 
 export function confirmField(documentId: string, fieldName: string, value: string) {
-  return request<{ field_name: string; confirmed_value: string; confirmed: boolean }>(
-    `/documents/${documentId}/fields/${fieldName}`,
-    { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ value }) },
-  );
+  return request<{
+    field_name: string;
+    confirmed_value: string;
+    confirmed: boolean;
+    source_box: SourceBox | null;
+  }>(`/documents/${documentId}/fields/${fieldName}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ value }),
+  });
 }
 
 export function calculate(householdSize: number, amiTier: string) {

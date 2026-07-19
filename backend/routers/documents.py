@@ -271,6 +271,27 @@ def correct_field(
     field.confirmed_value = body.value
     field.confirmed = True
     field.corrected_at = datetime.utcnow()
+
+    # Evidence must track the value the renter actually confirmed, not the one the model
+    # extracted. Re-locate the corrected value on the stored document; if it can't be
+    # found there, clear the box rather than leaving it pointing at the old value --
+    # readiness then reports FIELD_SOURCE_MISSING and the packet becomes NEEDS_REVIEW
+    # (surface the inconsistency for human review; never block the renter's correction).
+    if document.content_type == "application/pdf":
+        try:
+            with open(document.encrypted_path, "rb") as f:
+                raw_bytes = decrypt_bytes(f.read())
+            field.source_box = locate_bbox(raw_bytes, page=1, text=body.value)
+        except OSError:
+            field.source_box = None
+    else:
+        field.source_box = None
+
     db.add(AuditLogRecord(session_id=session_id, action="field_corrected", field_name=field_name))
     db.commit()
-    return {"field_name": field_name, "confirmed_value": field.confirmed_value, "confirmed": True}
+    return {
+        "field_name": field_name,
+        "confirmed_value": field.confirmed_value,
+        "confirmed": True,
+        "source_box": field.source_box,
+    }
