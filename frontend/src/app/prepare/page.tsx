@@ -12,13 +12,14 @@ const STATUS_META: Record<ChecklistItem["status"], { color: string; glyph: strin
 };
 
 type DownloadStage = "idle" | "generating" | "ready";
-type DeleteStage = "idle" | "confirming" | "deleted";
+type DeleteStage = "idle" | "confirming" | "deleting" | "deleted";
 
 export default function PreparePage() {
   const [items, setItems] = useState<ChecklistItem[]>([]);
   const [downloadStage, setDownloadStage] = useState<DownloadStage>("idle");
   const [downloadError, setDownloadError] = useState<string | null>(null);
   const [deleteStage, setDeleteStage] = useState<DeleteStage>("idle");
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [householdSize] = useState(() => {
     if (typeof window === "undefined") return 4;
     const stored = window.sessionStorage.getItem("householdSize");
@@ -55,8 +56,17 @@ export default function PreparePage() {
   }
 
   async function handleConfirmDelete() {
-    await deleteSession();
-    setDeleteStage("deleted");
+    setDeleteError(null);
+    setDeleteStage("deleting");
+    try {
+      await deleteSession();
+      // Drop client-side state too, so a new case truly starts fresh.
+      if (typeof window !== "undefined") window.sessionStorage.removeItem("householdSize");
+      setDeleteStage("deleted");
+    } catch (err) {
+      setDeleteError((err as Error).message);
+      setDeleteStage("confirming"); // let the renter retry instead of a dead button
+    }
   }
 
   const presentCount = items.filter((i) => i.status === "present").length;
@@ -194,7 +204,7 @@ export default function PreparePage() {
               Delete my session
             </button>
           )}
-          {deleteStage === "confirming" && (
+          {(deleteStage === "confirming" || deleteStage === "deleting") && (
             <div role="alertdialog" aria-label="Confirm session deletion" className="rounded border border-rust/35 bg-rust/[0.06] px-4.5 py-4">
               <p className="text-sm font-semibold mb-3">
                 Delete everything in this case? This can&apos;t be undone.
@@ -202,9 +212,10 @@ export default function PreparePage() {
               <div className="flex gap-3">
                 <button
                   onClick={handleConfirmDelete}
-                  className="rounded bg-rust px-4 py-2.5 font-heading text-[13px] font-bold text-paper"
+                  disabled={deleteStage === "deleting"}
+                  className="rounded bg-rust px-4 py-2.5 font-heading text-[13px] font-bold text-paper disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Yes, delete permanently
+                  {deleteStage === "deleting" ? "Deleting…" : "Yes, delete permanently"}
                 </button>
                 {/* The safe choice receives focus when the confirm step appears — the
                     trigger button just unmounted, and focus must not land on the
@@ -212,11 +223,17 @@ export default function PreparePage() {
                 <button
                   autoFocus
                   onClick={() => setDeleteStage("idle")}
-                  className="rounded border border-ink/25 bg-transparent px-4 py-2.5 font-heading text-[13px] font-semibold text-ink"
+                  disabled={deleteStage === "deleting"}
+                  className="rounded border border-ink/25 bg-transparent px-4 py-2.5 font-heading text-[13px] font-semibold text-ink disabled:opacity-60"
                 >
                   Cancel
                 </button>
               </div>
+              {deleteError && (
+                <p role="alert" className="text-rust font-medium text-sm mt-3">
+                  Couldn&apos;t delete your session: {deleteError}. Please try again.
+                </p>
+              )}
             </div>
           )}
         </div>
