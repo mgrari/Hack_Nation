@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const FULL_TEXT = "RealDoor";
+const FULL_TEXT = "REALDOOR";
 const TYPE_MS = 110; // per character
 const HOLD_MS = 6000; // pause after fully typed before re-animating
 
