@@ -162,6 +162,74 @@ def test_calculate_rejects_missing_pay_frequency(client):
     assert "pay_frequency" in response.json()["detail"]
 
 
+def test_ask_includes_renter_own_confirmed_data_in_prompt(client, monkeypatch, tmp_path):
+    """A renter should be able to ask about their own uploaded/confirmed documents
+    (e.g. "what's my confirmed gross pay?"), not just static rule questions -- the
+    model must actually receive their confirmed data as context."""
+    import rules_rag
+    from db import get_db
+    from main import app
+    from models import DocumentRecord, FieldRecord
+
+    monkeypatch.setattr(rules_rag, "CHROMA_DIR", tmp_path / "chroma")
+    rules_rag.ingest_corpus()
+
+    client.post("/consent")
+    session_id = client.cookies.get("realdoor_session")
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    doc = DocumentRecord(
+        session_id=session_id, encrypted_path="unused", content_type="application/pdf", document_type="pay_stub"
+    )
+    db.add(doc)
+    db.commit()
+    db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="2166.00", confirmed=True))
+    db.commit()
+
+    class FakeChoice:
+        def __init__(self, content):
+            self.message = type("Msg", (), {"content": content})()
+
+    class FakeResponse:
+        def __init__(self, content):
+            self.choices = [FakeChoice(content)]
+
+    captured = {}
+
+    def fake_create(**kwargs):
+        captured["messages"] = kwargs["messages"]
+        return FakeResponse("Your confirmed gross pay is 2166.00.")
+
+    monkeypatch.setattr("routers.rules.OpenAI", lambda api_key: type(
+        "Client", (), {"chat": type("Chat", (), {"completions": type("Completions", (), {"create": staticmethod(fake_create)})()})()}
+    )())
+
+    response = client.post("/ask", json={"question": "What's my confirmed gross pay?"})
+    assert response.status_code == 200
+    assert "2166.00" in response.json()["answer"]
+
+    user_message = captured["messages"][1]["content"]
+    assert "<renter_data>" in user_message
+    assert "gross_pay: 2166.00" in user_message
+    assert "pay_stub" in user_message
+
+
+def test_ask_declines_when_no_passages_and_no_confirmed_data(client, monkeypatch, tmp_path):
+    import rules_rag
+
+    # An empty, un-ingested Chroma dir -- no rule corpus and (freshly consented session)
+    # no confirmed renter data either.
+    monkeypatch.setattr(rules_rag, "CHROMA_DIR", tmp_path / "chroma")
+
+    client.post("/consent")
+    response = client.post("/ask", json={"question": "What's my confirmed gross pay?"})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["citations"] == []
+    assert "don't have" in body["answer"].lower()
+
+
 def test_ask_answers_from_ingested_corpus(client, monkeypatch, tmp_path):
     import rules_rag
 
@@ -200,7 +268,7 @@ def test_ask_refuses_to_state_eligibility_verdict(client, monkeypatch, tmp_path)
 
     # The system prompt itself must instruct the model never to state a verdict.
     prompt = ASK_SYSTEM_PROMPT.lower()
-    assert "never state or imply whether a specific renter is eligible" in prompt
+    assert "never state or imply whether" in prompt and "eligible" in prompt
 
     class FakeChoice:
         def __init__(self, content):
@@ -353,8 +421,8 @@ def test_adv003_eligibility_overreach_ask_prompt_forbids_verdicts():
     from routers.rules import ASK_SYSTEM_PROMPT
 
     prompt = ASK_SYSTEM_PROMPT.lower()
-    assert "never state or imply whether a specific renter is eligible" in prompt
-    assert "only state the rule's numbers and citation" in prompt
+    assert "never state or imply whether" in prompt and "eligible" in prompt
+    assert "decline" in prompt and "property or housing authority" in prompt
 
 
 # --- Q&A gold coverage (data/evaluation/qa_gold.jsonl) ---
