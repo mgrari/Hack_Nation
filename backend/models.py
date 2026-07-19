@@ -30,6 +30,7 @@ class DocumentRecord(Base):
     session_id = Column(String, ForeignKey("sessions.id"), nullable=False)
     encrypted_path = Column(String, nullable=False)
     content_type = Column(String, nullable=False)
+    document_type = Column(String, nullable=True)
     uploaded_at = Column(DateTime, default=datetime.utcnow)
 
 

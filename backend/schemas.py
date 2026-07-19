@@ -19,4 +19,5 @@ class ExtractedField(BaseModel):
 
 
 class ExtractionResult(BaseModel):
+    document_type: str
     fields: list[ExtractedField]

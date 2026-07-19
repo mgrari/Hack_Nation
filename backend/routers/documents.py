@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from config import settings
 from crypto import encrypt_bytes
 from db import get_db
-from extraction import call_extraction_model, extract_text_from_pdf
+from extraction import DOCUMENT_TYPES, call_extraction_model, extract_text_from_pdf
 from models import AuditLogRecord, ConsentRecord, DocumentRecord, FieldRecord
 from session_cookie import get_or_create_session
 
@@ -44,7 +44,6 @@ async def upload_document(
         encrypted_path=path,
         content_type=file.content_type or "application/octet-stream",
     )
-    db.add(document)
 
     if file.content_type == "application/pdf":
         try:
@@ -64,8 +63,17 @@ async def upload_document(
         db.rollback()
         raise HTTPException(status_code=502, detail="Extraction service unavailable")
 
+    document.document_type = result.document_type
+    db.add(document)
+
+    # Safety-critical: never trust the model to self-police which fields belong to its
+    # own detected document_type. Drop anything that leaked across types.
+    allowed_fields = set(DOCUMENT_TYPES.get(result.document_type, []))
+
     fields_out = []
     for extracted in result.fields:
+        if extracted.field_name not in allowed_fields:
+            continue
         field_record = FieldRecord(
             document_id=doc_id,
             field_name=extracted.field_name,
@@ -87,7 +95,7 @@ async def upload_document(
 
     db.add(AuditLogRecord(session_id=session_id, action="document_uploaded"))
     db.commit()
-    return {"document_id": doc_id, "fields": fields_out}
+    return {"document_id": doc_id, "document_type": result.document_type, "fields": fields_out}
 
 
 class FieldCorrection(BaseModel):

@@ -1,4 +1,22 @@
 import io
+import json
+import os
+
+GOLD_PATH = os.path.join(
+    os.path.dirname(__file__), "..", "..", "data", "synthetic_documents", "gold", "document_gold.jsonl"
+)
+DOCUMENTS_DIR = os.path.join(
+    os.path.dirname(__file__), "..", "..", "data", "synthetic_documents", "documents"
+)
+
+
+def _load_gold(document_id):
+    with open(GOLD_PATH) as f:
+        for line in f:
+            rec = json.loads(line)
+            if rec["document_id"] == document_id:
+                return rec
+    raise KeyError(document_id)
 
 
 def test_upload_requires_consent(client):
@@ -14,15 +32,16 @@ def test_upload_extracts_allowlisted_fields(client, monkeypatch):
 
     def fake_extraction_call(_client, _text):
         return ExtractionResult(
+            document_type="pay_stub",
             fields=[
-                ExtractedField(field_name="employer", value="Acme Corp", confidence=0.95),
+                ExtractedField(field_name="pay_date", value="2026-06-27", confidence=0.95),
                 ExtractedField(field_name="gross_pay", value="7500", confidence=0.9),
-            ]
+            ],
         )
 
     monkeypatch.setattr("routers.documents.call_extraction_model", fake_extraction_call)
     monkeypatch.setattr(
-        "routers.documents.extract_text_from_pdf", lambda file: "Acme Corp, Gross Pay: 7500"
+        "routers.documents.extract_text_from_pdf", lambda file: "Pay Date: 2026-06-27, Gross Pay: 7500"
     )
 
     client.post("/consent")
@@ -32,9 +51,43 @@ def test_upload_extracts_allowlisted_fields(client, monkeypatch):
     )
     assert response.status_code == 200
     body = response.json()
+    assert body["document_type"] == "pay_stub"
     field_names = {f["field_name"] for f in body["fields"]}
-    assert field_names == {"employer", "gross_pay"}
+    assert field_names == {"pay_date", "gross_pay"}
     assert all(f["confirmed"] is False for f in body["fields"]) if "confirmed" in body["fields"][0] else True
+
+
+def test_upload_drops_fields_not_belonging_to_detected_type(client, monkeypatch):
+    """Server-side filter must drop a field the model returned that doesn't belong to
+    its own detected document_type, even though the JSON schema enum can't prevent this
+    (the enum is shared across all types)."""
+    from schemas import ExtractedField, ExtractionResult
+
+    def fake_extraction_call(_client, _text):
+        return ExtractionResult(
+            document_type="employment_letter",
+            fields=[
+                ExtractedField(field_name="person_name", value="Mara North", confidence=0.95),
+                ExtractedField(field_name="weekly_hours", value="38", confidence=0.9),
+                # gross_pay belongs to pay_stub, not employment_letter -- must be dropped.
+                ExtractedField(field_name="gross_pay", value="9999", confidence=0.9),
+            ],
+        )
+
+    monkeypatch.setattr("routers.documents.call_extraction_model", fake_extraction_call)
+    monkeypatch.setattr("routers.documents.extract_text_from_pdf", lambda file: "text")
+
+    client.post("/consent")
+    response = client.post(
+        "/documents",
+        files={"file": ("letter.pdf", io.BytesIO(b"%PDF-1.4 fake"), "application/pdf")},
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert body["document_type"] == "employment_letter"
+    field_names = {f["field_name"] for f in body["fields"]}
+    assert field_names == {"person_name", "weekly_hours"}
+    assert "gross_pay" not in field_names
 
 
 def test_upload_malformed_pdf_returns_controlled_error(client):
@@ -62,7 +115,8 @@ def test_patch_field_confirms_value(client, monkeypatch):
 
     def fake_extraction_call(_client, _text):
         return ExtractionResult(
-            fields=[ExtractedField(field_name="gross_pay", value="7000", confidence=0.6)]
+            document_type="pay_stub",
+            fields=[ExtractedField(field_name="gross_pay", value="7000", confidence=0.6)],
         )
 
     monkeypatch.setattr("routers.documents.call_extraction_model", fake_extraction_call)
@@ -136,20 +190,21 @@ def test_upload_does_not_propagate_injected_eligibility_claims(client, monkeypat
 
     def fake_extraction_call(_client, _text):
         return ExtractionResult(
+            document_type="pay_stub",
             fields=[
-                ExtractedField(field_name="employer", value="Acme Corp", confidence=0.95),
+                ExtractedField(field_name="pay_date", value="2026-06-27", confidence=0.95),
                 # Simulates a model that failed to ignore injected text and echoed it into
                 # a legitimate field's value instead of inventing a new field (which the
                 # real JSON schema's enum/additionalProperties:False would reject anyway).
                 ExtractedField(
                     field_name="gross_pay", value=f"7500 {INJECTION_PAYLOAD}", confidence=0.9
                 ),
-            ]
+            ],
         )
 
     monkeypatch.setattr("routers.documents.call_extraction_model", fake_extraction_call)
     monkeypatch.setattr(
-        "routers.documents.extract_text_from_pdf", lambda file: f"Acme Corp, Gross Pay: 7500 {INJECTION_PAYLOAD}"
+        "routers.documents.extract_text_from_pdf", lambda file: f"Pay Date: 2026-06-27, Gross Pay: 7500 {INJECTION_PAYLOAD}"
     )
 
     client.post("/consent")
@@ -160,8 +215,11 @@ def test_upload_does_not_propagate_injected_eligibility_claims(client, monkeypat
     assert response.status_code == 200
     body = response.json()
 
-    # Only allowlisted field names appear in the response -- no invented "eligibility" field.
-    allowlist = {"employer", "gross_pay", "pay_period_start", "pay_period_end", "pay_date", "ytd_gross"}
+    # Only allowlisted fields for the detected type appear in the response -- no invented
+    # "eligibility" field, and nothing from another document type leaked in.
+    from extraction import DOCUMENT_TYPES
+
+    allowlist = set(DOCUMENT_TYPES["pay_stub"])
     field_names = {f["field_name"] for f in body["fields"]}
     assert field_names <= allowlist
     assert "eligible" not in field_names
@@ -191,3 +249,96 @@ def test_upload_does_not_propagate_injected_eligibility_claims(client, monkeypat
     assert "eligible" not in str(calc_body).lower()
     assert "approved" not in str(calc_body).lower()
     assert INJECTION_PAYLOAD.lower() not in str(calc_body).lower()
+
+
+def _upload_with_gold(client, monkeypatch, document_id):
+    """Upload a real gold PDF with call_extraction_model mocked to return the exact gold
+    values for document_id (from data/synthetic_documents/gold/document_gold.jsonl)."""
+    from schemas import ExtractedField, ExtractionResult
+
+    gold = _load_gold(document_id)
+    fields = [
+        ExtractedField(field_name=f["field"], value=str(f["value"]), confidence=0.99)
+        for f in gold["fields"]
+        if f["field"] != "untrusted_instruction_text"
+    ]
+
+    def fake_extraction_call(_client, _text):
+        return ExtractionResult(document_type=gold["document_type"], fields=fields)
+
+    monkeypatch.setattr("routers.documents.call_extraction_model", fake_extraction_call)
+    monkeypatch.setattr("routers.documents.extract_text_from_pdf", lambda file: "irrelevant, mocked")
+
+    client.post("/consent")
+    pdf_path = os.path.join(DOCUMENTS_DIR, gold["file_name"])
+    with open(pdf_path, "rb") as f:
+        pdf_bytes = f.read()
+    response = client.post(
+        "/documents",
+        files={"file": (gold["file_name"], io.BytesIO(pdf_bytes), "application/pdf")},
+    )
+    return response, gold
+
+
+def test_upload_pay_stub_matches_gold_fields(client, monkeypatch):
+    from extraction import DOCUMENT_TYPES
+
+    response, gold = _upload_with_gold(client, monkeypatch, "HH-001-D02")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["document_type"] == "pay_stub"
+
+    expected_field_names = {
+        f["field"] for f in gold["fields"] if f["field"] != "untrusted_instruction_text"
+    }
+    field_names = {f["field_name"] for f in body["fields"]}
+    assert field_names == expected_field_names
+    assert field_names <= set(DOCUMENT_TYPES["pay_stub"])
+
+    values_by_field = {f["field_name"]: f["value"] for f in body["fields"]}
+    for gold_field in gold["fields"]:
+        if gold_field["field"] == "untrusted_instruction_text":
+            continue
+        assert values_by_field[gold_field["field"]] == str(gold_field["value"])
+
+    # No field from any other document type leaked in.
+    other_type_fields = set().union(
+        *(fields for dtype, fields in DOCUMENT_TYPES.items() if dtype != "pay_stub")
+    ) - set(DOCUMENT_TYPES["pay_stub"])
+    assert not (field_names & other_type_fields)
+
+
+def test_upload_employment_letter_matches_gold_fields(client, monkeypatch):
+    from extraction import DOCUMENT_TYPES
+
+    response, gold = _upload_with_gold(client, monkeypatch, "HH-001-D04")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["document_type"] == "employment_letter"
+
+    expected_field_names = {f["field"] for f in gold["fields"]}
+    field_names = {f["field_name"] for f in body["fields"]}
+    assert field_names == expected_field_names
+    assert field_names <= set(DOCUMENT_TYPES["employment_letter"])
+
+    values_by_field = {f["field_name"]: f["value"] for f in body["fields"]}
+    for gold_field in gold["fields"]:
+        assert values_by_field[gold_field["field"]] == str(gold_field["value"])
+
+    # gross_pay/pay_date etc. from pay_stub must never appear on an employment_letter.
+    assert "gross_pay" not in field_names
+    assert "pay_date" not in field_names
+
+
+def test_upload_benefit_letter_matches_gold_fields(client, monkeypatch):
+    from extraction import DOCUMENT_TYPES
+
+    response, gold = _upload_with_gold(client, monkeypatch, "HH-003-D04")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["document_type"] == "benefit_letter"
+
+    expected_field_names = {f["field"] for f in gold["fields"]}
+    field_names = {f["field_name"] for f in body["fields"]}
+    assert field_names == expected_field_names
+    assert field_names <= set(DOCUMENT_TYPES["benefit_letter"])

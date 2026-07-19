@@ -6,7 +6,10 @@ def test_delete_session_removes_data_and_cookie(client, monkeypatch):
     from schemas import ExtractedField, ExtractionResult
 
     def fake_extraction_call(_client, _text):
-        return ExtractionResult(fields=[ExtractedField(field_name="gross_pay", value="7000", confidence=0.6)])
+        return ExtractionResult(
+            document_type="pay_stub",
+            fields=[ExtractedField(field_name="gross_pay", value="7000", confidence=0.6)],
+        )
 
     monkeypatch.setattr("routers.documents.call_extraction_model", fake_extraction_call)
     monkeypatch.setattr("routers.documents.extract_text_from_pdf", lambda path: "text")
