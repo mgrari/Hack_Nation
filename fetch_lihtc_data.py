@@ -67,6 +67,7 @@ def main():
                 "project": r[idx["project"]],
                 "address": r[idx["proj_add"]],
                 "town": r[idx["proj_cty"]],
+                "zip": r[idx["proj_zip"]],
                 "n_units": clean_int(r[idx["n_units"]]),
                 "yr_pis": clean_int(r[idx["yr_pis"]]),
             }

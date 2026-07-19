@@ -31,7 +31,9 @@ construction (it's every field in `backend/extraction.py::ALL_ALLOWED_FIELDS` de
 | `review_reasons` | Computed server-side from confirmed documents (backend/readiness.py) | Explain in plain language why readiness_status is NEEDS_REVIEW | Understand-stage display only |
 | `session_id` | Server-generated cookie | Tie a renter's data together for the length of one session | Every endpoint; sole key for `DELETE /session` |
 | `consent_version` | Server config, timestamped when given | Record which consent language the renter agreed to | Consent gate on `/documents` |
-| `project` / `address` / `town` / `n_units` / `yr_pis` | HUD LIHTC Database (public), frozen to the Boston-Cambridge metro via `fetch_lihtc_data.py` | Show LIHTC property locations only — no vacancy, rent, or eligibility data exists in this source | Discover page (`GET /properties`), renter-selected town/unit filters only, never ranked |
+| `project` / `address` / `town` / `zip` / `n_units` / `yr_pis` | HUD LIHTC Database (public), frozen to the Boston-Cambridge metro via `fetch_lihtc_data.py` | Show LIHTC property locations only — no vacancy, rent, or eligibility data exists in this source | Discover page (`GET /properties`), renter-selected town/unit filters only, never ranked |
+| `fmr_0br`…`fmr_4br` (metro-wide) | HUD Fair Market Rents (public), frozen via `fetch_fmr_data.py` | Show typical metro-wide gross rent by bedroom count, for context only | Discover page banner (`GET /properties/fmr`) |
+| `safmr` (`fmr_0br`…`fmr_4br` per ZIP) | HUD Small Area Fair Market Rents (public), frozen to LIHTC properties' ZIPs via `fetch_safmr_data.py` | Show a more specific per-ZIP rent estimate than the metro-wide FMR | Discover page, per-property card (`GET /properties`) |
 
 No field for eligibility, approval, ranking, score, race, national origin, disability, familial
 status, income source type beyond wages, or any landlord-revenue signal exists anywhere in this
