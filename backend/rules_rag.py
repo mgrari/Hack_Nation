@@ -1,10 +1,10 @@
+import json
 from pathlib import Path
 
 import chromadb
 
-from rules_corpus import load_mtsp_limits
-
 CHROMA_DIR = Path(__file__).parent / "storage" / "chroma"
+ORGANIZER_CORPUS_PATH = Path(__file__).parent.parent / "data" / "rules" / "organizer_rule_corpus.jsonl"
 
 
 def get_chroma_client():
@@ -13,24 +13,28 @@ def get_chroma_client():
 
 
 def build_corpus_documents() -> list[dict]:
-    corpus = load_mtsp_limits()
+    """Load the organizer's real rule corpus (Task 15) -- one ready-to-embed passage per
+    line, including the numeric MTSP limits and the safety/decision-boundary rules -- and
+    shape it for ingest_corpus()."""
     docs = []
-    for size, tiers in corpus["limits"].items():
-        docs.append(
-            {
-                "id": f"mtsp-{size}",
-                "text": (
-                    f"For a household of {size} in {corpus['area_name']}, the MTSP 60% AMI income "
-                    f"limit is ${tiers['60']:,} and the 50% AMI income limit is ${tiers['50']:,}. "
-                    f"Source: HUD MTSP FY2026 tables, effective {corpus['effective_date']}."
-                ),
-                "metadata": {
-                    "household_size": size,
-                    "effective_date": corpus["effective_date"],
-                    "source_url": corpus["source_url"],
-                },
-            }
-        )
+    with open(ORGANIZER_CORPUS_PATH) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            entry = json.loads(line)
+            docs.append(
+                {
+                    "id": entry["rule_id"],
+                    "text": entry["text"],
+                    "metadata": {
+                        "authority": entry["authority"],
+                        "effective_date": entry["effective_date"] or "",
+                        "source_url": entry["source_url"],
+                        "source_locator": entry["source_locator"],
+                    },
+                }
+            )
     return docs
 
 

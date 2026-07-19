@@ -1,9 +1,0 @@
-{
-  "items": [
-    {"id": "pay_stub", "label": "Recent pay stub (within 60 days)", "requires_field": "pay_date", "max_age_days": 60},
-    {"id": "photo_id", "label": "Photo ID", "requires_field": null, "max_age_days": null},
-    {"id": "proof_of_household", "label": "Proof of household size or address", "requires_field": null, "max_age_days": null},
-    {"id": "ssn_itin", "label": "SSN or ITIN document", "requires_field": null, "max_age_days": null},
-    {"id": "consent_form", "label": "Signed consent form", "requires_field": null, "max_age_days": null}
-  ]
-}

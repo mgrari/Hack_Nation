@@ -6,7 +6,7 @@ from checklist import evaluate_checklist
 from db import get_db
 from models import AuditLogRecord, ConsentRecord
 from packet_pdf import render_packet_pdf
-from queries import get_confirmed_fields
+from queries import get_confirmed_documents, get_confirmed_fields
 from session_cookie import get_or_create_session
 
 router = APIRouter()
@@ -18,8 +18,9 @@ def get_checklist(
     db: Session = Depends(get_db),
 ):
     confirmed_fields = get_confirmed_fields(db, session_id)
+    confirmed_documents = get_confirmed_documents(db, session_id)
     consent = db.query(ConsentRecord).filter_by(session_id=session_id).first()
-    return {"items": evaluate_checklist(confirmed_fields, consent is not None)}
+    return {"items": evaluate_checklist(confirmed_fields, consent is not None, confirmed_documents)}
 
 
 @router.get("/packet")
@@ -50,8 +51,9 @@ def get_packet(
         )
     calculation = calculate_income_vs_threshold(annual_income, household_size, ami_tier)
 
+    confirmed_documents = get_confirmed_documents(db, session_id)
     consent = db.query(ConsentRecord).filter_by(session_id=session_id).first()
-    checklist_items = evaluate_checklist(confirmed_fields, consent is not None)
+    checklist_items = evaluate_checklist(confirmed_fields, consent is not None, confirmed_documents)
 
     pdf_bytes = render_packet_pdf(confirmed_fields, calculation, checklist_items)
     db.add(AuditLogRecord(session_id=session_id, action="packet_exported"))

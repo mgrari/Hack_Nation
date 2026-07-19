@@ -1,45 +1,29 @@
-import json
-from datetime import datetime, timedelta
-from pathlib import Path
+from routers.rules import REQUIRED_DOCUMENT_TYPES
 
-CHECKLIST_PATH = Path(__file__).parent.parent / "data" / "checklists" / "gold_checklist.json"
-
-
-def load_gold_checklist() -> list[dict]:
-    try:
-        with open(CHECKLIST_PATH) as f:
-            return json.load(f)["items"]
-    except FileNotFoundError:
-        raise FileNotFoundError(f"Gold checklist file not found: {CHECKLIST_PATH}.")
-    except json.JSONDecodeError as e:
-        raise json.JSONDecodeError(
-            f"Gold checklist file is not valid JSON: {CHECKLIST_PATH} ({e.msg})", e.doc, e.pos
-        )
+# Human-readable labels for each required document_type, plus the consent special-case.
+DOCUMENT_TYPE_LABELS = {
+    "application_summary": "Application summary",
+    "pay_stub": "Recent pay stub",
+    "employment_letter": "Employment letter",
+}
 
 
-def evaluate_checklist(confirmed_fields: dict, consent_given: bool) -> list[dict]:
-    items = load_gold_checklist()
-    results = []
-    for item in items:
-        if item["id"] == "consent_form":
-            status = "present" if consent_given else "missing"
-        elif item["requires_field"]:
-            value = confirmed_fields.get(item["requires_field"])
-            if not value:
-                status = "missing"
-            elif item["max_age_days"]:
-                try:
-                    field_date = datetime.fromisoformat(value)
-                except ValueError:
-                    status = "missing"
-                else:
-                    age = datetime.utcnow() - field_date
-                    status = "expired" if age > timedelta(days=item["max_age_days"]) else "present"
-            else:
-                status = "present"
-        else:
-            # Not extractable from a pay stub in v1 (photo ID, household proof, SSN/ITIN) —
-            # always reported missing until a future doc type covers it.
-            status = "missing"
-        results.append({"id": item["id"], "label": item["label"], "status": status})
+def evaluate_checklist(
+    confirmed_fields: dict, consent_given: bool, confirmed_documents: list[dict] | None = None
+) -> list[dict]:
+    """A session's checklist: for each required document_type, is there a confirmed
+    document of that type uploaded? Plus the consent_form special-case.
+
+    confirmed_documents: list of dicts like {"document_type": str, ...} (queries.get_confirmed_documents()
+    shape). confirmed_fields is kept in the signature for caller compatibility but is no
+    longer used now that presence is document-type-driven rather than field-driven.
+    """
+    present_types = {doc["document_type"] for doc in (confirmed_documents or [])}
+
+    results = [
+        {"id": "consent_form", "label": "Signed consent form", "status": "present" if consent_given else "missing"}
+    ]
+    for doc_type in REQUIRED_DOCUMENT_TYPES:
+        status = "present" if doc_type in present_types else "missing"
+        results.append({"id": doc_type, "label": DOCUMENT_TYPE_LABELS[doc_type], "status": status})
     return results
