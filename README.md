@@ -143,6 +143,7 @@ suppresses options, or exposes sensitive data cannot win regardless of model qua
 | [`data/`](data) | Organizer + gold data: `rules/` (cited corpus), `checklists/` (gold checklists), `synthetic_docs/` (synthetic uploads). |
 | [`docs/feature-registry.md`](docs/feature-registry.md) | Every field RealDoor touches and why — required by the brief's "no hidden proxies" clause. |
 | [`docs/ARCHITECTURE_AND_RISK.md`](docs/ARCHITECTURE_AND_RISK.md) | Short architecture and risk note — system design, responsible-AI enforcement points, and threat/mitigation table. |
+| [`docs/DEMO.md`](docs/DEMO.md) | Acceptance-demo runbook — the brief's 6 steps with exact clicks and synthetic files. |
 
 ## Getting Started
 
