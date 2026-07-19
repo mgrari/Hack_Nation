@@ -90,6 +90,8 @@ a disclaimer without working controls does not satisfy the challenge.
 
 ## Data and Organizer Pack
 
+**RealDoor uses the organizer's official starter pack data** for synthetic documents and extraction fields. See [`docs/governance/LICENSE_MANIFEST.csv`](docs/governance/LICENSE_MANIFEST.csv) for data provenance and [`docs/governance/DATA_USE_AND_SAFETY.md`](docs/governance/DATA_USE_AND_SAFETY.md) for safety and compliance notes.
+
 | Organizers provide | Teams deliver |
 |---|---|
 | One metro LIHTC property subset and data dictionary | Working Profile → Understand → Prepare flow |

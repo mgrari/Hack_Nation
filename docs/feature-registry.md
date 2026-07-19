@@ -2,18 +2,33 @@
 
 Every field and signal RealDoor touches, and why. Nothing demographic, behavioral, or
 landlord-revenue-related appears anywhere in the system — this list is exhaustive by
-construction (it's every field in `backend/extraction.py::ALLOWED_FIELDS` and every input
-`backend/routers/rules.py::CalculateRequest` accepts), not a curated subset.
+construction (it's every field in `backend/extraction.py::ALL_ALLOWED_FIELDS` derived from
+`DOCUMENT_TYPES`, every input `backend/routers/rules.py::CalculateRequest` accepts), not a curated subset.
 
 | Feature | Source | Purpose | Used for |
 |---|---|---|---|
-| `employer` | Extracted from pay stub, renter-confirmed | Identify the income source on the packet | Profile display, packet export |
+| `document_type` | Detected server-side during extraction, constrained to 5 known types (backend/extraction.py::DOCUMENT_TYPES) | Determine which fields are valid for this document and drive the checklist | Profile-stage display, Prepare-stage checklist |
 | `gross_pay` | Extracted from pay stub, renter-confirmed | Compute confirmed income for the AMI comparison | Understand-stage input to `/calculate` |
-| `pay_period_start` / `pay_period_end` | Extracted from pay stub, renter-confirmed | Determine pay-stub recency for the checklist | Prepare-stage checklist expiry check |
+| `hourly_rate` | Extracted from pay stub or employment letter, renter-confirmed | Establish hourly basis for pay calculation context | Profile display, Prepare-stage checklist |
+| `net_pay` | Extracted from pay stub, renter-confirmed | Show take-home income after deductions | Profile display, packet export |
 | `pay_date` | Extracted from pay stub, renter-confirmed | Determine pay-stub recency for the checklist | Prepare-stage checklist expiry check |
-| `ytd_gross` | Extracted from pay stub, renter-confirmed | Shown on the packet for context | Packet export only, not used in the calculation |
+| `pay_frequency` | Extracted from pay stub, renter-confirmed | Annualize gross pay for AMI comparison | Understand-stage input to `/calculate` |
+| `pay_period_start` / `pay_period_end` | Extracted from pay stub, renter-confirmed | Determine pay-stub recency for the checklist | Prepare-stage checklist expiry check |
+| `person_name` | Extracted from document (pay stub, employment letter, benefit letter, gig statement, or application summary), renter-confirmed | Match identity across documents for consistency | Profile display, consistency check |
+| `regular_hours` | Extracted from pay stub, renter-confirmed | Establish hours context for income verification | Profile display, packet export |
 | `household_size` | Renter-declared directly (not extracted — it isn't on a pay stub) | Select the correct MTSP threshold row | Understand-stage input to `/calculate` |
 | `ami_tier` | Renter-selected (50% or 60% AMI) | Select which published MTSP limit to compare against | Understand-stage input to `/calculate` |
+| `address` | Extracted from application summary, renter-confirmed | Establish renter's housing situation | Profile display, packet export |
+| `application_date` | Extracted from application summary, renter-confirmed | Timestamp when the renter applied | Profile display, Prepare-stage checklist |
+| `document_date` | Extracted from employment letter, benefit letter, renter-confirmed | Verify document currency for income corroboration | Prepare-stage checklist expiry check |
+| `weekly_hours` | Extracted from employment letter, renter-confirmed | Establish hours context for employment verification | Profile display, packet export |
+| `benefit_frequency` | Extracted from benefit letter, renter-confirmed | Annualize benefit amount for income calculation | Understand-stage input to `/calculate` |
+| `monthly_benefit` | Extracted from benefit letter, renter-confirmed | Show recurring benefit income | Profile display, packet export |
+| `gross_receipts` | Extracted from gig statement, renter-confirmed | Calculate self-employment income for gig workers | Understand-stage input to `/calculate` |
+| `platform_fees` | Extracted from gig statement, renter-confirmed | Adjust gross receipts for net gig income | Profile display, packet export |
+| `statement_month` | Extracted from gig statement, renter-confirmed | Verify gig-income statement recency | Prepare-stage checklist expiry check |
+| `readiness_status` | Computed server-side from confirmed documents (backend/readiness.py) | Signal document completeness/consistency, never an eligibility determination | Understand-stage display only |
+| `review_reasons` | Computed server-side from confirmed documents (backend/readiness.py) | Explain in plain language why readiness_status is NEEDS_REVIEW | Understand-stage display only |
 | `session_id` | Server-generated cookie | Tie a renter's data together for the length of one session | Every endpoint; sole key for `DELETE /session` |
 | `consent_version` | Server config, timestamped when given | Record which consent language the renter agreed to | Consent gate on `/documents` |
 
