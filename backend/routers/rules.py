@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from calculator import annualize, calculate_income_vs_threshold, compare_to_threshold, parse_confirmed_amount
+from checklist import REQUIRED_DOCUMENT_TYPES
 from config import settings
 from db import get_db
 from models import AuditLogRecord, DocumentRecord, FieldRecord
@@ -16,10 +17,6 @@ from session_cookie import get_or_create_session
 import rules_rag
 
 router = APIRouter()
-
-# Documents every application needs regardless of household scenario (matches
-# checklist.py's gold checklist baseline -- no per-household config exists in the live app).
-REQUIRED_DOCUMENT_TYPES = ["application_summary", "pay_stub", "employment_letter"]
 
 
 class CalculateRequest(BaseModel):

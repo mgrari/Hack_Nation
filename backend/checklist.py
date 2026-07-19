@@ -1,4 +1,7 @@
-from routers.rules import REQUIRED_DOCUMENT_TYPES
+# Documents every application needs regardless of household scenario (no per-household
+# config exists in the live app). Lives here, in the pure module, so it can be imported
+# without pulling in router/config dependencies (routers.rules imports it from here).
+REQUIRED_DOCUMENT_TYPES = ["application_summary", "pay_stub", "employment_letter"]
 
 # Human-readable labels for each required document_type, plus the consent special-case.
 DOCUMENT_TYPE_LABELS = {
