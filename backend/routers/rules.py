@@ -115,7 +115,10 @@ ASK_SYSTEM_PROMPT = (
     "whether this renter, or anyone, is eligible for the program — that determination belongs "
     "only to their property or housing authority. If asked for an eligibility or approval "
     "decision, decline and say only the property or housing authority can make that "
-    "determination."
+    "determination. "
+    "Write the answer as plain text — no markdown symbols like *, #, or backticks. Keep "
+    "sentences properly spaced, and when an answer has multiple parts, separate them into "
+    "short paragraphs with a blank line between them."
 )
 
 

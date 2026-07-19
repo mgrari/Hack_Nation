@@ -45,6 +45,7 @@ export default function UnderstandPage() {
   const [tableVisible, setTableVisible] = useState(false);
   const [calculation, setCalculation] = useState<Calculation | null>(null);
   const [question, setQuestion] = useState("");
+  const [asking, setAsking] = useState(false);
   const [qaLog, setQaLog] = useState<QaEntry[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [askError, setAskError] = useState<string | null>(null);
@@ -71,8 +72,11 @@ export default function UnderstandPage() {
 
   async function handleAsk() {
     const q = question.trim();
-    if (!q) return;
+    // In-flight guard: an answer takes a few seconds, and a second Enter press or
+    // button click while waiting must not fire a duplicate request/answer.
+    if (!q || asking) return;
     setAskError(null);
+    setAsking(true);
     try {
       const result = await ask(q);
       setQaLog((prev) => [
@@ -83,6 +87,8 @@ export default function UnderstandPage() {
       setLiveMessage("Answer ready below the question box.");
     } catch (err) {
       setAskError((err as Error).message);
+    } finally {
+      setAsking(false);
     }
   }
 
@@ -226,18 +232,29 @@ export default function UnderstandPage() {
             <input
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleAsk()}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleAsk();
+                }
+              }}
               placeholder="e.g. What's the income limit for a household of 4?"
               aria-label="Ask a rules question"
               className="flex-1 rounded border border-input bg-[#FAFAF5] px-3 py-2.5 text-sm text-ink focus:outline-2 focus:outline-ink"
             />
             <button
               onClick={handleAsk}
-              className="shrink-0 rounded bg-ink px-4.5 py-2.5 font-heading text-[13px] font-bold text-paper"
+              disabled={asking}
+              className="shrink-0 rounded bg-ink px-4.5 py-2.5 font-heading text-[13px] font-bold text-paper disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Ask
+              {asking ? "Thinking…" : "Ask"}
             </button>
           </div>
+          {asking && (
+            <p role="status" className="font-heading text-[12.5px] font-semibold text-ink/55 mb-4">
+              Looking that up in the rules…
+            </p>
+          )}
           {askError && (
             <p role="alert" className="text-rust font-medium text-sm mb-4">
               {askError}
@@ -254,7 +271,7 @@ export default function UnderstandPage() {
 
                 {qa.citation ? (
                   <>
-                    <p className="text-[14.5px] leading-[1.6] mb-2.5">{qa.answer}</p>
+                    <p className="whitespace-pre-line text-[14.5px] leading-[1.6] mb-2.5">{qa.answer}</p>
                     <div className="flex items-center gap-2">
                       <div className="size-3 shrink-0 rounded-[2px] border-[1.5px] border-highlighter" aria-hidden="true" />
                       <div className="font-heading text-[11.5px]" style={{ color: "#8a6a1f" }}>
@@ -267,7 +284,7 @@ export default function UnderstandPage() {
                     <div className="font-heading text-[12.5px] font-bold text-rust mb-1.5">
                       RealDoor can&apos;t answer that directly
                     </div>
-                    <p className="text-sm leading-[1.55] mb-2.5">{qa.answer}</p>
+                    <p className="whitespace-pre-line text-sm leading-[1.55] mb-2.5">{qa.answer}</p>
                   </div>
                 )}
               </div>
