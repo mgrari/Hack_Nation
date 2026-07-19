@@ -79,6 +79,15 @@ export function getPacketUrl(householdSize: number, amiTier: string) {
   return `${BASE_URL}/packet?household_size=${householdSize}&ami_tier=${amiTier}`;
 }
 
+export async function downloadPacket(householdSize: number, amiTier: string) {
+  const response = await fetch(getPacketUrl(householdSize, amiTier), { credentials: "include" });
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`${response.status}: ${detail}`);
+  }
+  return response.blob();
+}
+
 export function deleteSession() {
   return request<{ deleted: boolean }>("/session", { method: "DELETE" });
 }

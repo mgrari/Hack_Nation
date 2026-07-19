@@ -59,12 +59,15 @@ const ROWS: { feature: string; source: string; purpose: string; usedFor: string 
 
 export default function FeatureRegistryPage() {
   return (
-    <main className="mx-auto max-w-3xl space-y-6 p-8">
-      <h1 className="text-2xl font-semibold">What data does this use?</h1>
+    <main className="mx-auto max-w-3xl p-8 space-y-6">
+      <p className="font-heading text-xs uppercase tracking-widest text-muted-foreground mb-2">
+        Disclosure
+      </p>
+      <h1 className="font-heading text-2xl font-semibold">What data does this use?</h1>
 
-      <p>
+      <p className="leading-relaxed">
         Every field and signal RealDoor touches, and why. Nothing demographic, behavioral, or
-        landlord-revenue-related appears anywhere in the system -- this list is exhaustive by
+        landlord-revenue-related appears anywhere in the system — this list is exhaustive by
         construction (it&apos;s every field in <code>backend/extraction.py::ALLOWED_FIELDS</code>{" "}
         and every input <code>backend/routers/rules.py::CalculateRequest</code> accepts), not a
         curated subset.
@@ -73,16 +76,24 @@ export default function FeatureRegistryPage() {
       <Card className="overflow-x-auto p-4">
         <table className="w-full border-collapse text-left text-sm">
           <thead>
-            <tr className="border-b">
-              <th className="py-2 pr-4 font-medium">Feature</th>
-              <th className="py-2 pr-4 font-medium">Source</th>
-              <th className="py-2 pr-4 font-medium">Purpose</th>
-              <th className="py-2 pr-4 font-medium">Used for</th>
+            <tr className="border-b border-border">
+              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+                Feature
+              </th>
+              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+                Source
+              </th>
+              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+                Purpose
+              </th>
+              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+                Used for
+              </th>
             </tr>
           </thead>
           <tbody>
             {ROWS.map((row) => (
-              <tr key={row.feature} className="border-b last:border-0">
+              <tr key={row.feature} className="border-b border-border last:border-0">
                 <td className="py-2 pr-4 font-mono text-xs">{row.feature}</td>
                 <td className="py-2 pr-4">{row.source}</td>
                 <td className="py-2 pr-4">{row.purpose}</td>
@@ -93,13 +104,16 @@ export default function FeatureRegistryPage() {
         </table>
       </Card>
 
-      <p>
+      <p className="leading-relaxed">
         No field for eligibility, approval, ranking, score, race, national origin, disability,
         familial status, income source type beyond wages, or any landlord-revenue signal exists
         anywhere in this list or in any request/response schema in the codebase.
       </p>
 
-      <a href="/profile" className="inline-block underline">
+      <a
+        href="/profile"
+        className="inline-block font-heading text-sm underline decoration-highlighter decoration-2 underline-offset-4"
+      >
         ← Back to Profile
       </a>
     </main>

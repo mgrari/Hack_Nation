@@ -1,9 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/PageHeader";
+import { StepNav } from "@/components/StepNav";
 import { ask, calculate, type Calculation } from "@/lib/api";
+
+type QaEntry = {
+  question: string;
+  answer: string;
+  citation: string | null;
+};
 
 export default function UnderstandPage() {
   const [householdSize, setHouseholdSizeState] = useState(() => {
@@ -11,86 +17,211 @@ export default function UnderstandPage() {
     const stored = window.sessionStorage.getItem("householdSize");
     return stored ? Number(stored) : 4;
   });
+  const [tableVisible, setTableVisible] = useState(false);
   const [calculation, setCalculation] = useState<Calculation | null>(null);
   const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState<string | null>(null);
+  const [qaLog, setQaLog] = useState<QaEntry[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [askError, setAskError] = useState<string | null>(null);
 
   function setHouseholdSize(value: number) {
-    setHouseholdSizeState(value);
-    window.sessionStorage.setItem("householdSize", String(value));
+    const clamped = Math.min(8, Math.max(1, value));
+    setHouseholdSizeState(clamped);
+    window.sessionStorage.setItem("householdSize", String(clamped));
   }
 
-  async function handleCalculate() {
+  async function handleShowTable() {
     setError(null);
     try {
       const result = await calculate(householdSize, "60");
       setCalculation(result);
+      setTableVisible(true);
     } catch (err) {
       setError((err as Error).message);
     }
   }
 
   async function handleAsk() {
+    const q = question.trim();
+    if (!q) return;
     setAskError(null);
     try {
-      const result = await ask(question);
-      setAnswer(result.answer);
+      const result = await ask(q);
+      setQaLog((prev) => [
+        { question: q, answer: result.answer, citation: result.citations[0] ?? null },
+        ...prev,
+      ]);
+      setQuestion("");
     } catch (err) {
       setAskError((err as Error).message);
     }
   }
 
+  const householdLabel = `household of ${householdSize}`;
+
   return (
-    <main className="mx-auto max-w-2xl space-y-6 p-8">
-      <h1 className="text-2xl font-semibold">Step 2: Understand</h1>
+    <main className="min-h-screen bg-background px-6 py-12">
+      <div className="mx-auto max-w-[680px]">
+        <PageHeader />
 
-      <Card className="space-y-3 p-4">
-        <label htmlFor="household-size" className="block font-medium">
-          Household size
-        </label>
-        <input
-          id="household-size"
-          type="number"
-          min={1}
-          max={8}
-          value={householdSize}
-          onChange={(event) => setHouseholdSize(Number(event.target.value))}
-          className="w-24 rounded border px-2 py-1"
-        />
-        <Button onClick={handleCalculate}>Show income vs. threshold</Button>
-        {error && <p role="alert" className="text-red-700">{error}</p>}
-        {calculation && (
-          <dl className="space-y-1 text-sm">
-            <div>Your confirmed income: ${calculation.confirmed_value.toLocaleString()}</div>
-            <div>{calculation.formula}: ${calculation.threshold.toLocaleString()}</div>
-            <div>Gap: ${calculation.gap.toLocaleString()}</div>
-            <div>
-              Source: {calculation.source_citation}, effective {calculation.effective_date}
+        <StepNav current="/understand" />
+        <p className="text-[13px] text-ink/55 mb-9">
+          Step 2 of 3 — see your confirmed income next to the HUD limit for your household.
+        </p>
+
+        {/* Household size */}
+        <div className="rounded-lg border border-border bg-card p-[22px_24px] mb-5">
+          <div className="font-heading text-[13px] font-semibold tracking-wide mb-1">HOUSEHOLD SIZE</div>
+          <p className="text-[13.5px] text-ink/60 mb-4">
+            Count everyone who will live in the unit, including yourself.
+          </p>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setHouseholdSize(householdSize - 1)}
+                aria-label="Decrease household size"
+                className="flex size-8 items-center justify-center rounded border border-ink/30 font-heading text-base font-bold select-none"
+              >
+                −
+              </button>
+              <span className="min-w-7 text-center font-mono text-[22px] font-bold tabular-nums">
+                {householdSize}
+              </span>
+              <button
+                onClick={() => setHouseholdSize(householdSize + 1)}
+                aria-label="Increase household size"
+                className="flex size-8 items-center justify-center rounded border border-ink/30 font-heading text-base font-bold select-none"
+              >
+                +
+              </button>
+              <span className="text-[13px] text-ink/55">{householdLabel}</span>
             </div>
-          </dl>
+            <button
+              onClick={handleShowTable}
+              className="rounded bg-ink px-5 py-2.5 font-heading text-[13px] font-bold text-paper"
+            >
+              Show income vs. threshold
+            </button>
+          </div>
+          {error && (
+            <p role="alert" className="text-rust font-medium text-sm mt-3">
+              {error}
+            </p>
+          )}
+        </div>
+
+        {/* Comparison table */}
+        {tableVisible && calculation && (
+          <div className="fade-up rounded-lg border border-border bg-card p-[22px_24px] mb-7">
+            <div className="flex flex-col">
+              <div className="flex justify-between items-baseline py-3 border-b border-ink/10">
+                <div className="font-heading text-xs uppercase tracking-wide text-ink/60">
+                  Your confirmed income
+                </div>
+                <div className="highlighter-mark font-mono text-[17px] font-semibold">
+                  ${calculation.confirmed_value.toLocaleString()}
+                  <span className="text-[11px] font-medium text-ink/50"> /yr</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-baseline py-3 border-b border-ink/10">
+                <div className="font-heading text-xs uppercase tracking-wide text-ink/60">
+                  HUD limit · {householdLabel}
+                </div>
+                <div className="font-mono text-[17px] font-semibold">
+                  ${calculation.threshold.toLocaleString()}
+                  <span className="text-[11px] font-medium text-ink/50"> /yr</span>
+                </div>
+              </div>
+              <div className="flex justify-between items-baseline py-3">
+                <div className="font-heading text-xs uppercase tracking-wide text-ink/60">
+                  Difference (income − limit)
+                </div>
+                <div className={`font-mono text-[17px] font-bold ${calculation.gap > 0 ? "text-rust" : "text-sage"}`}>
+                  {calculation.gap >= 0 ? "+" : "-"}${Math.abs(calculation.gap).toLocaleString()}
+                  <span className="text-[11px] font-medium text-ink/50"> /yr</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 mt-4 pt-3.5 border-t border-ink/10">
+              <div className="size-3.5 shrink-0 rounded-[2px] border-[1.5px] border-ink/50" aria-hidden="true" />
+              <div className="font-heading text-[11.5px] text-ink/60">
+                {calculation.source_citation} · effective {calculation.effective_date}
+              </div>
+            </div>
+            <p className="text-[13px] text-ink/55 mt-3 leading-[1.5]">
+              These are the numbers, not a verdict. RealDoor doesn&apos;t determine eligibility —
+              your property or housing authority does, using these figures.
+            </p>
+          </div>
         )}
-      </Card>
 
-      <Card className="space-y-3 p-4">
-        <label htmlFor="rules-question" className="block font-medium">
-          Ask a rules question
-        </label>
-        <input
-          id="rules-question"
-          value={question}
-          onChange={(event) => setQuestion(event.target.value)}
-          className="w-full rounded border px-2 py-1"
-        />
-        <Button onClick={handleAsk}>Ask</Button>
-        {askError && <p role="alert" className="text-red-700">{askError}</p>}
-        {answer && <p className="text-sm">{answer}</p>}
-      </Card>
+        {/* Rules Q&A */}
+        <div className="rounded-lg border border-border bg-card p-[22px_24px]">
+          <div className="font-heading text-[15px] font-bold mb-1">Ask about the rules</div>
+          <p className="text-[13.5px] text-ink/60 leading-[1.5] mb-4.5">
+            Answers are grounded in the HUD income-limit rules for this case, each with a source
+            and effective date. RealDoor can&apos;t tell you whether you qualify — only your
+            property or housing authority can.
+          </p>
 
-      <a href="/prepare" className="inline-block underline">
-        Next: Prepare →
-      </a>
+          <div className="flex gap-2.5 mb-5.5">
+            <input
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleAsk()}
+              placeholder="e.g. What's the income limit for a household of 4?"
+              aria-label="Ask a rules question"
+              className="flex-1 rounded border border-input bg-[#FAFAF5] px-3 py-2.5 text-sm text-ink focus:outline-2 focus:outline-ink"
+            />
+            <button
+              onClick={handleAsk}
+              className="shrink-0 rounded bg-ink px-4.5 py-2.5 font-heading text-[13px] font-bold text-paper"
+            >
+              Ask
+            </button>
+          </div>
+          {askError && (
+            <p role="alert" className="text-rust font-medium text-sm mb-4">
+              {askError}
+            </p>
+          )}
+
+          <div className="flex flex-col gap-5">
+            {qaLog.map((qa, i) => (
+              <div key={i} className="fade-up border-t border-ink/10 pt-4">
+                <div className="font-heading text-[11px] uppercase tracking-wide text-ink/45 mb-1.5">
+                  You asked
+                </div>
+                <div className="text-[14.5px] font-semibold mb-3">{qa.question}</div>
+
+                {qa.citation ? (
+                  <>
+                    <p className="text-[14.5px] leading-[1.6] mb-2.5">{qa.answer}</p>
+                    <div className="flex items-center gap-2">
+                      <div className="size-3 shrink-0 rounded-[2px] border-[1.5px] border-highlighter" aria-hidden="true" />
+                      <div className="font-heading text-[11.5px]" style={{ color: "#8a6a1f" }}>
+                        {qa.citation}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="rounded border border-rust/35 bg-rust/[0.06] px-4 py-3.5">
+                    <div className="font-heading text-[12.5px] font-bold text-rust mb-1.5">
+                      RealDoor can&apos;t answer that directly
+                    </div>
+                    <p className="text-sm leading-[1.55] mb-2.5">{qa.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-11 border-t border-ink/[0.12] pt-5 text-[12.5px] text-ink/50">
+          Your data stays on this device unless you add it to your packet. You can delete it
+          anytime in Step 3 — Prepare.
+        </div>
+      </div>
     </main>
   );
 }
