@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { StepNav } from "@/components/StepNav";
-import { confirmField, giveConsent, uploadDocument, type ExtractedField } from "@/lib/api";
+import { confirmField, getCurrentDocument, giveConsent, uploadDocument, type ExtractedField } from "@/lib/api";
 
 const CONFIDENCE_THRESHOLD = 0.85;
 
@@ -43,6 +43,21 @@ export default function ProfilePage() {
   const [confirmedIds, setConfirmedIds] = useState<Set<string>>(new Set());
   const [draftValues, setDraftValues] = useState<Record<string, string>>({});
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getCurrentDocument().then((result) => {
+      if (!result.document) return;
+      const { document_id, document_type, fields: restoredFields } = result.document;
+      setConsented(true);
+      setDocumentId(document_id);
+      setDocumentType(document_type);
+      setFields(restoredFields);
+      setDraftValues(Object.fromEntries(restoredFields.map((f) => [f.field_name, f.value ?? ""])));
+      setConfirmedIds(new Set(restoredFields.filter((f) => f.confirmed).map((f) => f.field_name)));
+      setFileName("Your uploaded document");
+      setUploadStage("uploaded");
+    });
+  }, []);
 
   async function handleConsentToggle(checked: boolean) {
     setConsentError(null);

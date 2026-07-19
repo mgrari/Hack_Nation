@@ -5,6 +5,13 @@ export type ExtractedField = {
   field_name: string;
   value: string | null;
   confidence: number;
+  confirmed?: boolean;
+};
+
+export type CurrentDocument = {
+  document_id: string;
+  document_type: string | null;
+  fields: ExtractedField[];
 };
 
 export type Calculation = {
@@ -49,6 +56,10 @@ export function uploadDocument(file: File) {
     method: "POST",
     body: formData,
   });
+}
+
+export function getCurrentDocument() {
+  return request<{ document: CurrentDocument | null }>("/documents/current");
 }
 
 export function confirmField(documentId: string, fieldName: string, value: string) {

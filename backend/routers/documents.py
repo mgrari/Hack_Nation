@@ -101,6 +101,39 @@ async def upload_document(
     return {"document_id": doc_id, "document_type": result.document_type, "fields": fields_out}
 
 
+@router.get("/documents/current")
+def get_current_document(
+    session_id: str = Depends(get_or_create_session),
+    db: Session = Depends(get_db),
+):
+    document = (
+        db.query(DocumentRecord)
+        .filter_by(session_id=session_id)
+        .order_by(DocumentRecord.uploaded_at.desc())
+        .first()
+    )
+    if not document:
+        return {"document": None}
+
+    fields = db.query(FieldRecord).filter_by(document_id=document.id).all()
+    return {
+        "document": {
+            "document_id": document.id,
+            "document_type": document.document_type,
+            "fields": [
+                {
+                    "id": f.id,
+                    "field_name": f.field_name,
+                    "value": f.confirmed_value if f.confirmed else f.extracted_value,
+                    "confidence": f.confidence,
+                    "confirmed": f.confirmed,
+                }
+                for f in fields
+            ],
+        }
+    }
+
+
 class FieldCorrection(BaseModel):
     value: str
 
