@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 import models  # noqa: F401 - registers all tables on Base.metadata before create_all
+import rules_rag
 from config import settings
 from db import Base, engine
 from routers.consent import router as consent_router
@@ -17,6 +18,11 @@ from routers.session import router as session_router
 # production Postgres), that column will silently never appear there. Fix by manually
 # running the equivalent ALTER TABLE, or by resetting the DB, in that environment.
 Base.metadata.create_all(bind=engine)
+
+# Re-ingest the rule corpus on every startup so /ask always serves the current contents
+# of data/rules/organizer_rule_corpus.jsonl -- ingest_corpus() resets the collection each
+# time, so this can't drift the way a one-off manual ingestion script would.
+rules_rag.ingest_corpus()
 
 app = FastAPI()
 app.add_middleware(

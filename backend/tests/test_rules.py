@@ -1,3 +1,6 @@
+import json
+
+
 def test_calculate_requires_confirmed_income(client):
     client.post("/consent")
     response = client.post("/calculate", json={"household_size": 4, "ami_tier": "60"})
@@ -199,7 +202,7 @@ def test_ask_includes_renter_own_confirmed_data_in_prompt(client, monkeypatch, t
 
     def fake_create(**kwargs):
         captured["messages"] = kwargs["messages"]
-        return FakeResponse("Your confirmed gross pay is 2166.00.")
+        return FakeResponse(json.dumps({"answer": "Your confirmed gross pay is 2166.00.", "used_rule_ids": []}))
 
     monkeypatch.setattr("routers.rules.OpenAI", lambda api_key: type(
         "Client", (), {"chat": type("Chat", (), {"completions": type("Completions", (), {"create": staticmethod(fake_create)})()})()}
@@ -230,6 +233,47 @@ def test_ask_declines_when_no_passages_and_no_confirmed_data(client, monkeypatch
     assert "don't have" in body["answer"].lower()
 
 
+def test_ask_does_not_attach_irrelevant_citation_for_off_topic_question(client, monkeypatch, tmp_path):
+    """Chroma's query always returns its nearest passages regardless of relevance -- an
+    off-topic question like "what does this app do" must not get an irrelevant MTSP
+    passage attached as a "citation", which would look like the app answered from a
+    source it didn't actually use. The model is instructed to only list rule_ids it
+    actually relied on; this test proves the response only includes citations the model
+    explicitly named, not everything that was merely retrieved."""
+    import rules_rag
+
+    monkeypatch.setattr(rules_rag, "CHROMA_DIR", tmp_path / "chroma")
+    rules_rag.ingest_corpus()
+
+    class FakeChoice:
+        def __init__(self, content):
+            self.message = type("Msg", (), {"content": content})()
+
+    class FakeResponse:
+        def __init__(self, content):
+            self.choices = [FakeChoice(content)]
+
+    def fake_create(**kwargs):
+        # A compliant model recognizes none of the retrieved passages answer an
+        # off-topic question and reports no used_rule_ids, even though passages were
+        # retrieved (Chroma always returns its nearest n regardless of relevance).
+        return FakeResponse(json.dumps({
+            "answer": "I don't have enough information to answer what this app does.",
+            "used_rule_ids": [],
+        }))
+
+    monkeypatch.setattr("routers.rules.OpenAI", lambda api_key: type(
+        "Client", (), {"chat": type("Chat", (), {"completions": type("Completions", (), {"create": staticmethod(fake_create)})()})()}
+    )())
+
+    client.post("/consent")
+    response = client.post("/ask", json={"question": "What does this app do? Just testing the chat."})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["citations"] == []
+    assert "don't have" in body["answer"].lower()
+
+
 def test_ask_answers_from_ingested_corpus(client, monkeypatch, tmp_path):
     import rules_rag
 
@@ -245,7 +289,10 @@ def test_ask_answers_from_ingested_corpus(client, monkeypatch, tmp_path):
             self.choices = [FakeChoice(content)]
 
     def fake_create(**kwargs):
-        return FakeResponse("For a household of 4, the 60% AMI limit is $102,840. Source: HUD MTSP FY2026, effective 2026-04-01.")
+        return FakeResponse(json.dumps({
+            "answer": "For a household of 4, the 60% AMI limit is $102,840. Source: HUD MTSP FY2026, effective 2026-04-01.",
+            "used_rule_ids": ["HUD-MTSP-002"],
+        }))
 
     monkeypatch.setattr("routers.rules.OpenAI", lambda api_key: type(
         "Client", (), {"chat": type("Chat", (), {"completions": type("Completions", (), {"create": staticmethod(fake_create)})()})()}
@@ -257,6 +304,7 @@ def test_ask_answers_from_ingested_corpus(client, monkeypatch, tmp_path):
     body = response.json()
     assert "102,840" in body["answer"] or "102840" in body["answer"]
     assert len(body["citations"]) > 0
+    assert "60%" in body["citations"][0] or "60% AMI" in body["citations"][0]
 
 
 def test_ask_refuses_to_state_eligibility_verdict(client, monkeypatch, tmp_path):
@@ -284,11 +332,12 @@ def test_ask_refuses_to_state_eligibility_verdict(client, monkeypatch, tmp_path)
         captured_messages["messages"] = kwargs["messages"]
         # Even under a direct request for a verdict, a compliant model sticks to the rule's
         # numbers and citation rather than answering "yes"/"no".
-        return FakeResponse(
-            "I don't have enough information to say whether you personally qualify. "
-            "For a household of 4, the 60% AMI limit is $102,840. "
-            "Source: HUD MTSP FY2026, effective 2026-04-01."
-        )
+        return FakeResponse(json.dumps({
+            "answer": "I don't have enough information to say whether you personally qualify. "
+            "Final determinations remain human and program-specific. "
+            "Source: RealDoor challenge rules, CH-DECISION-001.",
+            "used_rule_ids": ["CH-DECISION-001"],
+        }))
 
     monkeypatch.setattr("routers.rules.OpenAI", lambda api_key: type(
         "Client", (), {"chat": type("Chat", (), {"completions": type("Completions", (), {"create": staticmethod(fake_create)})()})()}
