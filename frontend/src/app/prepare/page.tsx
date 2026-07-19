@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { StepNav } from "@/components/StepNav";
 import { deleteSession, downloadPacket, getChecklist, type ChecklistItem } from "@/lib/api";
@@ -28,6 +28,13 @@ export default function PreparePage() {
   useEffect(() => {
     getChecklist().then((result) => setItems(result.items));
   }, []);
+
+  // After deletion the whole page is replaced; move focus to the confirmation heading so
+  // keyboard/screen-reader users aren't left on a control that no longer exists.
+  const deletedHeadingRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (deleteStage === "deleted") deletedHeadingRef.current?.focus();
+  }, [deleteStage]);
 
   async function handleDownload() {
     setDownloadError(null);
@@ -59,13 +66,15 @@ export default function PreparePage() {
       <main className="min-h-screen bg-background px-6 py-12">
         <div className="mx-auto max-w-[680px]">
           <PageHeader />
-          <div className="fade-up rounded-lg border border-border bg-card p-12 px-8 text-center mt-6">
+          <div role="status" className="fade-up rounded-lg border border-border bg-card p-12 px-8 text-center mt-6">
             <div className="mx-auto mb-4.5 flex size-11 items-center justify-center rounded-full bg-sage">
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
                 <path d="M1 5L5 9L13 1" stroke="var(--paper)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <div className="font-heading text-base font-bold mb-2">Your session has been deleted</div>
+            <h1 ref={deletedHeadingRef} tabIndex={-1} className="font-heading text-base font-bold mb-2 outline-none">
+              Your session has been deleted
+            </h1>
             <p className="mx-auto max-w-[40ch] text-sm leading-[1.55] text-ink/60">
               Everything you uploaded and confirmed is gone from this device.{" "}
               <a href="/profile" className="text-sage underline">
@@ -84,6 +93,7 @@ export default function PreparePage() {
         <PageHeader />
 
         <StepNav current="/prepare" />
+        <h1 className="sr-only">Prepare — Step 3 of 3</h1>
         <p className="text-[13px] text-ink/55 mb-9">
           Step 3 of 3 — check what&apos;s ready, download your packet, and close out whenever
           you&apos;re ready.
@@ -91,7 +101,7 @@ export default function PreparePage() {
 
         {/* Checklist */}
         <div className="rounded-lg border border-border bg-card p-[22px_24px] mb-6">
-          <div className="font-heading text-[15px] font-bold mb-1">Document checklist</div>
+          <h2 className="font-heading text-[15px] font-bold mb-1">Document checklist</h2>
           <p className="text-[13.5px] text-ink/60 mb-4.5">
             {presentCount} of {items.length} ready. Nothing here is sent anywhere — this list just
             tracks what&apos;s on this device.
@@ -122,7 +132,7 @@ export default function PreparePage() {
 
         {/* Download packet */}
         <div className="rounded-lg border border-border bg-card p-[22px_24px] mb-6">
-          <div className="font-heading text-[15px] font-bold mb-1">Download your packet</div>
+          <h2 className="font-heading text-[15px] font-bold mb-1">Download your packet</h2>
           <p className="text-[13.5px] text-ink/60 leading-[1.5] mb-4">
             A PDF summary of your profile, the income comparison, and this checklist — for your
             own records or to bring to your leasing office.
@@ -140,10 +150,10 @@ export default function PreparePage() {
             </button>
           )}
           {downloadStage === "generating" && (
-            <div className="font-heading text-[13px] font-semibold text-ink/60">Preparing packet…</div>
+            <div role="status" className="font-heading text-[13px] font-semibold text-ink/60">Preparing packet…</div>
           )}
           {downloadStage === "ready" && (
-            <div className="flex items-center gap-3">
+            <div role="status" className="flex items-center gap-3">
               <div className="flex size-[30px] shrink-0 items-center justify-center rounded-full bg-sage">
                 <svg width="12" height="9" viewBox="0 0 12 9" fill="none" aria-hidden="true">
                   <path d="M1 4.5L4.2 7.5L11 1" stroke="var(--paper)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -169,7 +179,7 @@ export default function PreparePage() {
 
         {/* Delete session */}
         <div className="rounded-lg border border-rust/30 bg-card p-[22px_24px]">
-          <div className="font-heading text-[15px] font-bold mb-1">Delete my session</div>
+          <h2 className="font-heading text-[15px] font-bold mb-1">Delete my session</h2>
           <p className="text-[13.5px] text-ink/60 leading-[1.5] mb-4">
             This is your data, fully in your control. Deleting removes your uploaded pay stub,
             confirmed fields, and this checklist from this device for good — nothing about your
@@ -185,10 +195,10 @@ export default function PreparePage() {
             </button>
           )}
           {deleteStage === "confirming" && (
-            <div className="rounded border border-rust/35 bg-rust/[0.06] px-4.5 py-4">
-              <div className="text-sm font-semibold mb-3">
+            <div role="alertdialog" aria-label="Confirm session deletion" className="rounded border border-rust/35 bg-rust/[0.06] px-4.5 py-4">
+              <p className="text-sm font-semibold mb-3">
                 Delete everything in this case? This can&apos;t be undone.
-              </div>
+              </p>
               <div className="flex gap-3">
                 <button
                   onClick={handleConfirmDelete}
@@ -196,7 +206,11 @@ export default function PreparePage() {
                 >
                   Yes, delete permanently
                 </button>
+                {/* The safe choice receives focus when the confirm step appears — the
+                    trigger button just unmounted, and focus must not land on the
+                    destructive action by default. */}
                 <button
+                  autoFocus
                   onClick={() => setDeleteStage("idle")}
                   className="rounded border border-ink/25 bg-transparent px-4 py-2.5 font-heading text-[13px] font-semibold text-ink"
                 >

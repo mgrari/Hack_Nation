@@ -48,6 +48,8 @@ export default function UnderstandPage() {
   const [qaLog, setQaLog] = useState<QaEntry[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [askError, setAskError] = useState<string | null>(null);
+  // Screen-reader completion announcements (WCAG 2.2 AA "clear completion announcements").
+  const [liveMessage, setLiveMessage] = useState("");
 
   function setHouseholdSize(value: number) {
     const clamped = Math.min(8, Math.max(1, value));
@@ -61,6 +63,7 @@ export default function UnderstandPage() {
       const result = await calculate(householdSize, "60");
       setCalculation(result);
       setTableVisible(true);
+      setLiveMessage(`Income comparison ready for a household of ${householdSize}.`);
     } catch (err) {
       setError((err as Error).message);
     }
@@ -77,6 +80,7 @@ export default function UnderstandPage() {
         ...prev,
       ]);
       setQuestion("");
+      setLiveMessage("Answer ready below the question box.");
     } catch (err) {
       setAskError((err as Error).message);
     }
@@ -90,13 +94,18 @@ export default function UnderstandPage() {
         <PageHeader />
 
         <StepNav current="/understand" />
+        <h1 className="sr-only">Understand — Step 2 of 3</h1>
         <p className="text-[13px] text-ink/55 mb-9">
           Step 2 of 3 — see your confirmed income next to the HUD limit for your household.
         </p>
 
+        <p role="status" aria-live="polite" className="sr-only">
+          {liveMessage}
+        </p>
+
         {/* Household size */}
         <div className="rounded-lg border border-border bg-card p-[22px_24px] mb-5">
-          <div className="font-heading text-[13px] font-semibold tracking-wide mb-1">HOUSEHOLD SIZE</div>
+          <h2 className="font-heading text-[13px] font-semibold tracking-wide mb-1">HOUSEHOLD SIZE</h2>
           <p className="text-[13.5px] text-ink/60 mb-4">
             Count everyone who will live in the unit, including yourself.
           </p>
@@ -206,7 +215,7 @@ export default function UnderstandPage() {
 
         {/* Rules Q&A */}
         <div className="rounded-lg border border-border bg-card p-[22px_24px]">
-          <div className="font-heading text-[15px] font-bold mb-1">Ask about the rules</div>
+          <h2 className="font-heading text-[15px] font-bold mb-1">Ask about the rules</h2>
           <p className="text-[13.5px] text-ink/60 leading-[1.5] mb-4.5">
             Answers are grounded in the HUD income-limit rules for this case, each with a source
             and effective date. RealDoor can&apos;t tell you whether you qualify — only your

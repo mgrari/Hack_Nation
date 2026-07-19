@@ -98,6 +98,8 @@ export default function ProfilePage() {
   const [previews, setPreviews] = useState<Record<string, DocumentPreview>>({});
   const [activeEvidence, setActiveEvidence] = useState<{ documentId: string; fieldName: string } | null>(null);
   const [previewError, setPreviewError] = useState<string | null>(null);
+  // Screen-reader completion announcements (WCAG 2.2 AA "clear completion announcements").
+  const [liveMessage, setLiveMessage] = useState("");
 
   useEffect(() => {
     getDocuments().then((result) => {
@@ -157,6 +159,11 @@ export default function ProfilePage() {
         }
         return next;
       });
+      setLiveMessage(
+        `Document read. Detected ${documentTypeLabel(result.document_type)} with ${result.fields.length} value${
+          result.fields.length === 1 ? "" : "s"
+        } to review and confirm.`,
+      );
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -180,6 +187,7 @@ export default function ProfilePage() {
               },
         ),
       );
+      setLiveMessage(`${labelFor(fieldName)} confirmed.`);
     } catch (err) {
       setError((err as Error).message);
     }
@@ -217,6 +225,7 @@ export default function ProfilePage() {
     try {
       await deleteDocument(documentId);
       setDocuments((prev) => prev.filter((doc) => doc.document_id !== documentId));
+      setLiveMessage("Document deleted.");
     } catch (err) {
       setError((err as Error).message);
     }
@@ -263,9 +272,14 @@ export default function ProfilePage() {
         <PageHeader />
 
         <StepNav current="/profile" />
+        <h1 className="sr-only">Profile — Step 1 of 3</h1>
         <p className="text-[13px] text-ink/55 mb-9">
           Step 1 of 3 — upload your income documents (pay stub, employment letter, and more) one
           at a time and RealDoor will detect what each one is.
+        </p>
+
+        <p role="status" aria-live="polite" className="sr-only">
+          {liveMessage}
         </p>
 
         {/* Consent */}
@@ -275,7 +289,7 @@ export default function ProfilePage() {
               {consented && <div className="absolute left-[3px] top-[3px] size-2.5 rounded-[1px] bg-sage" />}
             </div>
             <div>
-              <div className="font-heading text-[13px] font-semibold tracking-wide mb-1.5">BEFORE YOU UPLOAD</div>
+              <h2 className="font-heading text-[13px] font-semibold tracking-wide mb-1.5">BEFORE YOU UPLOAD</h2>
               <p className="text-[14.5px] leading-[1.55] text-ink/85 max-w-[52ch]">
                 RealDoor reads your documents to fill in this form for you. Nothing is sent anywhere
                 or shared with a landlord or housing authority until you choose to include it in
@@ -316,9 +330,9 @@ export default function ProfilePage() {
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
-                <div className="font-heading text-[13px] font-semibold truncate">
+                <h2 className="font-heading text-[13px] font-semibold truncate">
                   {doc.filename ?? documentTypeLabel(doc.document_type)}
-                </div>
+                </h2>
                 <div className="text-[12.5px] text-ink/50">
                   Detected: {documentTypeLabel(doc.document_type)} · read on this device only
                 </div>
@@ -448,7 +462,7 @@ export default function ProfilePage() {
         {/* Upload area */}
         {uploadStage === "idle" && (
           <label
-            className={`flex flex-col items-center rounded-lg border-2 border-dashed border-ink/30 p-11 mb-7 text-center transition-opacity ${
+            className={`flex flex-col items-center rounded-lg border-2 border-dashed border-ink/30 p-11 mb-7 text-center transition-opacity focus-within:outline-2 focus-within:outline-ink focus-within:outline-offset-2 ${
               consented ? "cursor-pointer text-ink opacity-100" : "cursor-not-allowed text-ink/35 opacity-60"
             }`}
           >
@@ -476,7 +490,7 @@ export default function ProfilePage() {
         )}
 
         {uploadStage === "uploading" && (
-          <div className="rounded-lg border border-border bg-card p-7 px-6 mb-7">
+          <div role="status" className="rounded-lg border border-border bg-card p-7 px-6 mb-7">
             <div className="font-heading text-[13px] font-semibold mb-3.5">Reading {uploadingFileName}…</div>
             <div className="h-1.5 rounded-[3px] bg-ink/[0.08] overflow-hidden">
               <div

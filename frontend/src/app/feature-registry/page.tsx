@@ -167,16 +167,16 @@ export default function FeatureRegistryPage() {
         <table className="w-full border-collapse text-left text-sm">
           <thead>
             <tr className="border-b border-border">
-              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+              <th scope="col" className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
                 Feature
               </th>
-              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+              <th scope="col" className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
                 Source
               </th>
-              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+              <th scope="col" className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
                 Purpose
               </th>
-              <th className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
+              <th scope="col" className="py-2 pr-4 font-heading text-xs uppercase tracking-wide text-muted-foreground">
                 Used for
               </th>
             </tr>
