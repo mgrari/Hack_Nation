@@ -1,0 +1,2690 @@
+[
+  {
+    "project": "HERITAGE AT CLEVELAND CIRCLE",
+    "address": "50 SUTHERLAND RD",
+    "town": "BOSTON",
+    "n_units": 90,
+    "yr_pis": 1995
+  },
+  {
+    "project": "CABOT PARK VILLAGE",
+    "address": "22 MUNROE ST",
+    "town": "NEWTON",
+    "n_units": 100,
+    "yr_pis": 1996
+  },
+  {
+    "project": "HERITAGE AT DANVERS",
+    "address": "21 SUMMER ST",
+    "town": "DANVERS",
+    "n_units": 80,
+    "yr_pis": 1997
+  },
+  {
+    "project": "LONGWOOD PLACE AT READING",
+    "address": "75 PEARL ST",
+    "town": "READING",
+    "n_units": 86,
+    "yr_pis": 1997
+  },
+  {
+    "project": "MAPLEWOOD PLACE",
+    "address": "305 BROADWAY",
+    "town": "MALDEN",
+    "n_units": 98,
+    "yr_pis": 1998
+  },
+  {
+    "project": "ORCHARD HILL AT SUDBURY",
+    "address": "761 BOSTON POST RD",
+    "town": "SUDBURY",
+    "n_units": 45,
+    "yr_pis": 1999
+  },
+  {
+    "project": "AMY LOWELL HOUSE",
+    "address": "65 MARTHA RD",
+    "town": "BOSTON",
+    "n_units": 151,
+    "yr_pis": 2000
+  },
+  {
+    "project": "LEISURE TOWER",
+    "address": "10 FARRAR ST",
+    "town": "LYNN",
+    "n_units": 180,
+    "yr_pis": 2000
+  },
+  {
+    "project": "NEW MASS PIKE TOWERS",
+    "address": "336B TREMONT ST",
+    "town": "BOSTON",
+    "n_units": 200,
+    "yr_pis": 2000
+  },
+  {
+    "project": "BROADWAY GLEN APTS",
+    "address": "855 BROADWAY",
+    "town": "CHELSEA",
+    "n_units": 120,
+    "yr_pis": 2001
+  },
+  {
+    "project": "SYMPHONY PLAZA EAST",
+    "address": "334 MASSACHUSETTS AVE",
+    "town": "BOSTON",
+    "n_units": 188,
+    "yr_pis": 2001
+  },
+  {
+    "project": "SYMPHONY PLAZA WEST",
+    "address": "333 MASSACHUSETTS AVE",
+    "town": "BOSTON",
+    "n_units": 216,
+    "yr_pis": 2001
+  },
+  {
+    "project": "STEARNS APTS",
+    "address": "10 TEMPLE PL",
+    "town": "BOSTON",
+    "n_units": 140,
+    "yr_pis": 2001
+  },
+  {
+    "project": "VIVIENDAS APTS LP",
+    "address": "100 E DEDHAM ST",
+    "town": "BOSTON",
+    "n_units": 181,
+    "yr_pis": 2001
+  },
+  {
+    "project": "TRADITIONS OF DEDHAM",
+    "address": "735 WASHINGTON ST",
+    "town": "DEDHAM",
+    "n_units": 95,
+    "yr_pis": 2002
+  },
+  {
+    "project": "VICTORIA APTS",
+    "address": "65 W DEDHAM ST",
+    "town": "BOSTON",
+    "n_units": 190,
+    "yr_pis": 2002
+  },
+  {
+    "project": "WALDEN SQUARE APTS",
+    "address": "21 WALDEN SQ RD",
+    "town": "CAMBRIDGE",
+    "n_units": 240,
+    "yr_pis": 2002
+  },
+  {
+    "project": "JOHN F KENNEDY APTS",
+    "address": "55 ESSEX ST",
+    "town": "CAMBRIDGE",
+    "n_units": 69,
+    "yr_pis": 2003
+  },
+  {
+    "project": "SOUTH COVE PLAZA",
+    "address": "230 STUART ST",
+    "town": "BOSTON",
+    "n_units": 231,
+    "yr_pis": 2003
+  },
+  {
+    "project": "SUSAN S BAILIS ASSISTED LIVING COMMUNITY",
+    "address": "352 MASSACHUSETTS AVE",
+    "town": "BOSTON",
+    "n_units": 82,
+    "yr_pis": 2003
+  },
+  {
+    "project": "MASON PLACE",
+    "address": "80 MASON ST",
+    "town": "BOSTON",
+    "n_units": 127,
+    "yr_pis": 2004
+  },
+  {
+    "project": "SOUTH END TENANTS HOUSING II",
+    "address": "401 MASSACHUSETTS AVE",
+    "town": "BOSTON",
+    "n_units": 185,
+    "yr_pis": 2004
+  },
+  {
+    "project": "CONANT VILLAGE",
+    "address": "238 CONANT ST",
+    "town": "DANVERS",
+    "n_units": 60,
+    "yr_pis": 2004
+  },
+  {
+    "project": "MAVERICK GARDENS I",
+    "address": "1 MAVERICK ST",
+    "town": "BOSTON",
+    "n_units": 150,
+    "yr_pis": 2005
+  },
+  {
+    "project": "WESTLAND AVENUE APTS",
+    "address": "65 WESTLAND AVE",
+    "town": "BOSTON",
+    "n_units": 96,
+    "yr_pis": 2005
+  },
+  {
+    "project": "BOWDOIN APTS",
+    "address": "18 BOWDOIN ST",
+    "town": "MALDEN",
+    "n_units": 226,
+    "yr_pis": 2006
+  },
+  {
+    "project": "MAVERICK GARDENS IV",
+    "address": "87 GRADY CT",
+    "town": "BOSTON",
+    "n_units": 74,
+    "yr_pis": 2006
+  },
+  {
+    "project": "WILLOW APTS",
+    "address": "19 WILLOW ST",
+    "town": "LYNN",
+    "n_units": 44,
+    "yr_pis": 2006
+  },
+  {
+    "project": "ARBORPOINT AT WOODLAND STATION",
+    "address": "1940 WASHINGTON ST",
+    "town": "NEWTON",
+    "n_units": 180,
+    "yr_pis": 2007
+  },
+  {
+    "project": "CABLE GARDENS",
+    "address": "126 CNTY RD",
+    "town": "IPSWICH",
+    "n_units": 70,
+    "yr_pis": null
+  },
+  {
+    "project": "HUNTINGTON AFFORDABLE HOUSING",
+    "address": "316 HUNTINGTON AVE",
+    "town": "BOSTON",
+    "n_units": 88,
+    "yr_pis": null
+  },
+  {
+    "project": "33 BOW ST",
+    "address": "33 BOW ST",
+    "town": "SOMERVILLE",
+    "n_units": 18,
+    "yr_pis": null
+  },
+  {
+    "project": "ADMIRAL HILL ASSISTED LIVING I",
+    "address": "201 CAPTAINS ROW",
+    "town": "CHELSEA",
+    "n_units": 69,
+    "yr_pis": null
+  },
+  {
+    "project": "AUBURN COURT",
+    "address": "1 BROOKLINE PL",
+    "town": "CAMBRIDGE",
+    "n_units": 77,
+    "yr_pis": null
+  },
+  {
+    "project": "BAYBERRY POINT",
+    "address": "10 SACKS WAY",
+    "town": "SALISBURY",
+    "n_units": 30,
+    "yr_pis": null
+  },
+  {
+    "project": "BRICKYARD VILLAGE",
+    "address": "151719 JUNE LN",
+    "town": "LYNN",
+    "n_units": 28,
+    "yr_pis": null
+  },
+  {
+    "project": "BRIDLEPATH APTS",
+    "address": "164 BITTERSWEET LN",
+    "town": "RANDOLPH",
+    "n_units": 104,
+    "yr_pis": null
+  },
+  {
+    "project": "CABOT AFFORDABLE HOUSING",
+    "address": "245 CABOT ST",
+    "town": "BEVERLY",
+    "n_units": 45,
+    "yr_pis": null
+  },
+  {
+    "project": "CARTER HEIGHTS",
+    "address": "10 FORSYTH ST",
+    "town": "CHELSEA",
+    "n_units": 108,
+    "yr_pis": null
+  },
+  {
+    "project": "CASA MARIA APTS",
+    "address": "130 ENDICOTT ST",
+    "town": "BOSTON",
+    "n_units": 84,
+    "yr_pis": null
+  },
+  {
+    "project": "CGM",
+    "address": "155 CHESTNUT ST",
+    "town": "CHELSEA",
+    "n_units": 43,
+    "yr_pis": null
+  },
+  {
+    "project": "CHELSEA HOMES I",
+    "address": "4 GERRISH AVE",
+    "town": "CHELSEA",
+    "n_units": 86,
+    "yr_pis": null
+  },
+  {
+    "project": "CHESTNUT GARDEN APTS",
+    "address": "301 ESSEX ST",
+    "town": "LYNN",
+    "n_units": 65,
+    "yr_pis": null
+  },
+  {
+    "project": "COLUMBIA CAST",
+    "address": "",
+    "town": "BOSTON",
+    "n_units": 42,
+    "yr_pis": null
+  },
+  {
+    "project": "COPLEY GARDENS",
+    "address": "105 MARKET ST",
+    "town": "ROCKLAND",
+    "n_units": 82,
+    "yr_pis": null
+  },
+  {
+    "project": "DARTMOUTH TCB",
+    "address": "792 TREMONT ST",
+    "town": "BOSTON",
+    "n_units": 83,
+    "yr_pis": null
+  },
+  {
+    "project": "EVANS PARK AT NEWTON CORNER",
+    "address": "430 CENTRE ST",
+    "town": "NEWTON",
+    "n_units": 112,
+    "yr_pis": null
+  },
+  {
+    "project": "FAIRWEATHER APTS",
+    "address": "40R HIGHLAND AVE",
+    "town": "SALEM",
+    "n_units": 321,
+    "yr_pis": null
+  },
+  {
+    "project": "HARBORCOV COMMUNITY HOUSING",
+    "address": "63 WASHINGTON AVE",
+    "town": "CHELSEA",
+    "n_units": 24,
+    "yr_pis": null
+  },
+  {
+    "project": "IRVING SQUARE APTS",
+    "address": "75 IRVING ST",
+    "town": "FRAMINGHAM",
+    "n_units": 46,
+    "yr_pis": null
+  },
+  {
+    "project": "LAFAYETTE HOUSING",
+    "address": "102 LAFAYETTE ST",
+    "town": "SALEM",
+    "n_units": 61,
+    "yr_pis": null
+  },
+  {
+    "project": "LORING TOWERS",
+    "address": "1000 LORING AVE",
+    "town": "SALEM",
+    "n_units": 250,
+    "yr_pis": null
+  },
+  {
+    "project": "MORVILLE HOUSE",
+    "address": "100 NORWAY ST",
+    "town": "BOSTON",
+    "n_units": 175,
+    "yr_pis": null
+  },
+  {
+    "project": "NASHOBA PARK",
+    "address": "15 WINTHROP AVE",
+    "town": "AYER",
+    "n_units": 73,
+    "yr_pis": null
+  },
+  {
+    "project": "NEWTON CORNER PLACE",
+    "address": "276 CHURCH ST",
+    "town": "NEWTON",
+    "n_units": 28,
+    "yr_pis": null
+  },
+  {
+    "project": "PLANTATION APTS",
+    "address": "22 JOHNSTON WAY",
+    "town": "STOW",
+    "n_units": 50,
+    "yr_pis": null
+  },
+  {
+    "project": "PROSPECT HOUSE",
+    "address": "420 RESERVOIR AVE",
+    "town": "REVERE",
+    "n_units": 110,
+    "yr_pis": null
+  },
+  {
+    "project": "PUTNAM FARM AT DANVERS",
+    "address": "9 SUMMER ST",
+    "town": "DANVERS",
+    "n_units": 80,
+    "yr_pis": null
+  },
+  {
+    "project": "RTH COMMUNITY APTS",
+    "address": "733 HUNTINGTON AVE",
+    "town": "BOSTON",
+    "n_units": 20,
+    "yr_pis": null
+  },
+  {
+    "project": "SALEM HEIGHTS PRESERVATION ASSOC",
+    "address": "12 POPE ST",
+    "town": "SALEM",
+    "n_units": 283,
+    "yr_pis": null
+  },
+  {
+    "project": "SETH APTS I",
+    "address": "566 COLUMBUS AVE",
+    "town": "BOSTON",
+    "n_units": 100,
+    "yr_pis": null
+  },
+  {
+    "project": "SQUANTUM GARDENS II",
+    "address": "420 E SQUANTUM ST",
+    "town": "QUINCY",
+    "n_units": 79,
+    "yr_pis": null
+  },
+  {
+    "project": "TENANT'S DEVELOPMENT II",
+    "address": "566 COLUMBUS AVE",
+    "town": "BOSTON",
+    "n_units": 185,
+    "yr_pis": null
+  },
+  {
+    "project": "COOLIDGE SCHOOL APTS",
+    "address": "319 ARLINGTON ST",
+    "town": "WATERTOWN",
+    "n_units": 38,
+    "yr_pis": null
+  },
+  {
+    "project": "AVONDALE PLACE",
+    "address": "777 HUNTINGTON AVE",
+    "town": "BOSTON",
+    "n_units": 22,
+    "yr_pis": 1987
+  },
+  {
+    "project": "ROCKLAND PLACE I",
+    "address": "33 MARTHA DR",
+    "town": "ROCKLAND",
+    "n_units": 204,
+    "yr_pis": 1987
+  },
+  {
+    "project": "STONE BROOK FARMS",
+    "address": "101 FARMS DR",
+    "town": "BURLINGTON",
+    "n_units": 202,
+    "yr_pis": 1987
+  },
+  {
+    "project": "WINNDEVELOPMENT",
+    "address": "10 MAGAZINE ST",
+    "town": "CAMBRIDGE",
+    "n_units": 85,
+    "yr_pis": 1987
+  },
+  {
+    "project": "117 LAFAYETTE ST",
+    "address": "117 LAFAYETTE ST",
+    "town": "SALEM",
+    "n_units": 63,
+    "yr_pis": 1988
+  },
+  {
+    "project": "300 SHAWMUT AVE",
+    "address": "300 SHAWMUT AVE",
+    "town": "BOSTON",
+    "n_units": 15,
+    "yr_pis": 1988
+  },
+  {
+    "project": "ANDREW SQUARE",
+    "address": "620 DORCHESTER AVE",
+    "town": "BOSTON",
+    "n_units": 6,
+    "yr_pis": 1988
+  },
+  {
+    "project": "BITTERSWEET APTS",
+    "address": "24 BRIDLE PATH CIR",
+    "town": "RANDOLPH",
+    "n_units": 35,
+    "yr_pis": 1988
+  },
+  {
+    "project": "COBBET HILL",
+    "address": "498 ESSEX ST",
+    "town": "LYNN",
+    "n_units": 117,
+    "yr_pis": 1988
+  },
+  {
+    "project": "KATAHDIN WOODS",
+    "address": "11 KATAHDIN DR",
+    "town": "LEXINGTON",
+    "n_units": 102,
+    "yr_pis": 1988
+  },
+  {
+    "project": "KIMBALL COURT I",
+    "address": "24 PEARL ST",
+    "town": "WOBURN",
+    "n_units": 184,
+    "yr_pis": 1988
+  },
+  {
+    "project": "WASHINGTON MEWS",
+    "address": "679 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 20,
+    "yr_pis": 1988
+  },
+  {
+    "project": "BOWDITCH SCHOOL",
+    "address": "82 GREEN ST",
+    "town": "BOSTON",
+    "n_units": 50,
+    "yr_pis": 1989
+  },
+  {
+    "project": "DOUGLAS PARK",
+    "address": "650 COLUMBUS AVE",
+    "town": "BOSTON",
+    "n_units": 122,
+    "yr_pis": 1989
+  },
+  {
+    "project": "FIELDS CORNER GRANITE",
+    "address": "60 CHARLES ST",
+    "town": "BOSTON",
+    "n_units": 67,
+    "yr_pis": 1989
+  },
+  {
+    "project": "HANOVER WOODS",
+    "address": "65 FRANKS LN",
+    "town": "HANOVER",
+    "n_units": 60,
+    "yr_pis": 1989
+  },
+  {
+    "project": "KILMARNOCK STREET",
+    "address": "55 KILMARNOCK ST",
+    "town": "BOSTON",
+    "n_units": 55,
+    "yr_pis": 1989
+  },
+  {
+    "project": "LIBERTY PLACE",
+    "address": "100 LIBERTY PL",
+    "town": "RANDOLPH",
+    "n_units": 107,
+    "yr_pis": 1989
+  },
+  {
+    "project": "PLEASANT PLAZA",
+    "address": "36 DARTMOUTH ST",
+    "town": "MALDEN",
+    "n_units": 125,
+    "yr_pis": 1989
+  },
+  {
+    "project": "POND SIDE APTS",
+    "address": "147 KING ST",
+    "town": "LITTLETON",
+    "n_units": 90,
+    "yr_pis": 1989
+  },
+  {
+    "project": "WALNUT WASHINGTON GRANITE",
+    "address": "3222 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 65,
+    "yr_pis": 1989
+  },
+  {
+    "project": "WATERFORD PLACE APTS",
+    "address": "180 SHAWMUT AVE",
+    "town": "BOSTON",
+    "n_units": 40,
+    "yr_pis": 1989
+  },
+  {
+    "project": "WAYNE APTS",
+    "address": "",
+    "town": "BOSTON",
+    "n_units": 349,
+    "yr_pis": 1989
+  },
+  {
+    "project": "1734 WASHINGTON ST",
+    "address": "1734 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 31,
+    "yr_pis": 1990
+  },
+  {
+    "project": "24 ROBINWOOD AVE",
+    "address": "24 ROBINWOOD AVE",
+    "town": "BOSTON",
+    "n_units": 10,
+    "yr_pis": 1990
+  },
+  {
+    "project": "523 MASSACHUSETTS AVE",
+    "address": "523 MASSACHUSETTS AVE",
+    "town": "BOSTON",
+    "n_units": 18,
+    "yr_pis": 1990
+  },
+  {
+    "project": "KIMBALL COURT III",
+    "address": "5 KIMBALL CT",
+    "town": "WOBURN",
+    "n_units": 167,
+    "yr_pis": 1990
+  },
+  {
+    "project": "BROADWAY TOWER",
+    "address": "250 BROADWAY",
+    "town": "REVERE",
+    "n_units": 95,
+    "yr_pis": 1991
+  },
+  {
+    "project": "KENDRIGAN PLACE",
+    "address": "10 WINTER ST",
+    "town": "QUINCY",
+    "n_units": 78,
+    "yr_pis": 1991
+  },
+  {
+    "project": "KENNEDY BISCUIT LOFTS",
+    "address": "126 FRANKLIN ST",
+    "town": "CAMBRIDGE",
+    "n_units": 142,
+    "yr_pis": 1991
+  },
+  {
+    "project": "LANGHAM COURT",
+    "address": "26 WORCESTER ST",
+    "town": "BOSTON",
+    "n_units": 84,
+    "yr_pis": 1991
+  },
+  {
+    "project": "PARMELEE COURT",
+    "address": "89 NORTHAMPTON ST",
+    "town": "BOSTON",
+    "n_units": 74,
+    "yr_pis": 1991
+  },
+  {
+    "project": "PILOT GROVE",
+    "address": "1 WARREN RD",
+    "town": "STOW",
+    "n_units": 60,
+    "yr_pis": 1991
+  },
+  {
+    "project": "ROXBURY CORNERS",
+    "address": "1797 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 48,
+    "yr_pis": 1991
+  },
+  {
+    "project": "BAY BERRY POINT",
+    "address": "60 BEACH RD",
+    "town": "SALISBURY",
+    "n_units": 30,
+    "yr_pis": 1992
+  },
+  {
+    "project": "LOUIS BARRETT HOUSE",
+    "address": "147 WASHINGTON ST",
+    "town": "LYNN",
+    "n_units": 145,
+    "yr_pis": 1992
+  },
+  {
+    "project": "POINT COOP",
+    "address": "64 HARBOR ST",
+    "town": "SALEM",
+    "n_units": 77,
+    "yr_pis": 1992
+  },
+  {
+    "project": "ST PATRICK'S PLACE",
+    "address": "26 YORK ST",
+    "town": "CAMBRIDGE",
+    "n_units": 32,
+    "yr_pis": 1992
+  },
+  {
+    "project": "WHITNEY-LORENTI HOUSE",
+    "address": "15 SUMMER ST",
+    "town": "EVERETT",
+    "n_units": 50,
+    "yr_pis": 1992
+  },
+  {
+    "project": "CAMBRIDGE YMCA",
+    "address": "820 MASSACHUSETTS AVE",
+    "town": "CAMBRIDGE",
+    "n_units": 136,
+    "yr_pis": 1993
+  },
+  {
+    "project": "CARITAS PROJECT PLACE CORTES LLC",
+    "address": "11 CORTES ST",
+    "town": "BOSTON",
+    "n_units": 48,
+    "yr_pis": 1993
+  },
+  {
+    "project": "PARKVIEW HOUSING",
+    "address": "81 WESTLAND AVE",
+    "town": "BOSTON",
+    "n_units": 63,
+    "yr_pis": 1993
+  },
+  {
+    "project": "PRANG ESTATES",
+    "address": "434 MASSACHUSETTS AVE",
+    "town": "BOSTON",
+    "n_units": 33,
+    "yr_pis": 1993
+  },
+  {
+    "project": "270 HUNTINGTON AVE",
+    "address": "270 HUNTINGTON AVE",
+    "town": "BOSTON",
+    "n_units": 75,
+    "yr_pis": 1994
+  },
+  {
+    "project": "CAPE ANN YMCA COMMUNITY CENTER",
+    "address": "67 MIDDLE ST",
+    "town": "GLOUCESTER",
+    "n_units": 24,
+    "yr_pis": 1994
+  },
+  {
+    "project": "CASTLE SQUARE I",
+    "address": "1 VILLAGE CT",
+    "town": "BOSTON",
+    "n_units": 500,
+    "yr_pis": 1994
+  },
+  {
+    "project": "CROMESETT WOODS",
+    "address": "6 CROMESETT RD",
+    "town": "WAREHAM",
+    "n_units": 27,
+    "yr_pis": 1994
+  },
+  {
+    "project": "PETER FANEUIL HOUSE",
+    "address": "60 JOY ST",
+    "town": "BOSTON",
+    "n_units": 50,
+    "yr_pis": 1994
+  },
+  {
+    "project": "HERITAGE AT VERNON COURT",
+    "address": "430 CENTRE ST",
+    "town": "NEWTON",
+    "n_units": null,
+    "yr_pis": 1994
+  },
+  {
+    "project": "PROJECT HOME",
+    "address": "1688 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 3,
+    "yr_pis": 1994
+  },
+  {
+    "project": "PUTNAM PLACE",
+    "address": "260 PUTNAM AVE",
+    "town": "CAMBRIDGE",
+    "n_units": 12,
+    "yr_pis": 1994
+  },
+  {
+    "project": "SEWELL BUILDING",
+    "address": "156 ELM ST",
+    "town": "MARBLEHEAD",
+    "n_units": 4,
+    "yr_pis": 1994
+  },
+  {
+    "project": "64 BURBANK ST",
+    "address": "64 BURBANK ST",
+    "town": "BOSTON",
+    "n_units": 35,
+    "yr_pis": 1995
+  },
+  {
+    "project": "DANUBE APTS",
+    "address": "621 COLUMBUS AVE",
+    "town": "BOSTON",
+    "n_units": 71,
+    "yr_pis": 1995
+  },
+  {
+    "project": "MARKET STREET APTS",
+    "address": "19 MARKET ST",
+    "town": "CAMBRIDGE",
+    "n_units": 16,
+    "yr_pis": 1995
+  },
+  {
+    "project": "OAK TERRACE",
+    "address": "888 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 88,
+    "yr_pis": 1995
+  },
+  {
+    "project": "SOUTH END LOW COST COOPERATIVE HOUSING",
+    "address": "163 W SPRINGFIELD ST",
+    "town": "BOSTON",
+    "n_units": 75,
+    "yr_pis": 1995
+  },
+  {
+    "project": "SWARTZ PROPERTIES",
+    "address": "80 AUBURN PARK",
+    "town": "CAMBRIDGE",
+    "n_units": 59,
+    "yr_pis": 1995
+  },
+  {
+    "project": "CHESNUT - MARLBORO - GROVE",
+    "address": "12 GROVE ST",
+    "town": "CHELSEA",
+    "n_units": 43,
+    "yr_pis": 1996
+  },
+  {
+    "project": "COHEN FLORENCE LEVINE ESTATES",
+    "address": "201 CAPTAINS ROW",
+    "town": "CHELSEA",
+    "n_units": 63,
+    "yr_pis": 1996
+  },
+  {
+    "project": "CONCORD STREET ELDER HOUSING",
+    "address": "1640 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 40,
+    "yr_pis": 1997
+  },
+  {
+    "project": "PEQUOT HIGHLANDS",
+    "address": "12 FIRST ST",
+    "town": "SALEM",
+    "n_units": 250,
+    "yr_pis": 1997
+  },
+  {
+    "project": "ROCKPORT SCHOOL",
+    "address": "4 BROADWAY",
+    "town": "ROCKPORT",
+    "n_units": 31,
+    "yr_pis": 1997
+  },
+  {
+    "project": "WEST END PLACE",
+    "address": "150 STANIFORD ST",
+    "town": "BOSTON",
+    "n_units": 82,
+    "yr_pis": 1997
+  },
+  {
+    "project": "CHAUNCY HOUSE",
+    "address": "115 CHAUNCY ST",
+    "town": "BOSTON",
+    "n_units": 88,
+    "yr_pis": 1998
+  },
+  {
+    "project": "CROMESETT HEIGHTS",
+    "address": "6 CROMESETT RD",
+    "town": "WAREHAM",
+    "n_units": 18,
+    "yr_pis": 1998
+  },
+  {
+    "project": "KENT STREET APTS",
+    "address": "28 KENT ST",
+    "town": "SOMERVILLE",
+    "n_units": 40,
+    "yr_pis": 1998
+  },
+  {
+    "project": "MEMORIAL DRIVE HOUSING",
+    "address": "808 MEMORIAL DR",
+    "town": "CAMBRIDGE",
+    "n_units": 301,
+    "yr_pis": 1998
+  },
+  {
+    "project": "SOUTH END APTS RENOVATION PROJECT",
+    "address": "216 NORTHAMPTON ST",
+    "town": "BOSTON",
+    "n_units": 83,
+    "yr_pis": 1998
+  },
+  {
+    "project": "VILLAGE AT BROOKLINE",
+    "address": "72 PEARL ST",
+    "town": "BROOKLINE",
+    "n_units": 307,
+    "yr_pis": 1998
+  },
+  {
+    "project": "WARREN APTS",
+    "address": "33 WARREN AVE",
+    "town": "BOSTON",
+    "n_units": 30,
+    "yr_pis": 1998
+  },
+  {
+    "project": "CHURCHILL COURT",
+    "address": "2505 MASSACHUSETTS AVE",
+    "town": "CAMBRIDGE",
+    "n_units": 12,
+    "yr_pis": 1999
+  },
+  {
+    "project": "GRANT MANOR",
+    "address": "1812 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 181,
+    "yr_pis": 1999
+  },
+  {
+    "project": "HARBORLIGHT HOUSE",
+    "address": "1 MONUMENT SQ",
+    "town": "BEVERLY",
+    "n_units": 35,
+    "yr_pis": 1999
+  },
+  {
+    "project": "MANDELA HOMES LP",
+    "address": "1855 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 202,
+    "yr_pis": 1999
+  },
+  {
+    "project": "WEST STOUGHTON VILLAGE",
+    "address": "11 KRISTEN DR",
+    "town": "STOUGHTON",
+    "n_units": 112,
+    "yr_pis": 1999
+  },
+  {
+    "project": "AUBURN PARK",
+    "address": "140 FRANKLIN ST",
+    "town": "CAMBRIDGE",
+    "n_units": 60,
+    "yr_pis": 2000
+  },
+  {
+    "project": "COUNTRYSIDE VILLAGE",
+    "address": "450 BOSTON POST RD E",
+    "town": "MARLBOROUGH",
+    "n_units": 118,
+    "yr_pis": 2000
+  },
+  {
+    "project": "VISITING NURSE ASSISTED LIVING COMMUNITY",
+    "address": "259 LOWELL ST",
+    "town": "SOMERVILLE",
+    "n_units": 97,
+    "yr_pis": 2000
+  },
+  {
+    "project": "WILLOW TRACE APTS",
+    "address": "7 TAUNTON ST",
+    "town": "PLAINVILLE",
+    "n_units": 88,
+    "yr_pis": 2000
+  },
+  {
+    "project": "MISSION PARK LP",
+    "address": "835 HUNTINGTON AVE",
+    "town": "BOSTON",
+    "n_units": 775,
+    "yr_pis": 2000
+  },
+  {
+    "project": "71 WESTLAND AVENUE II LP",
+    "address": "71 WESTLAND AVE",
+    "town": "BOSTON",
+    "n_units": 20,
+    "yr_pis": 2001
+  },
+  {
+    "project": "NEVILLE PLACE ASSISTED LIVING",
+    "address": "650 CONCORD AVE",
+    "town": "CAMBRIDGE",
+    "n_units": 71,
+    "yr_pis": 2001
+  },
+  {
+    "project": "WOLLASTON MANOR - QUINCY",
+    "address": "91 CLAY ST",
+    "town": "QUINCY",
+    "n_units": 150,
+    "yr_pis": 2001
+  },
+  {
+    "project": "34 LINDEN STREET APTS LP",
+    "address": "36 LINDEN ST",
+    "town": "SOMERVILLE",
+    "n_units": 42,
+    "yr_pis": 2002
+  },
+  {
+    "project": "ADMIRAL HILL ASSISTED LIVING II",
+    "address": "175 CAPTAINS ROW",
+    "town": "CHELSEA",
+    "n_units": 36,
+    "yr_pis": 2002
+  },
+  {
+    "project": "SQUIRREL BRAND APTS",
+    "address": "17 BOARDMAN ST",
+    "town": "CAMBRIDGE",
+    "n_units": 20,
+    "yr_pis": 2002
+  },
+  {
+    "project": "BRIGHAM HOUSE",
+    "address": "341 MOUNT AUBURN ST",
+    "town": "WATERTOWN",
+    "n_units": 62,
+    "yr_pis": 2003
+  },
+  {
+    "project": "CAMBRIDGE ALLIANCE",
+    "address": "55 COLUMBIA ST",
+    "town": "CAMBRIDGE",
+    "n_units": 42,
+    "yr_pis": 2003
+  },
+  {
+    "project": "ROLLINS SQUARE",
+    "address": "2 ROLLINS ST",
+    "town": "BOSTON",
+    "n_units": 37,
+    "yr_pis": 2003
+  },
+  {
+    "project": "INTERFAITH APTS",
+    "address": "282 COLUMBUS AVE",
+    "town": "BOSTON",
+    "n_units": 69,
+    "yr_pis": 2004
+  },
+  {
+    "project": "ROBERT L FORTES HOUSE",
+    "address": "541 SHAWMUT AVE",
+    "town": "BOSTON",
+    "n_units": 44,
+    "yr_pis": 2004
+  },
+  {
+    "project": "ROXBURY TENANTS",
+    "address": "44 FRANCIS ST",
+    "town": "BOSTON",
+    "n_units": 20,
+    "yr_pis": 2004
+  },
+  {
+    "project": "THE METROPOLITAN",
+    "address": "1 NASSAU ST",
+    "town": "BOSTON",
+    "n_units": 81,
+    "yr_pis": 2004
+  },
+  {
+    "project": "WARREN SHEPARD STREET",
+    "address": "9 WARREN ST",
+    "town": "LYNN",
+    "n_units": 28,
+    "yr_pis": 2004
+  },
+  {
+    "project": "CROSS STREET HOUSING",
+    "address": "354 CROSS ST",
+    "town": "MALDEN",
+    "n_units": 19,
+    "yr_pis": 2005
+  },
+  {
+    "project": "LANCASTER STREET APTS",
+    "address": "8 LANCASTER ST",
+    "town": "CAMBRIDGE",
+    "n_units": 65,
+    "yr_pis": 2005
+  },
+  {
+    "project": "HILLTOP PRESERVE LP",
+    "address": "100 HILLTOP DR",
+    "town": "WALPOLE",
+    "n_units": 300,
+    "yr_pis": 2005
+  },
+  {
+    "project": "ST JEAN BAPTISTE APTS",
+    "address": "12 LYMAN ST",
+    "town": "LYNN",
+    "n_units": 24,
+    "yr_pis": 2005
+  },
+  {
+    "project": "SALEM POINT RENTAL",
+    "address": "1 PRINCE ST PL",
+    "town": "SALEM",
+    "n_units": 61,
+    "yr_pis": 2005
+  },
+  {
+    "project": "YWCA BOSTON",
+    "address": "140 CLARENDON ST",
+    "town": "BOSTON",
+    "n_units": 184,
+    "yr_pis": 2005
+  },
+  {
+    "project": "ARBOR AT WAKEFIELD",
+    "address": "40 CT ST",
+    "town": "WAKEFIELD",
+    "n_units": 90,
+    "yr_pis": 2006
+  },
+  {
+    "project": "ONE LENOX",
+    "address": "1 E LENOX ST",
+    "town": "BOSTON",
+    "n_units": 26,
+    "yr_pis": 2006
+  },
+  {
+    "project": "POND VIEW VILLAGE",
+    "address": "23 LEPAGE LN",
+    "town": "GLOUCESTER",
+    "n_units": 43,
+    "yr_pis": 2006
+  },
+  {
+    "project": "TROLLEY SQUARE",
+    "address": "2401 MASSACHUSETTS AVE",
+    "town": "CAMBRIDGE",
+    "n_units": 32,
+    "yr_pis": 2006
+  },
+  {
+    "project": "BROWN SCHOOL RESIDENCES",
+    "address": "200 LYNN ST",
+    "town": "PEABODY",
+    "n_units": 61,
+    "yr_pis": 2007
+  },
+  {
+    "project": "QUAIL RUN APTS PHASE I",
+    "address": "12 BUCKLEY RD",
+    "town": "STOUGHTON",
+    "n_units": 108,
+    "yr_pis": 2007
+  },
+  {
+    "project": "QUAIL RUN APTS PHASE II",
+    "address": "12 BUCKLEY RD",
+    "town": "STOUGHTON",
+    "n_units": 24,
+    "yr_pis": 2007
+  },
+  {
+    "project": "ROCKLAND PLACE II",
+    "address": "34 HANNAH WAY",
+    "town": "ROCKLAND",
+    "n_units": 204,
+    "yr_pis": 2007
+  },
+  {
+    "project": "SQUANTUM GARDENS I",
+    "address": "400 E SQUANTUM ST",
+    "town": "QUINCY",
+    "n_units": 144,
+    "yr_pis": 2007
+  },
+  {
+    "project": "1460 DORCHESTER AVE",
+    "address": "1460 DORCHESTER AVE",
+    "town": "BOSTON",
+    "n_units": 43,
+    "yr_pis": 2008
+  },
+  {
+    "project": "ADAMS COURT B",
+    "address": "435 RIVER ST",
+    "town": "BOSTON",
+    "n_units": 45,
+    "yr_pis": 2008
+  },
+  {
+    "project": "ASHMONT TOD",
+    "address": "1900 DORCHESTER AVE",
+    "town": "BOSTON",
+    "n_units": 74,
+    "yr_pis": 2008
+  },
+  {
+    "project": "CHRISTOPHER HEIGHTS OF MARLBOROUGH",
+    "address": "84 CHESTNUT ST",
+    "town": "MARLBOROUGH",
+    "n_units": 83,
+    "yr_pis": 2008
+  },
+  {
+    "project": "DOUGLAS HOUSE",
+    "address": "7 OAKLAND ST",
+    "town": "LEXINGTON",
+    "n_units": 15,
+    "yr_pis": 2008
+  },
+  {
+    "project": "DUDLEY VILLAGE NORTH",
+    "address": "570 DUDLEY ST",
+    "town": "BOSTON",
+    "n_units": 24,
+    "yr_pis": 2008
+  },
+  {
+    "project": "DUDLEY VILLAGE SOUTH",
+    "address": "571 DUDLEY ST",
+    "town": "BOSTON",
+    "n_units": 26,
+    "yr_pis": 2008
+  },
+  {
+    "project": "FRANKLIN HILL REVITALIZATION IA",
+    "address": "101 SHANDON RD",
+    "town": "BOSTON",
+    "n_units": 90,
+    "yr_pis": 2008
+  },
+  {
+    "project": "JANUS HIGHLANDS APTS",
+    "address": "21 GERRISH AVE",
+    "town": "CHELSEA",
+    "n_units": 41,
+    "yr_pis": 2008
+  },
+  {
+    "project": "NEW GIRLS LATIN ACADEMY",
+    "address": "380 TALBOT AVE",
+    "town": "BOSTON",
+    "n_units": 35,
+    "yr_pis": 2008
+  },
+  {
+    "project": "PARKWAY HEIGHTS",
+    "address": "201 CHELSEA ST",
+    "town": "EVERETT",
+    "n_units": 74,
+    "yr_pis": 2008
+  },
+  {
+    "project": "SCHOOL HOUSE BROOKLEDGE & CUMMINS",
+    "address": "60 BROOKLEDGE ST",
+    "town": "BOSTON",
+    "n_units": 90,
+    "yr_pis": 2008
+  },
+  {
+    "project": "TILL BUILDING",
+    "address": "241 BROADWAY",
+    "town": "CHELSEA",
+    "n_units": 23,
+    "yr_pis": 2008
+  },
+  {
+    "project": "VNA SENIOR LIVING COMMUNITY",
+    "address": "405 ALEWIFE BROOK PKWY",
+    "town": "SOMERVILLE",
+    "n_units": 99,
+    "yr_pis": 2008
+  },
+  {
+    "project": "FRANKLIN HILL REVITALIZATION IIA",
+    "address": "1 SHANDON RD",
+    "town": "BOSTON",
+    "n_units": 114,
+    "yr_pis": 2009
+  },
+  {
+    "project": "ST POLYCARP I",
+    "address": "460 MYSTIC AVE",
+    "town": "SOMERVILLE",
+    "n_units": 24,
+    "yr_pis": 2009
+  },
+  {
+    "project": "SCHOOL HOUSE KENILWORTH & WILLIAMS",
+    "address": "6 KENILWORTH ST",
+    "town": "BOSTON",
+    "n_units": 38,
+    "yr_pis": 2009
+  },
+  {
+    "project": "SPENCER GREEN",
+    "address": "113 SPENCER AVE",
+    "town": "CHELSEA",
+    "n_units": 48,
+    "yr_pis": 2009
+  },
+  {
+    "project": "ST AIDANS RENTAL",
+    "address": "150 PLEASANT ST",
+    "town": "BROOKLINE",
+    "n_units": 20,
+    "yr_pis": 2009
+  },
+  {
+    "project": "WAVERLY WOODS - ZONE 6 MCLEAN",
+    "address": "2 OLMSTED DR",
+    "town": "BELMONT",
+    "n_units": 40,
+    "yr_pis": 2009
+  },
+  {
+    "project": "1060 BELMONT ST",
+    "address": "1060 BELMONT ST",
+    "town": "WATERTOWN",
+    "n_units": 18,
+    "yr_pis": 2010
+  },
+  {
+    "project": "CENTRE-CREIGHTON APTS",
+    "address": "363 CENTRE ST",
+    "town": "BOSTON",
+    "n_units": 36,
+    "yr_pis": 2010
+  },
+  {
+    "project": "CHERRY HILL II",
+    "address": "128 CT ST",
+    "town": "PLYMOUTH",
+    "n_units": 35,
+    "yr_pis": 2010
+  },
+  {
+    "project": "OLMSTED GREEN RENTAL HOUSING PHASE II",
+    "address": "3 KINGBIRD RD",
+    "town": "BOSTON",
+    "n_units": 50,
+    "yr_pis": 2010
+  },
+  {
+    "project": "VILLAGE AT 815 MAIN ST",
+    "address": "815 MAIN ST",
+    "town": "WAREHAM",
+    "n_units": 49,
+    "yr_pis": 2010
+  },
+  {
+    "project": "WILBER SCHOOL",
+    "address": "75 S MAIN ST",
+    "town": "SHARON",
+    "n_units": 75,
+    "yr_pis": 2010
+  },
+  {
+    "project": "CWL HOUSING",
+    "address": "270 CENTRE ST",
+    "town": "BOSTON",
+    "n_units": 30,
+    "yr_pis": 2011
+  },
+  {
+    "project": "CHURCH SQUARE SRO",
+    "address": "35 CREIGHTON ST",
+    "town": "BOSTON",
+    "n_units": 29,
+    "yr_pis": 2011
+  },
+  {
+    "project": "CABOT STREET HOMES",
+    "address": "319 CABOT ST",
+    "town": "BEVERLY",
+    "n_units": 43,
+    "yr_pis": 2011
+  },
+  {
+    "project": "CBES DUDLEY SQUARE",
+    "address": "2311 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 57,
+    "yr_pis": 2011
+  },
+  {
+    "project": "CUTLER HEIGHTS HOUSING",
+    "address": "79 HOLLIS ST",
+    "town": "HOLLISTON",
+    "n_units": 30,
+    "yr_pis": 2011
+  },
+  {
+    "project": "ELM PLACE",
+    "address": "1066 CAMBRIDGE ST",
+    "town": "CAMBRIDGE",
+    "n_units": 19,
+    "yr_pis": 2011
+  },
+  {
+    "project": "JAMAICA PLAIN APTS",
+    "address": "48 SCHOOL ST",
+    "town": "BOSTON",
+    "n_units": 103,
+    "yr_pis": 2011
+  },
+  {
+    "project": "LEVEDO BUILDING - TALBOT AVENUE",
+    "address": "245 TALBOT AVE",
+    "town": "BOSTON",
+    "n_units": 24,
+    "yr_pis": 2011
+  },
+  {
+    "project": "BEACON OCEAN SHORES",
+    "address": "1209 OCEAN ST",
+    "town": "MARSHFIELD",
+    "n_units": 97,
+    "yr_pis": 2011
+  },
+  {
+    "project": "OLIVER LOFTS",
+    "address": "166 TER ST",
+    "town": "BOSTON",
+    "n_units": 62,
+    "yr_pis": 2011
+  },
+  {
+    "project": "POND VIEW III",
+    "address": "147 ESSEX AVE",
+    "town": "GLOUCESTER",
+    "n_units": 34,
+    "yr_pis": 2011
+  },
+  {
+    "project": "POWDER HOUSE VILLAGE",
+    "address": "108 CNTY RD",
+    "town": "IPSWICH",
+    "n_units": 48,
+    "yr_pis": 2011
+  },
+  {
+    "project": "SHILLMAN HOUSE",
+    "address": "49 EDMANDS RD",
+    "town": "FRAMINGHAM",
+    "n_units": 150,
+    "yr_pis": 2011
+  },
+  {
+    "project": "SPENCER ROW",
+    "address": "205 SPENCER AVE",
+    "town": "CHELSEA",
+    "n_units": 32,
+    "yr_pis": 2011
+  },
+  {
+    "project": "40 UPTON STREET",
+    "address": "40 UPTON ST",
+    "town": "BOSTON",
+    "n_units": 19,
+    "yr_pis": 2011
+  },
+  {
+    "project": "WASHINGTON BEECH HOPE VI",
+    "address": "4560 WASHINGTON ST",
+    "town": "BOSTON",
+    "n_units": 78,
+    "yr_pis": 2011
+  },
+  {
+    "project": "BARSTOW VILLAGE LLC",
+    "address": "60 LEGION DR",
+    "town": "HANOVER",
+    "n_units": 66,
+    "yr_pis": 2012
+  },
+  {
+    "project": "BLACKSTONE APTS",
+    "address": "33 BLOSSOM ST",
+    "town": "BOSTON",
+    "n_units": 144,
+    "yr_pis": 2012
+  },
+  {
+    "project": "CASTLE SQUARE II",
+    "address": "494 TREMONT ST",
+    "town": "BOSTON",
+    "n_units": 500,
+    "yr_pis": 2012
+  },
+  {
+    "project": "FRANKLIN SQUARE APTS",
+    "address": "11 E NEWTON ST",
+    "town": "BOSTON",
+    "n_units": 193,
+    "yr_pis": 2012
+  },
+  {
+    "project": "HERITAGE 195 PLEASANT ST",
+    "address": "195 PLEASANT ST",
+    "town": "MALDEN",
+    "n_units": 176,
+    "yr_pis": 2012
+  },
+  {
+    "project": "KENMORE ABBEY",
+    "address": "490 COMMONWEALTH AVE",
+    "town": "BOSTON",
+    "n_units": 199,
+    "yr_pis": 2012
+  },
+  {
+    "project": "LBB HOUSING",
+    "address": "756 BLUE HILL AVE",
+    "town": "BOSTON",
+    "n_units": 103,
+    "yr_pis": 2012
+  },
+  {
+    "project": "OLD HIGH SCHOOL COMMONS",
+    "address": "433 MASSACHUSETTS AVE",
+    "town": "ACTON",
+    "n_units": 15,
+    "yr_pis": 2012
+  },
+  {
+    "project": "PUTNAM GREEN",
+    "address": "625 PUTNAM AVE",
+    "town": "CAMBRIDGE",
+    "n_units": 40,
+    "yr_pis": 2012
+  },
+  {
+    "project": "WINTER GARDENS APTS",
+    "address": "45 WINTER ST",
+    "town": "QUINCY",
+    "n_units": 24,
+    "yr_pis": 2012
+  },
+  {
+    "project": "225 CENTRE LLC",
+    "address": "225 CENTRE ST",
+    "town": "BOSTON",
+    "n_units": 103,
+    "yr_pis": 2013
+  },
+  {
+    "project": "TC CAPITOL SQUARE",
+    "address": "252 MASSACHUSETTS AVE",
+    "town": "ARLINGTON",
+    "n_units": 32,
+    "yr_pis": 2013
+  },
+  {
+    "project": "CHARLESVIEW REDEVELOPMENT",
+    "address": "370 WESTERN AVE",
+    "town": "BOSTON",
+    "n_units": 240,
+    "yr_pis": 2013
+  },
+  {
+    "project": "GEORGETOWNE HOMES ONE A",
+    "address": "400A GEORGETOWNE DR",
+    "town": "BOSTON",
+    "n_units": 219,
+    "yr_pis": 2013
+  },
+  {
+    "project": "GEORGETOWNE HOMES ONE B",
+    "address": "400A GEORGETOWNE DR",
+    "town": "BOSTON",
+    "n_units": 382,
+    "yr_pis": 2013
+  },
+  {
+    "project": "HIGHLAND TERRACE",
+    "address": "47 GERRISH AVE",
+    "town": "CHELSEA",
+    "n_units": 32,
+    "yr_pis": 2013
+  },
+  {
+    "project": "HOLCROFT PARK HOMES PHASE II",
+    "address": "23 MILL ST",
+    "town": "BEVERLY",
+    "n_units": 29,
+    "yr_pis": 2013
+  },
+  {
+    "project": "JACLEN TOWER",
+    "address": "215 RANTOUL ST",
+    "town": "BEVERLY",
+    "n_units": 100,
+    "yr_pis": 2013
+  },
+  {
+    "project": "JAMAICA PLAIN SCATTERED SITES COOP",
+    "address": "3 BUCKLEY AVE",
+    "town": "BOSTON",
+    "n_units": 18,
+    "yr_pis": 2013
+  },
+  {
+    "project": "PLEASANT ST APTS",
+    "address": "60 PLEASANT ST",
+    "town": "BEVERLY",
+    "n_units": 33,
+    "yr_pis": 2013
+  },
+  {
+    "project": "ST JOSEPH & APOSS HALL",
+    "address": "2 ROSARY DR",
+    "town": "WATERTOWN",
+    "n_units": 25,
+    "yr_pis": 2013
+  },
+  {
+    "project": "ST JOSEPH & APOSS REDEVELOPMENT",
+    "address": "135 LAFAYETTE ST",
+    "town": "SALEM",
+    "n_units": 51,
+    "yr_pis": 2013
+  },
+  {
+    "project": "SUMMERHILL GLEN",
+    "address": "121 SUMMER HILL GLN",
+    "town": "MAYNARD",
+    "n_units": 120,
+    "yr_pis": 2013
+  },
+  {
+    "project": "WAYNE AT BLUE HILL",
+    "address": "1439 BLUE HILL AVE",
+    "town": "BOSTON",
+    "n_units": 48,
+    "yr_pis": 2013
+  },
+  {
+    "project": "WILKINS GLEN",
+    "address": "1100 WILKINS GLEN RD",
+    "town": "MEDFIELD",
+    "n_units": 103,
+    "yr_pis": 2013
+  },
+  {
+    "project": "BENFIELD FARMS",
+    "address": "575 S ST",
+    "town": "CARLISLE",
+    "n_units": 26,
+    "yr_pis": 2014
+  },
+  {
+    "project": "CONIFER HILL COMMONS I",
+    "address": "121 CONIFER HILL DR",
+    "town": "DANVERS",
+    "n_units": 48,
+    "yr_pis": 2014
+  },
+  {
+    "project": "DUDLEY GREENVILLE",
+    "address": "209 DUDLEY ST",
+    "town": "BOSTON",
+    "n_units": 43,
+    "yr_pis": 2014
+  },
+  {
+    "project": "EDMANDS HOUSE",
+    "address": "15 EDMANDS RD",
+    "town": "FRAMINGHAM",
+    "n_units": 132,
+    "yr_pis": 2014
+  },
+  {
+    "project": "MACHADO HOUSE AT PETER'S GROVE",
+    "address": "11 LAKE ST",
+    "town": "HUDSON",
+    "n_units": 95,
+    "yr_pis": 2014
+  },
+  {
+    "project": "OLD COLONY PHASE 2A",
+    "address": "35 PATTERSON WAY",
+    "town": "BOSTON",
+    "n_units": 45,
+    "yr_pis": 2014
+  },
+  {
+    "project": "OLD COLONY PHASE 2B",
+    "address": "20 PATTERSON WAY",
+    "town": "BOSTON",
+    "n_units": 84,
+    "yr_pis": 2014
+  },
+  {
+    "project": "PILOT GROVE 2",
+    "address": "22 GROVE HILL RD",
+    "town": "STOW",
+    "n_units": 30,
+    "yr_pis": 2014
+  },
+  {
+    "project": "ST POLYCARP III",
+    "address": "5 MEMORIAL RD",
+    "town": "SOMERVILLE",
+    "n_units": 31,
+    "yr_pis": 2014
+  },
+  {
+    "project": "WASHINGTON PARK",
+    "address": "187 WALNUT AVE",
+    "town": "BOSTON",
+    "n_units": 96,
+    "yr_pis": 2014
+  },
+  {
+    "project": "BISHOP ALLEN APARTMENTS",
+    "address": "70 + 77 BISHOP ALLEN DRIVE; 51 + 62 NORFOLK STREET",
+    "town": "CAMBRIDGE",
+    "n_units": 32,
+    "yr_pis": 2015
+  },
+  {
+    "project": "GEORGETOWNE HOMES 1A",
+    "address": "400A GEORGETOWNE DRIVE",
+    "town": "BOSTON",
+    "n_units": 219,
+    "yr_pis": 2015
+  },
+  {
+    "project": "GEORGETOWNE HOMES 1B",
+    "address": "400A GEORGETOWNE DRIVE",
+    "town": "BOSTON",
+    "n_units": 382,
+    "yr_pis": 2015
+  },
+  {
+    "project": "JACKSON COMMONS",
+    "address": "1540-1542 COLUMBUS AVE",
+    "town": "BOSTON",
+    "n_units": 37,
+    "yr_pis": 2015
+  },
+  {
+    "project": "OLD COLONY PHASE 2C",
+    "address": "242-250 OLD COLONY AVENUE (THIS IS THE ADDRESS OF BUILDING A)",
+    "town": "BOSTON",
+    "n_units": 40,
+    "yr_pis": 2015
+  },
+  {
+    "project": "ONE GREENWAY FKA PARCEL 24 AFF RENTAL(FKA PHI+ II)",
+    "address": "KNEELAND AND HUDSON STREETS",
+    "town": "BOSTON",
+    "n_units": 95,
+    "yr_pis": 2015
+  },
+  {
+    "project": "TEMPLE PLACE",
+    "address": "7 TEMPLE STREET",
+    "town": "CAMBRIDGE",
+    "n_units": 40,
+    "yr_pis": 2015
+  },
+  {
+    "project": "UPHAMS CORNER RESIDENTIAL",
+    "address": "530 COLUMBIA ROAD",
+    "town": "BOSTON",
+    "n_units": 47,
+    "yr_pis": 2015
+  },
+  {
+    "project": "WALNUT WASHINGTON APARTMENTS",
+    "address": "38 WALNUT PARK, 11-15 WALDREN ROAD, 361-363 WALNUT AVENUE, 3224-3234 WASHINGTON STREET",
+    "town": "BOSTON",
+    "n_units": 65,
+    "yr_pis": 2015
+  },
+  {
+    "project": "GEORGETOWN HOMES PHASE ONE",
+    "address": "11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41 GEORGETOWN DRIVE",
+    "town": "BOSTON",
+    "n_units": 219,
+    "yr_pis": 2015
+  },
+  {
+    "project": "HUDSON STREET GATEWAY",
+    "address": "66 HUDSON STREEET",
+    "town": "BOSTON",
+    "n_units": 45,
+    "yr_pis": 2015
+  },
+  {
+    "project": "JACKSON COMMONS",
+    "address": "1540-1542 COLUMBUS AVENUE",
+    "town": "BOSTON",
+    "n_units": 85,
+    "yr_pis": 2015
+  },
+  {
+    "project": "MALDEN MILLS II",
+    "address": "600 BROADWAY STREET",
+    "town": "BOSTON",
+    "n_units": 18,
+    "yr_pis": 2015
+  },
+  {
+    "project": "OLD COLONY PHASE TWO C",
+    "address": "1-7 JOSEPH AGRI STREET",
+    "town": "BOSTON",
+    "n_units": 39,
+    "yr_pis": 2015
+  },
+  {
+    "project": "PARC AT MEDFIELD PHASE II",
+    "address": "300 GATEHOUSE DRIVE",
+    "town": "MEDFIELD",
+    "n_units": 44,
+    "yr_pis": 2015
+  },
+  {
+    "project": "TRUSTMAN APTS/86 DUMMER STREET",
+    "address": "86 DUMMER STREET",
+    "town": "BROOKLINE",
+    "n_units": 25,
+    "yr_pis": 2015
+  },
+  {
+    "project": "AUBURN COURT",
+    "address": "80 AUBURN COURT",
+    "town": "BOSTON",
+    "n_units": 77,
+    "yr_pis": 2015
+  },
+  {
+    "project": "BEDFORD GREEN",
+    "address": "200 SPRINGS ROAD",
+    "town": "BEDFORD",
+    "n_units": 71,
+    "yr_pis": 2015
+  },
+  {
+    "project": "RTH RIVERWAY",
+    "address": "80-82 FENWAY ROAD",
+    "town": "BOSTON",
+    "n_units": 60,
+    "yr_pis": 2015
+  },
+  {
+    "project": "MADISON BOTOLPH II",
+    "address": "351-367 MASSACHUSETTS AVENUE",
+    "town": "BOSTON",
+    "n_units": 52,
+    "yr_pis": 2016
+  },
+  {
+    "project": "TEMPLE PLACE",
+    "address": "5 TEMPLE STREET",
+    "town": "CAMBRIDGE",
+    "n_units": 41,
+    "yr_pis": 2016
+  },
+  {
+    "project": "51-57 BEALS STREET",
+    "address": "55-57 BEALS STREET",
+    "town": "BROOKLINE",
+    "n_units": 31,
+    "yr_pis": 2016
+  },
+  {
+    "project": "ISLAND CREEK VILLAGE NORTH AGE RESTRICTED",
+    "address": "32 TREMONT STREET",
+    "town": "DUXBURY",
+    "n_units": 94,
+    "yr_pis": 2016
+  },
+  {
+    "project": "ISLAND CREEK VILLAGE NORTH UNRESTRICTED",
+    "address": "2 MILE BROOK ROAD",
+    "town": "DUXBURY",
+    "n_units": 120,
+    "yr_pis": 2016
+  },
+  {
+    "project": "WALNUT APARTMENTS",
+    "address": "459-461 WALNUT AVENUE",
+    "town": "BOSTON",
+    "n_units": 31,
+    "yr_pis": 2016
+  },
+  {
+    "project": "BC HIGHLAND GLENN",
+    "address": "1104-1330 HIGHLAND GLENN ROAD",
+    "town": "WESTWOOD",
+    "n_units": 180,
+    "yr_pis": 2016
+  },
+  {
+    "project": "189 BROADWAY",
+    "address": "1 BEACH STREET",
+    "town": "REVERE",
+    "n_units": 39,
+    "yr_pis": 2017
+  },
+  {
+    "project": "BRISTON ARMS",
+    "address": "237-239 GARDEN STREET",
+    "town": "CAMBRIDGE",
+    "n_units": 154,
+    "yr_pis": 2017
+  },
+  {
+    "project": "COTTAGE BROOK APARTMENTS",
+    "address": "93-95 BROOK AVENUE",
+    "town": "BOSTON",
+    "n_units": 147,
+    "yr_pis": 2017
+  },
+  {
+    "project": "75 AMORY",
+    "address": "75 AMORY AVENUE",
+    "town": "BOSTON",
+    "n_units": 39,
+    "yr_pis": 2017
+  },
+  {
+    "project": "FITCHBURG YARN",
+    "address": "6 FANEUIL HALL MARKETPLACE",
+    "town": "BOSTON",
+    "n_units": 96,
+    "yr_pis": 2017
+  },
+  {
+    "project": "RINDGE TOWER",
+    "address": "402 RINDGE AVENUE",
+    "town": "CAMBRIDGE",
+    "n_units": 273,
+    "yr_pis": 2017
+  },
+  {
+    "project": "WHITTIER PLACE",
+    "address": "60 SOUTHERN AVENUE",
+    "town": "BOSTON",
+    "n_units": 44,
+    "yr_pis": 2017
+  },
+  {
+    "project": "JAS CONSOLIDATED",
+    "address": "51-53 BRISTOL STREET",
+    "town": "CAMBRIDGE",
+    "n_units": 112,
+    "yr_pis": 2017
+  },
+  {
+    "project": "WAYNE AT BICKNELL",
+    "address": "92-94 ESMOND STREET",
+    "town": "BOSTON",
+    "n_units": 72,
+    "yr_pis": 2017
+  },
+  {
+    "project": "48 BOYLSTON",
+    "address": "48-52 BOYLSTON STREET",
+    "town": "BOSTON",
+    "n_units": 46,
+    "yr_pis": 2018
+  },
+  {
+    "project": "BOSTON STREET CROSSING",
+    "address": "43 BOSTON STREET",
+    "town": "SALEM",
+    "n_units": 26,
+    "yr_pis": 2018
+  },
+  {
+    "project": "BURBANK GARDENS",
+    "address": "31 BURBANK STREET",
+    "town": "BOSTON",
+    "n_units": 52,
+    "yr_pis": 2018
+  },
+  {
+    "project": "ORIENT HEIGHTS",
+    "address": "232-246 WALDEMAR AVENUE",
+    "town": "BOSTON",
+    "n_units": 88,
+    "yr_pis": 2018
+  },
+  {
+    "project": "RESIDENCES AT FAIRMOUNT STATION",
+    "address": "11 NOTT STREET",
+    "town": "BOSTON",
+    "n_units": 27,
+    "yr_pis": 2018
+  },
+  {
+    "project": "HARBOR LAFAYETTE",
+    "address": "15-17 HARBOR STREET",
+    "town": "SALEM",
+    "n_units": 27,
+    "yr_pis": 2019
+  },
+  {
+    "project": "RESIDENCES AT SALISBURY",
+    "address": "29 ELM STREET, BUILDING B",
+    "town": "SALISBURY",
+    "n_units": 42,
+    "yr_pis": 2019
+  },
+  {
+    "project": "BARTLETT BUILDING B",
+    "address": "2565 WASHINGTON STREET",
+    "town": "BOSTON",
+    "n_units": 55,
+    "yr_pis": 2019
+  },
+  {
+    "project": "MECHANIC MILL",
+    "address": "67 MECHANIC MILL, SUITE 500",
+    "town": "BOSTON",
+    "n_units": 130,
+    "yr_pis": 2019
+  },
+  {
+    "project": "PARIS VILLAGE",
+    "address": "191 PARIS STREET",
+    "town": "BOSTON",
+    "n_units": 62,
+    "yr_pis": 2019
+  },
+  {
+    "project": "THE CLARION",
+    "address": "295-311 BLUE HILL AVENUE",
+    "town": "BOSTON",
+    "n_units": 63,
+    "yr_pis": 2019
+  },
+  {
+    "project": "370 HARVARD STREET",
+    "address": "370 HARVARD STREET",
+    "town": "BROOKLINE",
+    "n_units": 62,
+    "yr_pis": 2019
+  },
+  {
+    "project": "ASHMONT TOD",
+    "address": "1971-1977 DORCHESTER AVENUE, UNIT 1",
+    "town": "BOSTON",
+    "n_units": 74,
+    "yr_pis": 2020
+  },
+  {
+    "project": "BC HIGHLAND GLENN",
+    "address": "1104-1330 HIGHLAND GLENN ROAD",
+    "town": "WESTWOOD",
+    "n_units": 180,
+    "yr_pis": 2020
+  },
+  {
+    "project": "BOSTON STREET",
+    "address": "43 BOSTON STREET",
+    "town": "SALEM",
+    "n_units": 26,
+    "yr_pis": 2020
+  },
+  {
+    "project": "HARBOR LAFAYETTE",
+    "address": "15-17 HARBOR STREET",
+    "town": "SALEM",
+    "n_units": 27,
+    "yr_pis": 2020
+  },
+  {
+    "project": "JEFFERSON PARK",
+    "address": "1 CLIFTON PLACE",
+    "town": "CAMBRIDGE",
+    "n_units": 31,
+    "yr_pis": 2020
+  },
+  {
+    "project": "ORIENT HEIGHT PHASE 3",
+    "address": "232-246 WALDEMAR AVENUE",
+    "town": "BOSTON",
+    "n_units": 88,
+    "yr_pis": 2020
+  },
+  {
+    "project": "WAYNE AT BICKNELL 2",
+    "address": "92-94 ESMOND STREET",
+    "town": "BOSTON",
+    "n_units": 72,
+    "yr_pis": 2020
+  },
+  {
+    "project": "ASIAN CDC OAK TERRACE",
+    "address": "1-7 OAK STREET",
+    "town": "BOSTON",
+    "n_units": 88,
+    "yr_pis": 2020
+  },
+  {
+    "project": "COOLIDGE AT SUDBURY PHASE 2",
+    "address": "187 BOSTON POST ROAD",
+    "town": "SUDBURY",
+    "n_units": 56,
+    "yr_pis": 2020
+  },
+  {
+    "project": "ROBERT HILL WAY",
+    "address": "ONE ROBERT HILL WAY",
+    "town": "ASHLAND",
+    "n_units": 64,
+    "yr_pis": 2020
+  },
+  {
+    "project": "SQUIRRELWOOD",
+    "address": "40 MARKET STREET",
+    "town": "CAMBRIDGE",
+    "n_units": 88,
+    "yr_pis": 2020
+  },
+  {
+    "project": "TALBOT COMMONS PHASE 1",
+    "address": "18-20 NEW ENGLAND AVENUE",
+    "town": "BOSTON",
+    "n_units": 40,
+    "yr_pis": 2020
+  },
+  {
+    "project": "TANNERY",
+    "address": "15 CROWNINSHIELD STREET, BUILDING N",
+    "town": "PEABODY",
+    "n_units": 284,
+    "yr_pis": 2020
+  },
+  {
+    "project": "WAYNE AT SCHUYLER",
+    "address": "35 WALES STREET",
+    "town": "BOSTON",
+    "n_units": 74,
+    "yr_pis": 2020
+  },
+  {
+    "project": "25 ARMORY",
+    "address": "25 ARMORY STREET",
+    "town": "BOSTON",
+    "n_units": 44,
+    "yr_pis": 2020
+  },
+  {
+    "project": "571 REVERE STREET",
+    "address": "571 REVERE STREET",
+    "town": "BOSTON",
+    "n_units": 51,
+    "yr_pis": 2020
+  },
+  {
+    "project": "COTE VILLAGE",
+    "address": "38 REGIS ROAD",
+    "town": "BOSTON",
+    "n_units": 24,
+    "yr_pis": 2020
+  },
+  {
+    "project": "DOWNING SQUARE",
+    "address": "112 LOWELL STREET",
+    "town": "ARLINGTON",
+    "n_units": 48,
+    "yr_pis": 2020
+  },
+  {
+    "project": "FROST TERRACE",
+    "address": "1785 MASSCHUSETTS AVENUE",
+    "town": "CAMBRIDGE",
+    "n_units": 40,
+    "yr_pis": 2020
+  },
+  {
+    "project": "GLEN BROOK WAY",
+    "address": "4 GLEN BROOK WAY",
+    "town": "MEDWAY",
+    "n_units": 48,
+    "yr_pis": 2020
+  },
+  {
+    "project": "HARBOR VILLAGE",
+    "address": "205 MAIN STREET AND 5 ELM STREET",
+    "town": "GLOUCESTER",
+    "n_units": 30,
+    "yr_pis": 2020
+  },
+  {
+    "project": "LYDIA SQUARE",
+    "address": "80 NORMAN STREET",
+    "town": "ROCKLAND",
+    "n_units": 44,
+    "yr_pis": 2020
+  },
+  {
+    "project": "OLD COLONY PHASE 3 A9",
+    "address": "20 REVEREND BURK STREET",
+    "town": "BOSTON",
+    "n_units": 27,
+    "yr_pis": 2020
+  },
+  {
+    "project": "OLD COLONY PHASE 3 B9",
+    "address": "271 EAST 8TH STREET",
+    "town": "BOSTON",
+    "n_units": 27,
+    "yr_pis": 2020
+  },
+  {
+    "project": "OLMSTED GREEN PHASE 4",
+    "address": "529 HARVARD STREET",
+    "town": "BOSTON",
+    "n_units": 47,
+    "yr_pis": 2020
+  },
+  {
+    "project": "LIGHTHOUSES APARTMENTS",
+    "address": "47 LEAVITT STREET",
+    "town": "SALEM",
+    "n_units": 46,
+    "yr_pis": 2020
+  },
+  {
+    "project": "MICHAEL E. HAYNES",
+    "address": "8 CLIFFORD STREET",
+    "town": "BOSTON",
+    "n_units": 55,
+    "yr_pis": 2020
+  },
+  {
+    "project": "SENIOR RESIDENCES AT THE MACHON",
+    "address": "35 BURPEE ROAD",
+    "town": "SWAMPSCOTT",
+    "n_units": 38,
+    "yr_pis": 2021
+  },
+  {
+    "project": "140 CLARENDON",
+    "address": "140 CLARENDON STREET",
+    "town": "BOSTON",
+    "n_units": 210,
+    "yr_pis": 2023
+  },
+  {
+    "project": "270 BAKER STREET",
+    "address": "270 BAKER STREET",
+    "town": "BOSTON",
+    "n_units": 60,
+    "yr_pis": 2023
+  },
+  {
+    "project": "DUDLEY CROSSING",
+    "address": "375-385 DUDLEY STREET",
+    "town": "BOSTON",
+    "n_units": 47,
+    "yr_pis": 2023
+  },
+  {
+    "project": "GRANITE STREET BULDING A",
+    "address": "5 GRANITE STREET BUILDING A",
+    "town": "ROCKPORT",
+    "n_units": 23,
+    "yr_pis": 2023
+  },
+  {
+    "project": "HAYWOOD HOUSE",
+    "address": "111 JFK CIRCLE",
+    "town": "NEWTON",
+    "n_units": 55,
+    "yr_pis": 2023
+  },
+  {
+    "project": "HOLBROOK",
+    "address": "120 NORTH FRANKLIN STREET",
+    "town": "HOLBROOK",
+    "n_units": 72,
+    "yr_pis": 2023
+  },
+  {
+    "project": "MORTON STATION",
+    "address": "872 MORTON STREET",
+    "town": "BOSTON",
+    "n_units": 28,
+    "yr_pis": 2023
+  },
+  {
+    "project": "PARCEL 25 PHASE 2",
+    "address": "1 HALLECK STREET",
+    "town": "BOSTON",
+    "n_units": 46,
+    "yr_pis": 2023
+  },
+  {
+    "project": "SIMON C. FIRMAN EXPANSION",
+    "address": "640 NORTH MAIN STREET",
+    "town": "RANDOLPH",
+    "n_units": 45,
+    "yr_pis": 2023
+  },
+  {
+    "project": "TAVERNIER",
+    "address": "446 MASSACHUSETTS AVENUE",
+    "town": "ACTON",
+    "n_units": 31,
+    "yr_pis": 2023
+  },
+  {
+    "project": "9 LEYLAND",
+    "address": "9 LEYLAND STREET",
+    "town": "BOSTON",
+    "n_units": 43,
+    "yr_pis": 2024
+  },
+  {
+    "project": "BARTLETT LOT D",
+    "address": "56 BARTLETT STATION DRIVE",
+    "town": "BOSTON",
+    "n_units": 50,
+    "yr_pis": 2024
+  },
+  {
+    "project": "GBW SENIOR",
+    "address": "2 GLEN BROOK WAY",
+    "town": "MEDWAY",
+    "n_units": 44,
+    "yr_pis": 2024
+  },
+  {
+    "project": "GRACE APARTMENTS",
+    "address": "187 SUMNER STREET",
+    "town": "BOSTON",
+    "n_units": 42,
+    "yr_pis": 2024
+  },
+  {
+    "project": "RINDGE COMMONS",
+    "address": "1035 CAMBRIDGE STREET",
+    "town": "CAMBRIDGE",
+    "n_units": 24,
+    "yr_pis": 2024
+  },
+  {
+    "project": "WALANDO HOMES",
+    "address": "25 ORLANDO STREET",
+    "town": "BOSTON",
+    "n_units": 59,
+    "yr_pis": 2024
+  },
+  {
+    "project": "110 PETERBOROUGH STREET LP",
+    "address": "110 PETERBOROUGH ST",
+    "town": "BOSTON",
+    "n_units": 48,
+    "yr_pis": null
+  },
+  {
+    "project": "240 CONANT STREET",
+    "address": "240 CONANT ST",
+    "town": "DANVERS",
+    "n_units": 18,
+    "yr_pis": null
+  },
+  {
+    "project": "27TH ST DEVELOPMENT",
+    "address": "270 HUNTINGTON AVE APT 609",
+    "town": "BOSTON",
+    "n_units": 3,
+    "yr_pis": null
+  },
+  {
+    "project": "51-57 BEALS STREET",
+    "address": "57 BEALS ST",
+    "town": "BROOKLINE",
+    "n_units": 31,
+    "yr_pis": null
+  },
+  {
+    "project": "525 BEACH",
+    "address": "525 BEACH ST",
+    "town": "REVERE",
+    "n_units": 30,
+    "yr_pis": null
+  },
+  {
+    "project": "6 FORT STREET APTS",
+    "address": "6 FT ST",
+    "town": "QUINCY",
+    "n_units": 34,
+    "yr_pis": null
+  },
+  {
+    "project": "62 PLEASANT STREET",
+    "address": "62 PLEASANT ST",
+    "town": "BEVERLY",
+    "n_units": 32,
+    "yr_pis": null
+  },
+  {
+    "project": "64 70 BURBANK STREET",
+    "address": "70 BURBANK ST",
+    "town": "BOSTON",
+    "n_units": 31,
+    "yr_pis": null
+  },
+  {
+    "project": "86 DUMMER",
+    "address": "150 AMORY ST",
+    "town": "BROOKLINE",
+    "n_units": 32,
+    "yr_pis": null
+  },
+  {
+    "project": "BEDFORD GREEN",
+    "address": "BEDFORD VETERANS\u00e2\u20ac\u2122 ADMINISTRATION MEDICAL CTR",
+    "town": "BEDFORD",
+    "n_units": 70,
+    "yr_pis": null
+  },
+  {
+    "project": "BRIDGEVIEW CENTER",
+    "address": "400 RUTHERFORD AVE",
+    "town": "BOSTON",
+    "n_units": 61,
+    "yr_pis": null
+  },
+  {
+    "project": "BROWNSTONE APTS LLC",
+    "address": "12 WELLINGTON ST",
+    "town": "BOSTON",
+    "n_units": 73,
+    "yr_pis": null
+  },
+  {
+    "project": "CAPEN COURT APTS",
+    "address": "1 CAPEN CT",
+    "town": "SOMERVILLE",
+    "n_units": 95,
+    "yr_pis": null
+  },
+  {
+    "project": "CEDAR GLEN",
+    "address": "3 ELDERBERRY LN",
+    "town": "READING",
+    "n_units": 114,
+    "yr_pis": null
+  },
+  {
+    "project": "CENTRAL GRAMMAR APTS",
+    "address": "10 DALE AVE",
+    "town": "GLOUCESTER",
+    "n_units": 78,
+    "yr_pis": null
+  },
+  {
+    "project": "CLARENDON HILL TOWERS",
+    "address": "1370 BROADWAY",
+    "town": "SOMERVILLE",
+    "n_units": 472,
+    "yr_pis": null
+  },
+  {
+    "project": "COLUMBIA CAST LLC",
+    "address": "55 57 OR 59 COLUMBIA RD",
+    "town": "CAMBRIDGE",
+    "n_units": 37,
+    "yr_pis": null
+  },
+  {
+    "project": "CONIFER HILL COMMONS II",
+    "address": "121 CONIFER HILL DR",
+    "town": "DANVERS",
+    "n_units": 42,
+    "yr_pis": null
+  },
+  {
+    "project": "HOLCROFT PARK HOMES ONE LP",
+    "address": "9 MILL ST",
+    "town": "BEVERLY",
+    "n_units": 28,
+    "yr_pis": null
+  },
+  {
+    "project": "HONG LOK HOUSE",
+    "address": "15 ESSEX ST",
+    "town": "BOSTON",
+    "n_units": 40,
+    "yr_pis": null
+  },
+  {
+    "project": "INMAN CAST 2",
+    "address": "49 53 COLUMBIA ST",
+    "town": "CAMBRIDGE",
+    "n_units": 113,
+    "yr_pis": null
+  },
+  {
+    "project": "JACKSON GARDENS",
+    "address": "JACKSON GARDENS",
+    "town": "CAMBRIDGE",
+    "n_units": 45,
+    "yr_pis": null
+  },
+  {
+    "project": "LINCOLN WAY",
+    "address": "68 70 LINCOLN WAY",
+    "town": "CAMBRIDGE",
+    "n_units": 62,
+    "yr_pis": null
+  },
+  {
+    "project": "LYNDON B JOHNSON APTS LLC",
+    "address": "150 ERIE ST",
+    "town": "CAMBRIDGE",
+    "n_units": 175,
+    "yr_pis": null
+  },
+  {
+    "project": "MUSTERFIELD PLACE LLC",
+    "address": "554 596 CONCORD ST",
+    "town": "FRAMINGHAM",
+    "n_units": 110,
+    "yr_pis": null
+  },
+  {
+    "project": "PARCEL 24 AFFORDABLE RENTAL",
+    "address": "99 KNEELAND ST",
+    "town": "BOSTON",
+    "n_units": 95,
+    "yr_pis": null
+  },
+  {
+    "project": "PRI GLEN GROVE LLC",
+    "address": "60 GROVE ST",
+    "town": "WELLESLEY",
+    "n_units": 123,
+    "yr_pis": null
+  },
+  {
+    "project": "PRI LONGFELLOW GLEN LLC",
+    "address": "655 BOSTON POST RD",
+    "town": "SUDBURY",
+    "n_units": 120,
+    "yr_pis": null
+  },
+  {
+    "project": "PRI NEHOIDEN GLEN LLC",
+    "address": "1055 CENTRAL AVE",
+    "town": "NEEDHAM",
+    "n_units": 59,
+    "yr_pis": null
+  },
+  {
+    "project": "PRI NOONAN GLEN LLC",
+    "address": "75 HEMINGWAY ST",
+    "town": "WINCHESTER",
+    "n_units": 18,
+    "yr_pis": null
+  },
+  {
+    "project": "PRI OLD MILL GLEN LLC",
+    "address": "410 DAWN RD",
+    "town": "MAYNARD",
+    "n_units": 50,
+    "yr_pis": null
+  },
+  {
+    "project": "SALEM TOWERS",
+    "address": "280 SALEM ST",
+    "town": "MALDEN",
+    "n_units": 79,
+    "yr_pis": null
+  },
+  {
+    "project": "ST KEVIN'S RESIDENTIAL",
+    "address": "COLUMBIA RD & BIRD ST",
+    "town": "BOSTON",
+    "n_units": 33,
+    "yr_pis": null
+  },
+  {
+    "project": "ST POLYCARP II",
+    "address": "480 MYSTIC AVE",
+    "town": "SOMERVILLE",
+    "n_units": 29,
+    "yr_pis": null
+  },
+  {
+    "project": "STANDARD BOX APTS",
+    "address": "22 GERRISH AVE",
+    "town": "CHELSEA",
+    "n_units": 50,
+    "yr_pis": null
+  },
+  {
+    "project": "THE COOLIDGE AT SUDBURY",
+    "address": "189 BOSTON POST RD",
+    "town": "SUDBURY",
+    "n_units": 64,
+    "yr_pis": null
+  },
+  {
+    "project": "THE HOMES AT OLD COLONY",
+    "address": "19 29 GENERAL J PILSUDSKI WAY",
+    "town": "BOSTON",
+    "n_units": 116,
+    "yr_pis": null
+  },
+  {
+    "project": "THE PARC AT MEDFIELD PHASE I",
+    "address": "WEST ST",
+    "town": "MEDFIELD",
+    "n_units": 48,
+    "yr_pis": null
+  },
+  {
+    "project": "THE VILLAGE AT BROOKLINE",
+    "address": "16 THRU 38 VILLAGE WAY",
+    "town": "BROOKLINE",
+    "n_units": 197,
+    "yr_pis": null
+  },
+  {
+    "project": "TURTLE CREEK HOUSING LLC",
+    "address": "401 ESSEX ST",
+    "town": "BEVERLY",
+    "n_units": 109,
+    "yr_pis": null
+  },
+  {
+    "project": "EAST CANTON STREET APTS",
+    "address": "109 E CANTON ST",
+    "town": "BOSTON",
+    "n_units": 80,
+    "yr_pis": 2006
+  },
+  {
+    "project": "LEVENTHAL HOUSE",
+    "address": "40 WALLINGFORD RD",
+    "town": "BOSTON",
+    "n_units": 255,
+    "yr_pis": 2007
+  }
+]

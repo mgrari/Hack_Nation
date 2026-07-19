@@ -48,6 +48,14 @@ export type ChecklistItem = {
   status: "present" | "missing" | "expired";
 };
 
+export type Property = {
+  project: string;
+  address: string;
+  town: string;
+  n_units: number | null;
+  yr_pis: number | null;
+};
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${BASE_URL}${path}`, {
     ...init,
@@ -136,6 +144,18 @@ export async function downloadPacket(householdSize: number, amiTier: string) {
     throw new Error(`${response.status}: ${detail}`);
   }
   return response.blob();
+}
+
+export function getTowns() {
+  return request<{ towns: string[] }>("/properties/towns");
+}
+
+export function getProperties(city?: string, minUnits?: number) {
+  const params = new URLSearchParams();
+  if (city) params.set("city", city);
+  if (minUnits) params.set("min_units", String(minUnits));
+  const qs = params.toString();
+  return request<{ properties: Property[] }>(`/properties${qs ? `?${qs}` : ""}`);
 }
 
 export function deleteSession() {

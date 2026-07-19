@@ -4,6 +4,7 @@ const STEPS = [
   { href: "/profile", num: 1, label: "PROFILE" },
   { href: "/understand", num: 2, label: "UNDERSTAND" },
   { href: "/prepare", num: 3, label: "PREPARE" },
+  { href: "/discover", num: 4, label: "DISCOVER" },
 ] as const;
 
 export function StepNav({ current }: { current: (typeof STEPS)[number]["href"] }) {
