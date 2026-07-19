@@ -176,6 +176,15 @@ def test_upload_does_not_propagate_injected_eligibility_claims(client, monkeypat
     )
     assert confirm.status_code == 200
 
+    from db import get_db
+    from main import app
+    from models import FieldRecord
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    db.add(FieldRecord(document_id=document_id, field_name="pay_frequency", confirmed_value="monthly", confirmed=True))
+    db.commit()
+
     calc_response = client.post("/calculate", json={"household_size": 4, "ami_tier": "60"})
     assert calc_response.status_code == 200
     calc_body = calc_response.json()

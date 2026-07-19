@@ -3,7 +3,7 @@ from openai import OpenAI
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from calculator import calculate_income_vs_threshold
+from calculator import annualize, calculate_income_vs_threshold
 from config import settings
 from db import get_db
 from models import AuditLogRecord, DocumentRecord, FieldRecord
@@ -40,12 +40,29 @@ def calculate(
             detail="No confirmed gross_pay field found. Confirm a field first.",
         )
 
+    confirmed_frequency_field = (
+        db.query(FieldRecord)
+        .join(DocumentRecord, FieldRecord.document_id == DocumentRecord.id)
+        .filter(
+            DocumentRecord.session_id == session_id,
+            FieldRecord.confirmed.is_(True),
+            FieldRecord.field_name == "pay_frequency",
+        )
+        .first()
+    )
+    if not confirmed_frequency_field:
+        raise HTTPException(
+            status_code=400,
+            detail="No confirmed pay_frequency field found. Confirm a field first.",
+        )
+
     try:
-        annual_income = sum(float(f.confirmed_value) for f in confirmed_income_fields) * 12
+        gross_pay = sum(float(f.confirmed_value) for f in confirmed_income_fields)
+        annual_income = annualize(gross_pay, confirmed_frequency_field.confirmed_value)
     except (TypeError, ValueError) as exc:
         raise HTTPException(
             status_code=400,
-            detail=f"gross_pay field has a non-numeric confirmed_value: {exc}",
+            detail=f"gross_pay or pay_frequency field is invalid: {exc}",
         )
     result = calculate_income_vs_threshold(annual_income, body.household_size, body.ami_tier)
 

@@ -82,6 +82,7 @@ def test_get_packet_returns_pdf(client):
     db.add(doc)
     db.commit()
     db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="7500", confirmed=True))
+    db.add(FieldRecord(document_id=doc.id, field_name="pay_frequency", confirmed_value="monthly", confirmed=True))
     db.commit()
 
     response = client.get("/packet?household_size=4&ami_tier=60")
@@ -110,8 +111,30 @@ def test_get_packet_rejects_non_numeric_confirmed_value(client):
     db.add(doc)
     db.commit()
     db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="not-a-number", confirmed=True))
+    db.add(FieldRecord(document_id=doc.id, field_name="pay_frequency", confirmed_value="monthly", confirmed=True))
     db.commit()
 
     response = client.get("/packet?household_size=4&ami_tier=60")
     assert response.status_code == 400
     assert "gross_pay" in response.json()["detail"]
+
+
+def test_get_packet_requires_confirmed_pay_frequency(client):
+    from db import get_db
+    from main import app
+    from models import DocumentRecord, FieldRecord
+
+    client.post("/consent")
+    session_id = client.cookies.get("realdoor_session")
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    doc = DocumentRecord(session_id=session_id, encrypted_path="unused", content_type="application/pdf")
+    db.add(doc)
+    db.commit()
+    db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="7500", confirmed=True))
+    db.commit()
+
+    response = client.get("/packet?household_size=4&ami_tier=60")
+    assert response.status_code == 400
+    assert "pay_frequency" in response.json()["detail"]

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
-from calculator import calculate_income_vs_threshold
+from calculator import annualize, calculate_income_vs_threshold
 from checklist import evaluate_checklist
 from db import get_db
 from models import AuditLogRecord, ConsentRecord
@@ -35,13 +35,18 @@ def get_packet(
             status_code=400,
             detail="No confirmed gross_pay field found. Confirm a field first.",
         )
+    if "pay_frequency" not in confirmed_fields:
+        raise HTTPException(
+            status_code=400,
+            detail="No confirmed pay_frequency field found. Confirm a field first.",
+        )
 
     try:
-        annual_income = float(confirmed_fields["gross_pay"]) * 12
+        annual_income = annualize(float(confirmed_fields["gross_pay"]), confirmed_fields["pay_frequency"])
     except (TypeError, ValueError) as exc:
         raise HTTPException(
             status_code=400,
-            detail=f"gross_pay field has a non-numeric confirmed_value: {exc}",
+            detail=f"gross_pay or pay_frequency field is invalid: {exc}",
         )
     calculation = calculate_income_vs_threshold(annual_income, household_size, ami_tier)
 

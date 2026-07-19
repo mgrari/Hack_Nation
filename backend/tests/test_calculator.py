@@ -1,6 +1,37 @@
 import pytest
 
 
+def test_annualize_weekly():
+    from calculator import annualize
+
+    assert annualize(1000, "weekly") == 52000
+
+
+def test_annualize_biweekly():
+    from calculator import annualize
+
+    assert annualize(2000, "biweekly") == 52000
+
+
+def test_compare_to_threshold_boundary():
+    from calculator import compare_to_threshold
+
+    assert compare_to_threshold(72000, 72000) == "below_or_equal"
+
+
+def test_compare_to_threshold_above():
+    from calculator import compare_to_threshold
+
+    assert compare_to_threshold(72000.01, 72000) == "above"
+
+
+def test_annualize_unknown_frequency():
+    from calculator import annualize
+
+    with pytest.raises(ValueError):
+        annualize(1000, "fortnight-ish")
+
+
 def test_calculate_income_vs_threshold_uses_real_corpus():
     from calculator import calculate_income_vs_threshold
 
