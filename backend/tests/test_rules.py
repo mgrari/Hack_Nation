@@ -25,8 +25,33 @@ def test_calculate_returns_threshold_with_confirmed_income(client):
     assert response.status_code == 200
     body = response.json()
     assert body["threshold"] == 102840
-    assert body["confirmed_value"] == 90000  # 7500 * 12
+    assert body["confirmed_value"] == 90000  # annualize(7500, "monthly")
+    assert body["threshold_comparison"] == "below_or_equal"
     assert "eligible" not in str(body).lower()
+
+
+def test_calculate_returns_above_threshold_comparison(client):
+    from db import get_db
+    from main import app
+    from models import DocumentRecord, FieldRecord
+
+    client.post("/consent")
+    session_id = client.cookies.get("realdoor_session")
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    doc = DocumentRecord(session_id=session_id, encrypted_path="unused", content_type="application/pdf")
+    db.add(doc)
+    db.commit()
+    db.add(FieldRecord(document_id=doc.id, field_name="gross_pay", confirmed_value="20000", confirmed=True))
+    db.add(FieldRecord(document_id=doc.id, field_name="pay_frequency", confirmed_value="monthly", confirmed=True))
+    db.commit()
+
+    response = client.post("/calculate", json={"household_size": 4, "ami_tier": "60"})
+    assert response.status_code == 200
+    body = response.json()
+    assert body["confirmed_value"] == 240000
+    assert body["threshold_comparison"] == "above"
 
 
 def test_calculate_rejects_non_numeric_confirmed_value(client):

@@ -3,7 +3,7 @@ from openai import OpenAI
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
-from calculator import annualize, calculate_income_vs_threshold
+from calculator import annualize, calculate_income_vs_threshold, compare_to_threshold
 from config import settings
 from db import get_db
 from models import AuditLogRecord, DocumentRecord, FieldRecord
@@ -65,6 +65,7 @@ def calculate(
             detail=f"gross_pay or pay_frequency field is invalid: {exc}",
         )
     result = calculate_income_vs_threshold(annual_income, body.household_size, body.ami_tier)
+    result["threshold_comparison"] = compare_to_threshold(annual_income, result["threshold"])
 
     db.add(AuditLogRecord(session_id=session_id, action="calculated", rule_version=result["effective_date"]))
     db.commit()

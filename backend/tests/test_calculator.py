@@ -43,6 +43,26 @@ def test_calculate_income_vs_threshold_uses_real_corpus():
     assert "source_citation" in result
 
 
+def test_annualize_matches_hh001_real_data():
+    # HH-001 (regular_hourly): hh-001_d03_pay_stub.pdf has PAY FREQUENCY=biweekly,
+    # GROSS PAY=$2,166.00. Expected annualized income per
+    # data/evaluation/application_checklists.json's expected_annualized_income for HH-001
+    # is 56316.0.
+    from calculator import annualize
+
+    assert annualize(2166.00, "biweekly") == 56316.0
+
+
+def test_annualize_matches_hh002_real_data():
+    # HH-002 (overtime_variance): hh-002_d03_pay_stub.pdf has PAY FREQUENCY=weekly,
+    # GROSS PAY=$960.00 (regular rate, excludes overtime). Expected annualized income per
+    # data/evaluation/application_checklists.json's expected_annualized_income for HH-002
+    # is 49920.0.
+    from calculator import annualize
+
+    assert annualize(960.00, "weekly") == 49920.0
+
+
 def test_calculate_rejects_invalid_household_size():
     from calculator import calculate_income_vs_threshold
 
