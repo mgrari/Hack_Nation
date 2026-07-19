@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { StepNav } from "@/components/StepNav";
 import { ask, calculate, type Calculation } from "@/lib/api";
@@ -37,11 +37,11 @@ type QaEntry = {
 };
 
 export default function UnderstandPage() {
-  const [householdSize, setHouseholdSizeState] = useState(() => {
-    if (typeof window === "undefined") return 4;
+  const [householdSize, setHouseholdSizeState] = useState(4);
+  useEffect(() => {
     const stored = window.sessionStorage.getItem("householdSize");
-    return stored ? Number(stored) : 4;
-  });
+    if (stored) setHouseholdSizeState(Number(stored));
+  }, []);
   const [tableVisible, setTableVisible] = useState(false);
   const [calculation, setCalculation] = useState<Calculation | null>(null);
   const [question, setQuestion] = useState("");
