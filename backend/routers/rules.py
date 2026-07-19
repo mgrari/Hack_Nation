@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import APIRouter, Depends, HTTPException
 from openai import OpenAI
 from pydantic import BaseModel
@@ -7,10 +9,16 @@ from calculator import annualize, calculate_income_vs_threshold, compare_to_thre
 from config import settings
 from db import get_db
 from models import AuditLogRecord, DocumentRecord, FieldRecord
+from queries import get_confirmed_documents
+from readiness import evaluate_readiness
 from session_cookie import get_or_create_session
 import rules_rag
 
 router = APIRouter()
+
+# Documents every application needs regardless of household scenario (matches
+# checklist.py's gold checklist baseline -- no per-household config exists in the live app).
+REQUIRED_DOCUMENT_TYPES = ["application_summary", "pay_stub", "employment_letter"]
 
 
 class CalculateRequest(BaseModel):
@@ -66,6 +74,13 @@ def calculate(
         )
     result = calculate_income_vs_threshold(annual_income, body.household_size, body.ami_tier)
     result["threshold_comparison"] = compare_to_threshold(annual_income, result["threshold"])
+
+    confirmed_documents = get_confirmed_documents(db, session_id)
+    readiness_status, review_reasons = evaluate_readiness(
+        confirmed_documents, REQUIRED_DOCUMENT_TYPES, date.today()
+    )
+    result["readiness_status"] = readiness_status
+    result["review_reasons"] = review_reasons
 
     db.add(AuditLogRecord(session_id=session_id, action="calculated", rule_version=result["effective_date"]))
     db.commit()

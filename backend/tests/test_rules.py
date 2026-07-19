@@ -30,6 +30,46 @@ def test_calculate_returns_threshold_with_confirmed_income(client):
     assert "eligible" not in str(body).lower()
 
 
+def test_calculate_returns_readiness_status_and_review_reasons(client):
+    from db import get_db
+    from main import app
+    from models import DocumentRecord, FieldRecord
+
+    client.post("/consent")
+    session_id = client.cookies.get("realdoor_session")
+
+    db_gen = app.dependency_overrides[get_db]()
+    db = next(db_gen)
+    pay_stub = DocumentRecord(
+        session_id=session_id,
+        encrypted_path="unused",
+        content_type="application/pdf",
+        document_type="pay_stub",
+    )
+    summary = DocumentRecord(
+        session_id=session_id,
+        encrypted_path="unused",
+        content_type="application/pdf",
+        document_type="application_summary",
+    )
+    db.add_all([pay_stub, summary])
+    db.commit()
+    db.add(FieldRecord(document_id=pay_stub.id, field_name="gross_pay", confirmed_value="7500", confirmed=True, source_box=[0, 0, 1, 1]))
+    db.add(FieldRecord(document_id=pay_stub.id, field_name="pay_frequency", confirmed_value="monthly", confirmed=True, source_box=[0, 0, 1, 1]))
+    db.add(FieldRecord(document_id=summary.id, field_name="household_size", confirmed_value="4", confirmed=True, source_box=[0, 0, 1, 1]))
+    db.commit()
+
+    response = client.post("/calculate", json={"household_size": 4, "ami_tier": "60"})
+    assert response.status_code == 200
+    body = response.json()
+
+    # Only application_summary and employment_letter are missing here -- pay_stub's
+    # presence corroborates income without employment_letter, so this stays ready.
+    assert body["readiness_status"] == "READY_TO_REVIEW"
+    assert body["review_reasons"] == []
+    assert "eligible" not in str(body).lower()
+
+
 def test_calculate_returns_above_threshold_comparison(client):
     from db import get_db
     from main import app
