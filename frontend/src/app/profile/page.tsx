@@ -6,6 +6,7 @@ import { StepNav } from "@/components/StepNav";
 import {
   confirmField,
   deleteDocument,
+  deleteSession,
   fetchDocumentFile,
   getDocumentPreview,
   getDocuments,
@@ -43,6 +44,7 @@ function documentTypeLabel(documentType: string | null) {
 }
 
 type UploadStage = "idle" | "uploading";
+type RevokeStage = "idle" | "confirming";
 
 /** Page image with the field's source box drawn over it. bbox is in PDF points with a
  * bottom-left origin; the image is a top-left-origin raster of the same page, so convert
@@ -90,6 +92,7 @@ function EvidenceHighlight({
 export default function ProfilePage() {
   const [consented, setConsented] = useState(false);
   const [consentError, setConsentError] = useState<string | null>(null);
+  const [revokeStage, setRevokeStage] = useState<RevokeStage>("idle");
   const [uploadStage, setUploadStage] = useState<UploadStage>("idle");
   const [uploadingFileName, setUploadingFileName] = useState<string | null>(null);
   const [documents, setDocuments] = useState<UploadedDocument[]>([]);
@@ -134,8 +137,33 @@ export default function ProfilePage() {
       } catch (err) {
         setConsentError((err as Error).message);
       }
-    } else {
+      return;
+    }
+    // Revoking consent means revoking permission to have stored anything -- if nothing
+    // was uploaded yet there's nothing to warn about, but once documents exist,
+    // unchecking must delete everything, not just flip a local flag.
+    if (documents.length === 0) {
       setConsented(false);
+      return;
+    }
+    setRevokeStage("confirming");
+  }
+
+  async function handleConfirmRevoke() {
+    setConsentError(null);
+    try {
+      await deleteSession();
+      setConsented(false);
+      setDocuments([]);
+      setDraftValues({});
+      setPreviews({});
+      setActiveEvidence(null);
+      setEvidenceLostKeys(new Set());
+      setLiveMessage("Consent withdrawn. All uploaded documents and confirmed values were deleted.");
+    } catch (err) {
+      setConsentError((err as Error).message);
+    } finally {
+      setRevokeStage("idle");
     }
   }
 
@@ -342,6 +370,33 @@ export default function ProfilePage() {
                 <p role="alert" className="text-rust font-medium text-sm mt-2">
                   {consentError}
                 </p>
+              )}
+              {revokeStage === "confirming" && (
+                <div
+                  role="alertdialog"
+                  aria-label="Confirm withdrawing consent"
+                  className="mt-3.5 rounded border border-rust/35 bg-rust/[0.06] px-4.5 py-4"
+                >
+                  <p className="text-sm font-semibold mb-3">
+                    Withdrawing consent deletes everything you&apos;ve uploaded and confirmed —
+                    this can&apos;t be undone. Continue?
+                  </p>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={handleConfirmRevoke}
+                      className="rounded bg-rust px-4 py-2.5 font-heading text-[13px] font-bold text-paper"
+                    >
+                      Yes, delete everything
+                    </button>
+                    <button
+                      autoFocus
+                      onClick={() => setRevokeStage("idle")}
+                      className="rounded border border-ink/25 bg-transparent px-4 py-2.5 font-heading text-[13px] font-semibold text-ink"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
               )}
             </div>
           </div>
