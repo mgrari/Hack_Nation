@@ -7,9 +7,12 @@ import {
   confirmField,
   deleteDocument,
   fetchDocumentFile,
+  getDocumentPreview,
   getDocuments,
   giveConsent,
   uploadDocument,
+  type DocumentPreview,
+  type SourceBox,
   type UploadedDocument,
 } from "@/lib/api";
 
@@ -41,6 +44,49 @@ function documentTypeLabel(documentType: string | null) {
 
 type UploadStage = "idle" | "uploading";
 
+/** Page image with the field's source box drawn over it. bbox is in PDF points with a
+ * bottom-left origin; the image is a top-left-origin raster of the same page, so convert
+ * to percentages (which survive responsive scaling) and flip the vertical axis. */
+function EvidenceHighlight({
+  preview,
+  box,
+  label,
+  filename,
+}: {
+  preview: DocumentPreview;
+  box: SourceBox;
+  label: string;
+  filename: string | null;
+}) {
+  const [x0, y0, x1, y1] = box.bbox;
+  const pad = 3; // PDF points of breathing room so the outline doesn't clip glyphs
+  const left = (Math.max(0, x0 - pad) / preview.page_width) * 100;
+  const top = (Math.max(0, preview.page_height - y1 - pad) / preview.page_height) * 100;
+  const width = (Math.min(preview.page_width, x1 - x0 + pad * 2) / preview.page_width) * 100;
+  const height = (Math.min(preview.page_height, y1 - y0 + pad * 2) / preview.page_height) * 100;
+
+  return (
+    <figure className="mt-3 mb-0">
+      <div className="relative overflow-hidden rounded border border-border">
+        {/* eslint-disable-next-line @next/next/no-img-element -- data URI from the API, not a static asset */}
+        <img
+          src={`data:image/png;base64,${preview.image_base64}`}
+          alt={`Page ${box.page} of ${filename ?? "your document"} with ${label} highlighted`}
+          className="block w-full"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute rounded-[2px] border-2 border-highlighter bg-highlighter/20"
+          style={{ left: `${left}%`, top: `${top}%`, width: `${width}%`, height: `${height}%` }}
+        />
+      </div>
+      <figcaption className="mt-1.5 text-[12px] text-ink/55">
+        {label} — found on page {box.page}, highlighted above.
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function ProfilePage() {
   const [consented, setConsented] = useState(false);
   const [consentError, setConsentError] = useState<string | null>(null);
@@ -49,6 +95,9 @@ export default function ProfilePage() {
   const [documents, setDocuments] = useState<UploadedDocument[]>([]);
   const [draftValues, setDraftValues] = useState<Record<string, string>>({});
   const [error, setError] = useState<string | null>(null);
+  const [previews, setPreviews] = useState<Record<string, DocumentPreview>>({});
+  const [activeEvidence, setActiveEvidence] = useState<{ documentId: string; fieldName: string } | null>(null);
+  const [previewError, setPreviewError] = useState<string | null>(null);
 
   useEffect(() => {
     getDocuments().then((result) => {
@@ -173,6 +222,24 @@ export default function ProfilePage() {
     }
   }
 
+  async function handleToggleEvidence(documentId: string, fieldName: string) {
+    if (activeEvidence?.documentId === documentId && activeEvidence.fieldName === fieldName) {
+      setActiveEvidence(null);
+      return;
+    }
+    setPreviewError(null);
+    setActiveEvidence({ documentId, fieldName });
+    if (!previews[documentId]) {
+      try {
+        const preview = await getDocumentPreview(documentId);
+        setPreviews((prev) => ({ ...prev, [documentId]: preview }));
+      } catch (err) {
+        setPreviewError((err as Error).message);
+        setActiveEvidence(null);
+      }
+    }
+  }
+
   function handleEdit(documentId: string, fieldName: string) {
     setDocuments((prev) =>
       prev.map((doc) =>
@@ -294,6 +361,10 @@ export default function ProfilePage() {
                       const good = field.confidence >= CONFIDENCE_THRESHOLD;
                       const confColor = good ? "text-sage" : "text-rust";
                       const dotColor = good ? "bg-sage" : "bg-rust";
+                      const evidenceActive =
+                        activeEvidence?.documentId === doc.document_id &&
+                        activeEvidence.fieldName === field.field_name;
+                      const preview = previews[doc.document_id];
 
                       return (
                         <div key={field.field_name} className="fade-up rounded-lg border border-border bg-card px-5 py-[18px]">
@@ -301,10 +372,21 @@ export default function ProfilePage() {
                             <div className="font-heading text-[11.5px] font-semibold tracking-wide text-ink/60 uppercase">
                               {labelFor(field.field_name)}
                             </div>
-                            <div className="flex items-center gap-1.5">
-                              <span className={`size-1.5 rounded-full shrink-0 ${dotColor}`} aria-hidden="true" />
-                              <span className={`font-heading text-[11px] font-semibold ${confColor}`}>
-                                {good ? `${pct}% match` : `${pct}% — review`}
+                            <div className="flex items-center gap-3">
+                              {field.source_box && (
+                                <button
+                                  onClick={() => handleToggleEvidence(doc.document_id, field.field_name)}
+                                  aria-expanded={evidenceActive}
+                                  className="font-heading text-[11px] font-semibold text-sage underline"
+                                >
+                                  {evidenceActive ? "Hide source" : "Show source"}
+                                </button>
+                              )}
+                              <span className="flex items-center gap-1.5">
+                                <span className={`size-1.5 rounded-full shrink-0 ${dotColor}`} aria-hidden="true" />
+                                <span className={`font-heading text-[11px] font-semibold ${confColor}`}>
+                                  {good ? `${pct}% match` : `${pct}% — review`}
+                                </span>
                               </span>
                             </div>
                           </div>
@@ -339,6 +421,20 @@ export default function ProfilePage() {
                               </button>
                             </div>
                           )}
+
+                          <div aria-live="polite">
+                            {evidenceActive && field.source_box && preview && (
+                              <EvidenceHighlight
+                                preview={preview}
+                                box={field.source_box}
+                                label={labelFor(field.field_name)}
+                                filename={doc.filename}
+                              />
+                            )}
+                            {evidenceActive && !preview && !previewError && (
+                              <p className="mt-3 text-[12px] text-ink/55">Loading document preview…</p>
+                            )}
+                          </div>
                         </div>
                       );
                     })}
@@ -396,6 +492,11 @@ export default function ProfilePage() {
         {error && (
           <p role="alert" className="text-rust font-medium mb-5">
             {error}
+          </p>
+        )}
+        {previewError && (
+          <p role="alert" className="text-rust font-medium mb-5">
+            Couldn&apos;t load the document preview: {previewError}
           </p>
         )}
 

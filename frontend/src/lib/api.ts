@@ -1,11 +1,25 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
+export type SourceBox = {
+  page: number;
+  bbox: [number, number, number, number];
+  bbox_units: string;
+};
+
 export type ExtractedField = {
   id: string;
   field_name: string;
   value: string | null;
   confidence: number;
   confirmed?: boolean;
+  source_box?: SourceBox | null;
+};
+
+export type DocumentPreview = {
+  page: number;
+  page_width: number;
+  page_height: number;
+  image_base64: string;
 };
 
 export type UploadedDocument = {
@@ -74,6 +88,10 @@ export async function fetchDocumentFile(documentId: string) {
     throw new Error(`${response.status}: ${detail}`);
   }
   return response.blob();
+}
+
+export function getDocumentPreview(documentId: string) {
+  return request<DocumentPreview>(`/documents/${documentId}/preview`);
 }
 
 export function deleteDocument(documentId: string) {
